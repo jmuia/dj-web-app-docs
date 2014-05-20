@@ -4,4 +4,4 @@ Documentation will be extensive for the PartyAll web applicaton. For this reason
 
 SQA members can raise GitHub issues in regards to questions, concerns, or problems they see with the documentation.
 
-Link to the docs: partyall-docs.herokuapp.com
+Link to the docs: http://partyall-docs.herokuapp.com/
