@@ -1,0 +1,14 @@
+{
+  "name" : "partyall-docs" ,
+  "version" : "0.0.1" ,
+  "engines" : {
+    "node" : "0.10.21" ,
+    "npm"  : "1.3.11"
+  },
+  "dependencies" : {
+    "express" : "~4.2.0"
+  },
+  "scripts" : {
+    "start" : "node web.js"
+  }
+}

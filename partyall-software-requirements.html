@@ -1,0 +1,659 @@
+<DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CP317 PartyAll Software Requirements</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .use-cases, td, th {
+                border: 1px solid black;
+                width: 700px;
+            }
+
+            .category {
+                font-weight: bold;
+                width: 150px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>PartyAll - Software Requirements</h1>
+        <p>Version 0.3, May 19, 2014</p>
+
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#list_of_figures">List of Figures</a></li>
+            <li><a href="#introduction">1. Introduction</a>  
+                <ul>
+                    <li><a href="#purpose">1.1 Purpose</a></li>
+                    <li><a href="#scope">1.2 Scope</a></li>
+                    <li><a href="#definitions">1.3 Definitions</a></li>
+                    <li><a href="#references">1.4 References</a></li>
+                    <li><a href="#overview">1.5 Overview</a></li>
+                </ul>
+            </li>
+            <li><a href="#overall_description">2. Overall Description</a>
+                <ul>
+                    <li><a href="#product_perspective">2.1 Product Perspective</a></li>
+                    <li><a href="#product_functions">2.2 Product Functions</a></li>
+                    <li><a href="#user_characteristics">2.3 User Characteristics</a></li>
+                    <li><a href="#constraints">2.4 Constraints</a></li>
+                    <li><a href="#assumptions">2.5 Assumptions and Dependencies</a></li>
+                </ul>
+            </li>
+            <li><a href="#requirements_specifications">3. Requirements Specifications</a>
+                <ul>
+                    <li><a href="#external_interface_requirements">3.1 External Interface Requirements</a></li>
+                    <li><a href="#functional_requirements">3.2 Functional Requirements</a></li>
+                    <li><a href="#security">3.3 Security</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2 id="list_of_figures">List of Figures</h2>
+        <h3>Use Case Diagram:</h3>
+        <object data="img/use-case-diagram.svg" type="image/svg+xml"></object>
+        <h2 id="introduction">1. Introduction</h2>
+        <p>
+            PartyAll is a web based application that allows guests at a party to democratically curate a playlist for the party they are attending. The purpose of PartyAll is to solve the issues and inefficiencies behind manually creating a playlist that a majority of people agree on and to avoid having one person monopolizing the music.
+        </p>
+
+        <h3 id="purpose">1.1 Purpose</h3>
+        <p>
+            The purpose of this document is to illustrate the software requirements of the PartyAll web application. This document is targeted towards the developers of the application and to any users or individuals looking to gain an in depth understanding of the application.
+        </p>
+
+        <h3 id="scope">1.2 Scope</h3>
+        <p>
+            PartyAll is a mobile friendly web application that allows multiple people to collectively curate a playlist. Users of PartyAll classify themselves as one of two types, either a Host or Guest. A Host can create a party or in other words a new playlist. A Guest, given an access key, is allowed to access the party and request songs to be queued up. Users, (both of type Host and Guest) are allowed to upvote songs moving them higher up the queue as they gain more votes than other songs. PartyAll will automatically traverse the queue, playing songs until the end of the queue is reached, or the party is ended by the creating Host.
+            Parties that a Host creates can be manually stopped by the Host or will be automatically stopped after 3 hours of inactivity (no songs playing). There will be no persistent user accounts, minimizing the steps required to go from opening the web page to starting a party. The requirements for creating a party are a unique party name and password. Upon successful creation the Host will be presented with a system generated 6 character guest key which will be distributed to the party's guests.
+            Hosts sign in to their created party using the party name and admin password as credentials. Once the Host signs in, he/she will hit the play button to start playing the song at the top of the queue. Once a guest has arrived, they can then use the party name and guest key to view the Host's party queue, request, and upvote songs.
+        </p>
+        <p>
+            PartyAll aims to make the process of deciding on what music to play at a party as efficient and crowd-pleasing as possible.
+        </p>
+
+        <h3 id="definitions">1.3 Definitions</h3>
+        <p>
+            <h4>Party:</h4> A Party is a playlist of songs that is curated by the Host and Guests. A party can be paused or stopped, and songs in a party can be upvoted to manipulate the order of the play queue. Songs in a party can also be skipped by the Host of that party.
+        </p>
+        <p>
+            <h4>Host:</h4> The Host is a type of user that can create a Party, sign in to an existing party, pause music, skip songs and stop/delete a party. This user provides Guests with a guest key and party name allowing them to view the party queue and vote for songs.
+        </p>
+        <p>
+            <h4>Guest:</h4> The Guest is a party-goer who wants to decide on the upcoming songs. This user will access a party via the guest key provided to them by a Host.
+        </p>
+        <p>
+            <h4>Upvote:</h4> A unit used to measure the ranking weight of a song in the Party queue. //TODO
+        </p>
+
+        <h3 id="references">1.4 References</h3>
+        <p>IEEE. IEEE Std 830-1998 IEEE Recommended Practice for Software Requirements Specifications. IEEE Computer Society, 1998</p>
+
+        <h3 id="overview">1.5 Overview</h3>
+        <p>
+            The rest of this document goes into details on the various flows found in the PartyAll app. This includes how various types of users are expected to interact with the app, and how the app behaves.
+        </p>
+
+        <hr>
+
+        <h2 id="overall_description">2. Overall Description</h2>
+        <h3 id="product_perspective">2.1 Product Perspective</h3>
+        <p>
+            PartyAll is a web based application with two major components. There is the PartyAll front end, and the PartyAll Service (back end).
+        </p>
+        <p>
+            <h4>Front End:</h4>
+            The PartyAll front end is the user interface component of the app. This is the component that will be accessible to users. It will consist of a mobile friendly responsive website that scales according to the device it is being displayed on. It will support a variety of screen sizes and resolutions, ranging from smartphones to TVs.
+        </p>
+        <p>
+            <h4>Back End:</h4>
+            The PartyAll service is the component of the app responsible for storing party data such as party name, encrypted party passwords, song queues, and upvote count for each song. Additionally, this service generates party guest keys to send back to Hosts that create parties. The service will also store the PartyAll front end's public key for verifying requests sent to the service are actually from the PartyAll app. The service is also responsible for rearranging the song queue when songs are upvoted, breaking ties in the queue by giving priority to songs added earlier. The service is also responsible for cleaning up party sessions after 3 hours of inactivity (no songs playing).              
+        </p>
+        
+        <h3 id="product_functions">2.2 Product Functions</h3>
+        <p>
+            PartyAll is a web based application. For users to access it they will visit the app's url on any device that has a web browser. Upon visiting the website the user will be presented with an intro screen briefly explaining the app and an option for the user to specify what type of user they are. The user will be allowed to pick one of two types, either a Host or a Guest.
+        </p>
+        <p>
+            <h4>Create Party Flow - Host:</h4>
+            If the user selects to be a Host they will be navigated to the Host page. Here the user will get to decide whether they wish to create a party or sign in to an already created party. If the Host chooses to create a party, he or she will be presented with a form. The form will contain 2 fields, party name and password. The party name will be the unique public identifier for the party, the password is the password a Host requires to access the party if they were to navigate away or log out. After successfully creating a party the Host will be presented with a success screen and on that screen will be a 6 character system generated guest access key. The guest access key is the public password the Host will provide to his/her Guests allowing them to view the party playlist queue, upvote songs and requests new songs. 
+        </p>
+        <p>
+            From here on in the Host can play songs, request songs, search for songs to queue up, upvote songs, skip songs, pause music, and end the party.
+        </p>
+
+        <p>
+            <h4>Access Existing Party Flow - Host:</h4>
+            If the user is a Host and instead of creating a new party he/she wishes to access an already created party, a login form will be presented, requesting a party name and password. Upon successful login the Host will be presented with the same party screen along with the same functionality as described above.
+        </p>
+        
+        <p>
+            <h4>Access Party Flow - Guest:</h4>
+            If the users are of type Guest, they will be presented with a login screen. The login screen will consist of a single box asking for the user to enter a unique guest access password given to them by a host. After successful login the Guest will be presented with the guest perspective of the party page.            
+        </p>
+        <p>
+            The guest perspective of the party page shows the song queue of the party, allowing Guests to upvote songs, request songs, and log out.
+        </p>
+
+        <p>
+            <h4>Request Song Flow - Host &amp Guest:</h4>
+            When a user hits the search icon from either the guest party page or the host party page, the user will be presented with an input box. The user will then enter the name of the song they wish to queue up and perform a search. The user will then tap on the song they wish to request and verify that they do wish to queue up the requested song by confirming the dialog that appears.             
+        </p>
+
+        <p>
+            <h4>Upvoting Songs - Host &amp Guest:</h4>
+            Users, from either the Host or Guest party page can upvote songs in the queue by simply tapping on them. Tapping on a song that a user had already upvoted will remove the user's upvote from that song.
+        </p>
+
+        <h3 id="user_characteristics">2.3 User Characteristics</h3>
+        <p>
+            PartyAll is intended to be a very simple and intuitive web app. As there are two different user experiences, there are also two categories of users.
+        </p> 
+
+        <p>
+            <h4>Host Characteristics:</h4>
+
+            The user hosting the party on PartyAll is not required to have any in-depth technical expertise or training. Experience using a digital media player such as iTunes (play, pause, skip, etc...) will aid in the amount of time it takes the Host to become familiar with the application. Hosts also have the ability to vote for songs like Guests and therefore must also have the same characteristics as a guest (detailed below).
+        </p>
+
+        <p>
+            <h4>Guest Characteristics:</h4>
+
+            The ParyAll web app is meant to be used by guests at parties where he or she is engaging in social interaction and would only want to take a few seconds to use PartyAll to vote for the next song to play before returning to the party. The Guest's technical expertise is required to extend only as far as being able to turn on his or her phone and access the web app. The app's user interface will only have a few very clear options and therefore the user does not need to have any further training prior to use. In fact, as the app will be used at parties it is not guaranteed that the user will be completely void of the effects of alcohol and therefore PartyAll needs to be as simple as possible.
+        </p>
+
+        <h3 id="constraints">2.4 Constraints</h3>
+        <p>
+            The only constraints PartyAll will have are the rate limitations in place by the YouTube API the app will use. At the time of this writing, YouTube's API limitations are 30,000 units/second/user and 50,000,000 per day. More information on YouTube's API quota can be found <a href="https://developers.google.com/youtube/v3/getting-started#quota">here</a>.
+        </p>
+
+        <h3 id="assumptions">2.5 Assumptions and Dependencies</h3>
+        <p>
+            The assumptions made when creating this document were that the app will not an admin interface and that any admin tools required will be automated into cron jobs (automated scheduled tasks the service runs) or be provided to us by the tools of the datastore we choose to use.
+        </p>
+        <p>
+            Additionally, this document was created based on the assumption that this is only the first iteration of the application, omitting some features that will come in future versions of the app. This allows developers to quickly release a minimal viable product that is both doable in a specified time period and is functional enough for release.
+        </p>
+
+        <h2 id="requirements_specifications">3. Requirements Specification</h2>
+        <h3 id="external_interface_requirements">3.1 External Interface Requirements</h3>
+        <p>
+            The only external interface PartyAll relies on is the YouTube Music API it uses to power searching and playing music.
+        </p>
+        
+        <h3 id="functional_requirements">3.2 Functional Requirements</h3>
+        <h4>3.2.1 Create Party:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Create Party</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Host taps create party button</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>Host is on <i>Host</i> page of the web app</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they tap create party.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>Party created, Host returned back with a system generated guest access key and a screen to continue forward to Host party page.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>If party name is already taken, Host will be asked to resubmit form with different party name.</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>None</td>
+            </tr>
+        </table>
+
+        <h4>3.2.2 Sign In To Existing Party:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Sign in to Existing Party</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Host taps "Sign in to Party" button</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>Host is on Host page of the web app.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they tap "Sign in to Party" and enter their party name and host password. </td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>Host signs in to an already created party</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>If the username and password are incorrect, host will be asked to resubmit credentials</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>Multiple hosts can sign in to the same party.</td>
+            </tr>
+        </table>
+
+        <h4>3.2.3 Stop Party:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td> 
+                <td>Stop Party</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td> 
+                <td>Host taps "Stop party" button</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td> 
+                <td> Host is in Host perspective of a specific party on the web app.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td> 
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they tap "Sign in to Party" and enter their party name and host password. They are then able to view the party from the Host perspective. He then selects the button "Stop Party" which is in the dropdown settings menu.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td> 
+                <td> None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td> 
+                <td> Host stops the created party.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td> 
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td> 
+                <td>If multiple Hosts are signed into same party all other Hosts will be kicked out and sent back to the PartyAll home page.</td>
+            </tr>
+        </table>
+
+        <h4>3.2.4 View Queue:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>View Queue</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Guest or Hosts access existing party</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>User on a party page</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are either a Guest or Host. If Guest user enters a guest access key to access party. If Host, user either signs into existing party or user creates a new party. After any one of these sequences user will be presented with a page containing the party queue.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>User views the party song queue</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>None</td>
+            </tr>
+        </table>
+
+        <h4>3.2.5 Search for Song:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Search for Song</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Guest or Host submits search query via search bar</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>User (Guest or Host) is on the party page</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the party page. The user then selects the search bar and submits a query.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>Search results page is shown containing results for the specific query.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>No results are found would present user with an empty results page.</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>None</td>
+            </tr>
+        </table>
+
+        <h4>3.2.6 Request Song:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Request Song</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Guest or Host selects result from Results Page</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>User (Guest or Host) has searched for a song.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the party page. The user then selects the search bar and submits a query. They are then taken to the results page where they will select the appropriate result. A confirmation of selection is presented to the user.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>Song is added to the queue.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>User can go back without selecting a song.</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>Selecting the wrong song would add the wrong song to the queue. This is avoided with the confirmation of selection pop-up.</td>
+            </tr>
+        </table>
+
+        <h4>3.2.7 Upvote Song:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Upvote Song</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Guest or Host clicks on thump up on song in queue.</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>User (Guest or Host) is on the party page (Queue is populated).</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the party page. On this page, songs that are currently in the queue will be visible and it from there that the user can upvote a song.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>The votes for the selected song are incremented by one.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>Thumbs up icon changes to reflect being selected.</td>
+            </tr>
+        </table>
+
+        <h4>3.2.8 Un-vote Song:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Un-vote Song</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Guest or Host clicks on thump up on song in queue when it was already selected.</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>User (Guest or Host) is on the party page (Queue is populated) and they have already thumbed up the song.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the party page. On this page the user can un-vote a song they have already voted for.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>The votes for the selected song are decremented by one.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>Thumbs up icon changes to reflect being deselected.</td>
+            </tr>
+        </table>
+
+        <h4>3.2.9 Skip Song:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Skip Song</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Host clicks on next song icon.</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>Host is on the party page.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they tap "Sign in to Party" and enter their party name and host password. Now on the party page, the user will have a "skip song" icon beside the currently playing song.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>The next song in the queue is played.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>This "skip" will have to be reflected on all host connections.</td>
+            </tr>
+        </table>
+
+        <h4>3.2.10 Play Song:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Play Song</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Host clicks on Play icon.</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>Host is on the party page.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they tap "Sign in to Party" and enter their party name and host password. Now on the party page, the user will have a "play" icon beside the currently playing song.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>The current song is played.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>This play will have to be reflected on all host connections.</td>
+            </tr>
+        </table>
+
+        <h4>3.2.11 Pause Song:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Pause Song</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Host clicks on Pause icon.</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>Host is on the party page.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they tap "Sign in to Party" and enter their party name and host password. Now on the party page, the user will have a "pause" icon beside the currently playing song.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>The current song is paused.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>This "pause" will have to be reflected on all host connections.</td>
+            </tr>
+        </table>
+
+<!--         <h4>3.2.12 Search Party:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Search Party</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Guest searches for Party in Party Search</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>Guest has just selected that they are a Guest.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Guest and are taken to the "Find your party" page.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>The Guest is presented with the results of their party search.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>None</td>
+            </tr>
+        </table> -->
+
+        <h4>3.2.12 Access Party:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Access Party</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Guest selects a party to enter</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>Guest has searched for a specific party.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>From the landing page the user specifies they are a Guest and are taken to the "Find your party" page. The Guest then submits a search query and selects from the results the appropriate party and enters the party access code.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>The Guest gains access to the party.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>If the access code is incorrectly entered the Guest will be prompted to try again.</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>None</td>
+            </tr>
+        </table>
+
+        <h3 id="security">3.3 Security</h3>
+        <p>
+            The PartyAll backend will require Google authentication and admin privileges to access and/or modify. Additionally, in terms of security, all requests made to the PartyAll backend will need to be signed and verified to ensure authenticity of the requests.
+        </p>
+    </body>
+</html>
