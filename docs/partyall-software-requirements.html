@@ -108,7 +108,7 @@
         </p>
         <p>
             <h4>Back End:</h4>
-            The PartyAll service is the component of the app responsible for storing Party data such as Party name, encrypted Party passwords, song queues, and upvote count for each song. Additionally, this service generates Party guest keys to send back to Hosts that create parties. The service will also store the PartyAll front end's public key for verifying requests sent to the service are actually from the PartyAll app. The service is also responsible for rearranging the song queue when songs are upvoted, breaking ties in the queue by giving priority to songs added earlier. The service is also responsible for cleaning up Party sessions after 3 hours of inactivity (no songs playing).              
+            The PartyAll service is the component of the app responsible for storing Party data such as Party name, encrypted Party passwords, song queues, and upvote count for each song. Additionally, this service generates Party guest keys to send back to Hosts that create Parties. The service will also store the PartyAll front end's public key for verifying requests sent to the service are actually from the PartyAll app. The service is also responsible for rearranging the song queue when songs are upvoted, breaking ties in the queue by giving priority to songs added earlier. The service is also responsible for cleaning up Party sessions after 3 hours of inactivity (no songs playing).              
         </p>
         
         <h3 id="product_functions">2.2 Product Functions</h3>
@@ -170,7 +170,7 @@
 
         <h3 id="assumptions">2.5 Assumptions and Dependencies</h3>
         <p>
-            The assumptions made when creating this document were that the app will not an admin interface and that any admin tools required will be automated into cron jobs (automated scheduled tasks the service runs) or be provided to us by the tools of the datastore we choose to use.
+            The assumptions made when creating this document were that the app will not have an admin interface and that any admin tools required will be automated into cron jobs (automated scheduled tasks the service runs) or be provided to us by the tools of the datastore we choose to use.
         </p>
         <p>
             Additionally, this document was created based on the assumption that this is only the first iteration of the application, omitting some features that will come in future versions of the app. This allows developers to quickly release a minimal viable product that is both doable in a specified time period and is functional enough for release.
