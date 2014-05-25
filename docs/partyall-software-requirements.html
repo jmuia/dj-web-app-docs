@@ -66,8 +66,8 @@
         <h3 id="scope">1.2 Scope</h3>
         <p>
             PartyAll is a mobile friendly web application that allows multiple people to collectively curate a playlist. Users of PartyAll classify themselves as one of two types, either a Host or Guest. A Host can create a Party or in other words a new playlist. A Guest, given an access key, is allowed to access the Party and request songs to be queued up. Users, (both of type Host and Guest) are allowed to upvote songs moving them higher up the queue as they gain more votes than other songs. PartyAll automatically traverses the queue, playing songs until the end of the queue is reached, or the Party is ended by the creating Host.
-            A Party that a Host creates can be manually stopped by the Host or remain inactive (no songs playing) for 3 hours and be automatically stopped. There will be no persistent user accounts, minimizing the steps required to go from opening the web page to starting a Party. The requirements for creating a Party are a unique name and password. Upon successful creation the Host will be presented with a system generated 6 character guest key which will be distributed to the party's guests.
-            Hosts sign in to their created Party using the Party name and Party password as credentials. Once the Host signs in, he/she will hit the play button to start playing the song at the top of the queue. Once a guest has arrived, they can then use the Party name and guest key to view the Host's Party queue, request, and upvote songs.
+            A Party that a Host creates can be manually stopped by the Host or remain inactive (no songs playing) for 3 hours and be automatically stopped. There are no persistent user accounts, minimizing the steps required to go from opening the web page to starting a Party. The requirements for creating a Party are a unique name and password. Upon successful creation the Host is presented with a system generated 6 character guest key which is distributed to the party's guests.
+            Hosts sign in to their created Party using the Party name and Party password as credentials. Once the Host signs in, he/she hits the play button to start playing the song at the top of the queue. Once a guest has arrived, they can then use the Party name and guest key to view the Host's Party queue, request, and upvote songs.
         </p>
         <p>
             PartyAll aims to make the process of deciding on what music to play at a party as crowd-pleasing as possible.
@@ -81,10 +81,10 @@
             <h4>Host:</h4> The Host is a type of user that can create a Party, sign in to an existing Party, pause music, skip songs and stop/delete a Party. This user provides Guests with a guest key and Party name allowing them to view the Party queue and vote for songs.
         </p>
         <p>
-            <h4>Guest:</h4> The Guest is a party-goer who wants to decide on the upcoming songs. This user will access a Party via the guest key provided to them by a Host.
+            <h4>Guest:</h4> The Guest is a party-goer who wants to decide on the upcoming songs. This user accesses a Party via the guest key provided to them by a Host.
         </p>
         <p>
-            <h4>Upvote:</h4> A user action which is to increase the vote count of a song by one. The more Upvotes a song has the higher up it will be in the queue. Users are allowed one vote per song in the queue.
+            <h4>Upvote:</h4> A user action which is to increase the vote count of a song by one. The more Upvotes a song has the higher up it moves in the queue. Users are allowed one vote per song in the queue.
         </p>
 
         <h3 id="references">1.4 References</h3>
@@ -104,20 +104,20 @@
         </p>
         <p>
             <h4>Front End:</h4>
-            The PartyAll front end is the user interface component of the app. This is the component that will be accessible to users. It will consist of a mobile friendly responsive website that scales according to the device it is being displayed on. It will support a variety of screen sizes and resolutions, ranging from smartphones to TVs.
+            The PartyAll front end is the user interface component of the app. This is the component that is accessible to users. It consists of a mobile friendly responsive website that scales according to the device it is being displayed on. It supports a variety of screen sizes and resolutions, ranging from smartphones to TVs.
         </p>
         <p>
             <h4>Back End:</h4>
-            The PartyAll service is the component of the app responsible for storing Party data such as Party name, encrypted Party passwords, song queues, and upvote count for each song. Additionally, this service generates Party guest keys to send back to Hosts that create Parties. The service will also store the PartyAll front end's public key for verifying requests sent to the service are actually from the PartyAll app. The service is also responsible for rearranging the song queue when songs are upvoted, breaking ties in the queue by giving priority to songs added earlier. The service is also responsible for cleaning up Party sessions after 3 hours of inactivity (no songs playing).              
+            The PartyAll service is the component of the app responsible for storing Party data such as Party name, encrypted Party passwords, song queues, and upvote count for each song. Additionally, this service generates Party guest keys to send back to Hosts that create Parties. The service also stores the PartyAll front end's public key for verifying requests sent to the service are actually from the PartyAll app. The service is also responsible for rearranging the song queue when songs are upvoted, breaking ties in the queue by giving priority to songs added earlier. The service is also responsible for cleaning up Party sessions after 3 hours of inactivity (no songs playing).              
         </p>
         
         <h3 id="product_functions">2.2 Product Functions</h3>
         <p>
-            PartyAll is a web based application. For users to access it they will visit the app's url on any device that has a web browser. Upon visiting the website the user will be presented with an intro screen briefly explaining the app and an option for the user to specify what type of user they are. The user will be allowed to pick one of two types, either a Host or a Guest.
+            PartyAll is a web based application. For users to access it they visit the app's url on any device that has a web browser. Upon visiting the website the user is presented with an intro screen briefly explaining the app and an option for the user to specify what type of user they are. The user is allowed to pick one of two types, either a Host or a Guest.
         </p>
         <p>
             <h4>Create Party Flow - Host:</h4>
-            If the user selects to be a Host they will be navigated to the Host page. Here the user will get to decide whether they wish to create a Party or sign in to an already created Party. If the Host chooses to create a Party, he or she will be presented with a form. The form will contain 2 fields, Party name and password. The Party name will be the unique public identifier for the Party, the password is the password a Host requires to access the Party if they were to navigate away or log out. After successfully creating a Party the Host will be presented with a success screen and on that screen will be a 6 character system generated guest access key. The guest access key is the public password the Host will provide to his/her Guests allowing them to view the Party playlist queue, upvote songs and requests new songs. 
+            If the user selects to be a Host they are navigated to the Host page. Here the user gets to decide whether they wish to create a Party or sign in to an already created Party. If the Host chooses to create a Party, he or she is presented with a form. The form contains 2 fields: Party name and password. The Party name is the unique public identifier for the Party and the password is the password a Host requires to access the Party if they were to navigate away or log out. After successfully creating a Party the Host is presented with a success screen and on that screen there is a 6 character system generated guest access key. The guest access key is the public password the Host provides to his/her guests allowing them to view the Party playlist queue, upvote songs and requests new songs. 
         </p>
         <p>
             From here on in the Host can play songs, request songs, search for songs to queue up, upvote songs, skip songs, pause music, and end the Party.
@@ -125,12 +125,12 @@
 
         <p>
             <h4>Access Existing Party Flow - Host:</h4>
-            If the user is a Host and instead of creating a new Party he/she wishes to access an already created Party, a login form will be presented, requesting a Party name and password. Upon successful login the Host will be presented with the same Party screen along with the same functionality as described above.
+            If the user is a Host and instead of creating a new Party he/she wishes to access an already created Party, a login form is presented, requesting a Party name and password. Upon successful login the Host is presented with the same Party screen along with the same functionality as described above.
         </p>
         
         <p>
             <h4>Access Party Flow - Guest:</h4>
-            If the users are of type Guest, they will be presented with a login screen. The login screen will consist of a single box asking for the user to enter a unique guest access password given to them by a host. After successful login the Guest will be presented with the guest perspective of the Party page.            
+            If the users are of type Guest, they are presented with a login screen. The login screen consists of a single box asking for the user to enter a unique guest access password given to them by a host. After successful login the Guest is presented with the guest perspective of the Party page.            
         </p>
         <p>
             The guest perspective of the Party page shows the song queue of the Party, allowing Guests to upvote songs, request songs, and log out.
@@ -138,12 +138,12 @@
 
         <p>
             <h4>Request Song Flow - Host &amp Guest:</h4>
-            When a user hits the search icon from either the guest Party page or the host Party page, the user will be presented with an input box. The user will then enter the name of the song they wish to queue up and perform a search. The user will then click on the song they wish to request and verify that they do wish to queue up the requested song by confirming the dialog that appears.             
+            When a user hits the search icon from either the guest Party page or the host Party page, the user is presented with an input box. The user then enters the name of the song they wish to queue up and perform a search. The user then clicks on the song they wish to request and verify that they do wish to queue up the requested song by confirming the dialog that appears.             
         </p>
 
         <p>
             <h4>Upvoting Songs - Host &amp Guest:</h4>
-            Users, from either the Host or Guest Party page can upvote songs in the queue by simply clicking on them. Clicking on a song that a user had already upvoted will remove the user's upvote from that song.
+            Users, from either the Host or Guest Party page can upvote songs in the queue by simply clicking on them. Clicking on a song that a user had already upvoted removes the user's upvote from that song.
         </p>
 
         <h3 id="user_characteristics">2.3 User Characteristics</h3>
@@ -160,17 +160,17 @@
         <p>
             <h4>Guest Characteristics:</h4>
 
-            The ParyAll web app is meant to be used by guests at parties where he or she is engaging in social interaction and would only want to take a few seconds to use PartyAll to vote for the next song to play before returning to the party. The Guest's technical expertise is required to extend only as far as being able to turn on his or her phone and access the web app. The app's user interface will only have a few very clear options and therefore the user does not need to have any further training prior to use. In fact, as the app will be used at parties it is not guaranteed that the user will be completely void of the effects of alcohol and therefore PartyAll needs to be as simple as possible.
+            The PartyAll web app is meant to be used by guests at parties where he or she is engaging in social interaction and would only want to take a few seconds to use PartyAll to vote for the next song to play before returning to the party. The Guest's technical expertise is required to extend only as far as being able to turn on his or her phone and access the web app. The app's user interface only has a few very clear options and therefore the user does not need to have any further training prior to use. In fact, as the app's target demographics is party-goers, it is not guaranteed that the user will be completely void of the effects of alcohol and therefore PartyAll needs to be as simple as possible.
         </p>
 
         <h3 id="constraints">2.4 Constraints</h3>
         <p>
-            The only constraints PartyAll will have are the rate limitations in place by the YouTube API the app will use. At the time of this writing, YouTube's API limitations are 30,000 units/second/user and 50,000,000 per day. More information on YouTube's API quota can be found <a href="https://developers.google.com/youtube/v3/getting-started#quota">here</a>.
+            The only constraints PartyAll has are the rate limitations in place by the YouTube API the app uses. At the time of this writing, YouTube's API limitations are 30,000 units/second/user and 50,000,000 per day. More information on YouTube's API quota can be found <a href="https://developers.google.com/youtube/v3/getting-started#quota">here</a>.
         </p>
 
         <h3 id="assumptions">2.5 Assumptions and Dependencies</h3>
         <p>
-            The assumptions made when creating this document were that the app will not have an admin interface and that any admin tools required will be automated into cron jobs (automated scheduled tasks the service runs) or be provided to us by the tools of the datastore we choose to use.
+            The assumptions made when creating this document were that the app does not have an admin interface and that any admin tools required are automated into cron jobs (automated scheduled tasks the service runs) or are provided to us by the tools of the datastore we use.
         </p>
         <p>
             Additionally, this document was created based on the assumption that this is only the first iteration of the application, omitting some features that will come in future versions of the app. This allows developers to quickly release a minimal viable product that is both doable in a specified time period and is functional enough for release.
@@ -211,7 +211,7 @@
             </tr>
             <tr>
                 <td class="category">Exception Paths</td>
-                <td>If Party name is already taken, Host will be asked to resubmit form with different Party name.</td>
+                <td>If Party name is already taken, Host is asked to resubmit form with different Party name.</td>
             </tr>
             <tr>
                 <td class="category">Other</td>
@@ -235,7 +235,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. </td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and Host password. </td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -247,7 +247,7 @@
             </tr>
             <tr>
                 <td class="category">Exception Paths</td>
-                <td>If the username and password are incorrect, host will be asked to resubmit credentials.</td>
+                <td>If the username and password are incorrect, host is asked to resubmit credentials.</td>
             </tr>
             <tr>
                 <td class="category">Other</td>
@@ -271,7 +271,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td> 
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. They are then able to view the Party from the Host perspective. He then selects the button "Stop Party" which is in the dropdown settings menu.</td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. They are then able to view the Party from the Host perspective. The Host then selects the button "Stop Party" which is in the dropdown settings menu.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td> 
@@ -287,7 +287,7 @@
             </tr>
             <tr>
                 <td class="category">Other</td> 
-                <td>If multiple Hosts are signed into same Party all other Hosts will be kicked out and sent back to the PartyAll home page.</td>
+                <td>If multiple Hosts are signed into same Party all other Hosts are kicked out and sent back to the PartyAll home page.</td>
             </tr>
         </table>
 
@@ -307,7 +307,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are either a Guest or Host. If Guest user enters a guest access key to access Party. If Host, user either signs into existing Party or user creates a new Party. After any one of these sequences user will be presented with a page containing the Party queue.</td>
+                <td>From the landing page the user specifies they are either a Guest or Host. If Guest user enters a guest access key to access Party. If Host, user either signs into existing Party or user creates a new Party. After any one of these sequences user is presented with a page containing the Party queue.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -355,7 +355,7 @@
             </tr>
             <tr>
                 <td class="category">Exception Paths</td>
-                <td>No results are found would present user with an empty results page.</td>
+                <td>No results are found presents user with an empty results page.</td>
             </tr>
             <tr>
                 <td class="category">Other</td>
@@ -379,7 +379,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the Party page. The user then selects the search bar and submits a query. They are then taken to the results page where they will select the appropriate result. A confirmation of selection is presented to the user.</td>
+                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the Party page. The user then selects the search bar and submits a query. They are then taken to the results page where they can select the appropriate result. A confirmation of selection is presented to the user.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -395,7 +395,7 @@
             </tr>
             <tr>
                 <td class="category">Other</td>
-                <td>Selecting the wrong song would add the wrong song to the queue. This is avoided with the confirmation of selection pop-up.</td>
+                <td>Selecting the wrong song adds the wrong song to the queue. This is avoided with the confirmation of selection pop-up.</td>
             </tr>
         </table>
 
@@ -407,7 +407,7 @@
             </tr>
             <tr>
                 <td class="category">Trigger</td>
-                <td>Guest or Host clicks on thump up on song in queue.</td>
+                <td>Guest or Host clicks on thumb up on song in queue.</td>
             </tr>
             <tr>
                 <td class="category">Precondition</td>
@@ -523,7 +523,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. Now on the Party page, the user will have a "play" icon beside the currently playing song.</td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. Now on the Party page, the user has a "Play" icon beside the currently playing song.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -539,7 +539,7 @@
             </tr>
             <tr>
                 <td class="category">Other</td>
-                <td>This play will have to be reflected on all host connections.</td>
+                <td>This play has to be reflected on all host connections.</td>
             </tr>
         </table>
 
@@ -559,7 +559,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. Now on the Party page, the user will have a "pause" icon beside the currently playing song.</td>
+                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. Now on the Party page, the user has a "Pause" icon beside the currently playing song.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -575,7 +575,7 @@
             </tr>
             <tr>
                 <td class="category">Other</td>
-                <td>This "pause" will have to be reflected on all host connections.</td>
+                <td>This "pause" has to be reflected on all host connections.</td>
             </tr>
         </table>
 
@@ -643,7 +643,7 @@
             </tr>
             <tr>
                 <td class="category">Exception Paths</td>
-                <td>If the access code is incorrectly entered the Guest will be prompted to try again.</td>
+                <td>If the access code is incorrectly entered the Guest is prompted to try again.</td>
             </tr>
             <tr>
                 <td class="category">Other</td>
