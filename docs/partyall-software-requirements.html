@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>CP317 PartyAll Software Requirements</title>
@@ -75,16 +75,16 @@
 
         <h3 id="definitions">1.3 Definitions</h3>
         <p>
-            <h4>Party:</h4> A Party is a playlist of songs that is curated by the Host and Guests. A Party can be paused or stopped, and songs in a Party can be upvoted to manipulate the order of the play queue. Songs in a Party can also be skipped by the Host of that Party.
+            <strong>Party:</strong> A Party is a playlist of songs that is curated by the Host and Guests. A Party can be paused or stopped, and songs in a Party can be upvoted to manipulate the order of the play queue. Songs in a Party can also be skipped by the Host of that Party.
         </p>
         <p>
-            <h4>Host:</h4> The Host is a type of user that can create a Party, sign in to an existing Party, pause music, skip songs and stop/delete a Party. This user provides Guests with a guest key and Party name allowing them to view the Party queue and vote for songs.
+            <strong>Host:</strong> The Host is a type of user that can create a Party, sign in to an existing Party, pause music, skip songs and stop/delete a Party. This user provides Guests with a guest key and Party name allowing them to view the Party queue and vote for songs.
         </p>
         <p>
-            <h4>Guest:</h4> The Guest is a party-goer who wants to decide on the upcoming songs. This user accesses a Party via the guest key provided to them by a Host.
+            <strong>Guest:</strong> The Guest is a party-goer who wants to decide on the upcoming songs. This user accesses a Party via the guest key provided to them by a Host.
         </p>
         <p>
-            <h4>Upvote:</h4> A user action which is to increase the vote count of a song by one. The more Upvotes a song has the higher up it moves in the queue. Users are allowed one vote per song in the queue.
+            <strong>Upvote:</strong> A user action which is to increase the vote count of a song by one. The more Upvotes a song has the higher up it moves in the queue. Users are allowed one vote per song in the queue.
         </p>
 
         <h3 id="references">1.4 References</h3>
@@ -102,12 +102,12 @@
         <p>
             PartyAll is a web based application with two major components. There is the PartyAll front end, and the PartyAll Service (back end).
         </p>
+        <h4>Front End:</h4>
         <p>
-            <h4>Front End:</h4>
             The PartyAll front end is the user interface component of the app. This is the component that is accessible to users. It consists of a mobile friendly responsive website that scales according to the device it is being displayed on. It supports a variety of screen sizes and resolutions, ranging from smartphones to TVs.
         </p>
+        <h4>Back End:</h4>
         <p>
-            <h4>Back End:</h4>
             The PartyAll service is the component of the app responsible for storing Party data such as Party name, encrypted Party passwords, song queues, and upvote count for each song. Additionally, this service generates Party guest keys to send back to Hosts that create Parties. The service also stores the PartyAll front end's public key for verifying requests sent to the service are actually from the PartyAll app. The service is also responsible for rearranging the song queue when songs are upvoted, breaking ties in the queue by giving priority to songs added earlier. The service is also responsible for cleaning up Party sessions after 3 hours of inactivity (no songs playing).              
         </p>
         
@@ -115,34 +115,34 @@
         <p>
             PartyAll is a web based application. For users to access it, they visit the app's url on any device that has a web browser. Upon visiting the website the user is presented with an intro screen briefly explaining the app and an option for the user to specify what type of user they are. The user is allowed to pick one of two types, either a Host or a Guest.
         </p>
+        <h4>Create Party Flow - Host:</h4>
         <p>
-            <h4>Create Party Flow - Host:</h4>
             If the user selects to be a Host they are navigated to the Host page. Here the user gets to decide whether they wish to create a Party or sign in to an already created Party. If the Host chooses to create a Party, he or she is presented with a form. The form contains 2 fields: Party name and password. The Party name is the unique public identifier for the Party and the password is the password a Host requires to access the Party if they were to navigate away or log out. After successfully creating a Party the Host is presented with a success screen and on that screen there is a 6 character system generated guest access key. The guest access key is the public password the Host provides to his/her guests allowing them to view the Party playlist queue, upvote songs and requests new songs. 
         </p>
         <p>
             From here on in the Host can play songs, request songs, search for songs to queue up, upvote songs, skip songs, pause music, and end the Party.
         </p>
 
+        <h4>Access Existing Party Flow - Host:</h4>
         <p>
-            <h4>Access Existing Party Flow - Host:</h4>
             If the user is a Host and instead of creating a new Party he/she wishes to access an already created Party, a login form is presented, requesting a Party name and password. Upon successful login the Host is presented with the same Party screen along with the same functionality as described above.
         </p>
         
+        <h4>Access Party Flow - Guest:</h4>
         <p>
-            <h4>Access Party Flow - Guest:</h4>
             If the users are of type Guest, they are presented with a login screen. The login screen consists of a single box asking for the user to enter a unique guest access password given to them by a host. After successful login the Guest is presented with the guest perspective of the Party page.            
         </p>
         <p>
             The guest perspective of the Party page shows the song queue of the Party, allowing Guests to upvote songs, request songs, and log out.
         </p>
 
+        <h4>Request Song Flow - Host &amp Guest:</h4>
         <p>
-            <h4>Request Song Flow - Host &amp Guest:</h4>
             When a user hits the search icon from either the guest Party page or the host Party page, the user is presented with an input box. The user then enters the name of the song they wish to queue up and perform a search. The user then clicks on the song they wish to request and verify that they do wish to queue up the requested song by confirming the dialog that appears.             
         </p>
 
+        <h4>Upvoting Songs - Host &amp Guest:</h4>
         <p>
-            <h4>Upvoting Songs - Host &amp Guest:</h4>
             Users, from either the Host or Guest Party page can upvote songs in the queue by simply clicking on them. Clicking on a song that a user had already upvoted removes the user's upvote from that song.
         </p>
 
@@ -151,14 +151,14 @@
             PartyAll is intended to be a very simple and intuitive web app. As there are two different user experiences, there are also two categories of users.
         </p> 
 
+        <h4>Host Characteristics:</h4>
         <p>
-            <h4>Host Characteristics:</h4>
 
             The user hosting the Party on PartyAll is not required to have any in-depth technical expertise or training. Experience using a digital media player such as iTunes (play, pause, skip, etc...) will aid in the amount of time it takes the Host to become familiar with the application. Hosts also have the ability to vote for songs like Guests and therefore must also have the same characteristics as a guest (detailed below).
         </p>
 
+        <h4>Guest Characteristics:</h4>
         <p>
-            <h4>Guest Characteristics:</h4>
 
             The PartyAll web app is meant to be used by guests at parties where he or she is engaging in social interaction and would only want to take a few seconds to use PartyAll to vote for the next song to play before returning to the party. The Guest's technical expertise is required to extend only as far as being able to turn on his or her phone and access the web app. The app's user interface only has a few very clear options and therefore the user does not need to have any further training prior to use. In fact, as the app's target demographics is party-goers, it is not guaranteed that the user will be completely void of the effects of alcohol and therefore PartyAll needs to be as simple as possible.
         </p>
@@ -578,43 +578,6 @@
                 <td>This "pause" has to be reflected on all host connections.</td>
             </tr>
         </table>
-
-<!--         <h4>3.2.12 Search Party:</h4>
-        <table class="use-cases">
-            <tr>
-                <td class="category">Use Case Name</td>
-                <td>Search Party</td>
-            </tr>
-            <tr>
-                <td class="category">Trigger</td>
-                <td>Guest searches for Party in Party Search</td>
-            </tr>
-            <tr>
-                <td class="category">Precondition</td>
-                <td>Guest has just selected that they are a Guest.</td>
-            </tr>
-            <tr>
-                <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Guest and are taken to the "Find your Party" page.</td>
-            </tr>
-            <tr>
-                <td class="category">Alternative Path</td>
-                <td>None</td>
-            </tr>
-            <tr>
-                <td class="category">Postcondition</td>
-                <td>The Guest is presented with the results of their Party search.</td>
-            </tr>
-            <tr>
-                <td class="category">Exception Paths</td>
-                <td>None</td>
-            </tr>
-            <tr>
-                <td class="category">Other</td>
-                <td>None</td>
-            </tr>
-        </table> -->
-
         <h4>3.2.12 Access Party:</h4>
         <table class="use-cases">
             <tr>
