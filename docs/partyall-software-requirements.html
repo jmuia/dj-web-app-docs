@@ -66,8 +66,8 @@
         <h3 id="scope">1.2 Scope</h3>
         <p>
             PartyAll is a mobile friendly web application that allows multiple people to collectively curate a playlist. Users of PartyAll classify themselves as one of two types, either a Host or Guest. A Host can create a Party or in other words a new playlist. A Guest, given an access key, is allowed to access the Party and request songs to be queued up. Users, (both of type Host and Guest) are allowed to upvote songs moving them higher up the queue as they gain more votes than other songs. PartyAll automatically traverses the queue, playing songs until the end of the queue is reached, or the Party is ended by the creating Host.
-            A Party that a Host creates can be manually stopped by the Host or remain inactive (no songs playing) for 3 hours and be automatically stopped. There are no persistent user accounts, minimizing the steps required to go from opening the web page to starting a Party. The requirements for creating a Party are a unique name and password. Upon successful creation the Host is presented with a system generated 6 character guest key which is distributed to the party's guests.
-            Hosts sign in to their created Party using the Party name and Party password as credentials. Once the Host signs in, he/she hits the play button to start playing the song at the top of the queue. Once a guest has arrived, they can then use the Party name and guest key to view the Host's Party queue, request, and upvote songs.
+            A Party that a Host creates can be manually stopped by the Host or remain inactive (no songs playing) for 3 hours and be automatically stopped. There are no persistent user accounts, minimizing the steps required to go from opening the web page to starting a Party. The requirements for creating a Party are a unique name and password. Upon successful creation, the Host is presented with a system generated 6 character guest key which is distributed to the party's guests.
+            Hosts sign in to their created Party using the Party name and Party password as credentials. Once the Host signs in, he/she hits the play button to start playing the song at the top of the queue. Once a guest has arrived, they can then use the Party guest key to view the Host's Party queue, request, and upvote songs.
         </p>
         <p>
             PartyAll aims to make the process of deciding on what music to play at a party as crowd-pleasing as possible.
@@ -78,10 +78,10 @@
             <strong>Party:</strong> A Party is a playlist of songs that is curated by the Host and Guests. A Party can be paused or stopped, and songs in a Party can be upvoted to manipulate the order of the play queue. Songs in a Party can also be skipped by the Host of that Party.
         </p>
         <p>
-            <strong>Host:</strong> The Host is a type of user that can create a Party, sign in to an existing Party, pause music, skip songs and stop/delete a Party. This user provides Guests with a guest key and Party name allowing them to view the Party queue and vote for songs.
+            <strong>Host:</strong> The Host is a type of user that can create a Party, sign in to an existing Party, pause music, skip songs and stop/delete a Party. This user provides Guests with a Party guest key allowing them to view the Party queue and vote for songs.
         </p>
         <p>
-            <strong>Guest:</strong> The Guest is a party-goer who wants to decide on the upcoming songs. This user accesses a Party via the guest key provided to them by a Host.
+            <strong>Guest:</strong> The Guest is a party-goer who wants to decide on the upcoming songs. This user accesses a Party via the Party guest key provided to them by a Host.
         </p>
         <p>
             <strong>Upvote:</strong> A user action which is to increase the vote count of a song by one. The more Upvotes a song has the higher up it moves in the queue. Users are allowed one vote per song in the queue.
@@ -117,33 +117,33 @@
         </p>
         <h4>Create Party Flow - Host:</h4>
         <p>
-            If the user selects to be a Host they are navigated to the Host page. Here the user gets to decide whether they wish to create a Party or sign in to an already created Party. If the Host chooses to create a Party, he or she is presented with a form. The form contains 2 fields: Party name and password. The Party name is the unique public identifier for the Party and the password is the password a Host requires to access the Party if they were to navigate away or log out. After successfully creating a Party the Host is presented with a success screen and on that screen there is a 6 character system generated guest access key. The guest access key is the public password the Host provides to his/her guests allowing them to view the Party playlist queue, upvote songs and requests new songs. 
+            If the user selects to be a Host they are taken to the Host page. Here the user gets to decide whether they wish to create a Party or sign in to an already created Party. If the Host chooses to create a Party, he or she is presented with a form. The form contains 2 fields: Party name and password. The Party name is the unique public identifier for the Party and the password is the password a Host requires to access the Party if they were to navigate away or log out. After successfully creating a Party the Host is presented with a success screen and on that screen there is a 6 character system generated guest access key. The guest access key is the public password the Host provides to his/her guests allowing them to view the Party playlist queue, upvote songs and requests new songs. The Host has the ability to play any song in the queue at any time by simply tapping on a specific song in the queue and selecting "Play Now".
         </p>
         <p>
-            From here on in the Host can play songs, request songs, search for songs to queue up, upvote songs, skip songs, pause music, and end the Party.
+            From here on in the Host can play songs, request songs, search for songs to queue up, upvote songs, pause music, play a specific song in the queue immediately, and end the Party.
         </p>
 
         <h4>Access Existing Party Flow - Host:</h4>
         <p>
-            If the user is a Host and instead of creating a new Party he/she wishes to access an already created Party, a login form is presented, requesting a Party name and password. Upon successful login the Host is presented with the same Party screen along with the same functionality as described above.
+            Hosts also have the option to access an already created Party. Upon doing so, a login form is presented, requesting a Party name and password. After successful login the Host is presented with the same Party screen along with the same functionality as described above. Any other Host that may have been logged in to the same party will be presented with a dialog explaining that another user has signed into the same party and that only one person can be logged in at a time. Upon confirming the dialog, the user will be presented with the landing page.
         </p>
         
         <h4>Access Party Flow - Guest:</h4>
         <p>
-            If the users are of type Guest, they are presented with a login screen. The login screen consists of a single box asking for the user to enter a unique guest access password given to them by a host. After successful login the Guest is presented with the guest perspective of the Party page.            
+            Guests, before accessing a party, are presented with a login screen. The login screen consists of a single box asking for the user to enter a unique guest access password given to them by a host. After successful login, the Guest is presented with the guest perspective of the Party page.
         </p>
         <p>
-            The guest perspective of the Party page shows the song queue of the Party, allowing Guests to upvote songs, request songs, and log out.
+            The guest perspective of the Party page shows the song queue of the Party, allowing Guests to upvote songs, request songs, and log out. Guests can un-vote for songs by simply re-tapping on the song they upvoted.
         </p>
 
         <h4>Request Song Flow - Host &amp Guest:</h4>
         <p>
-            When a user hits the search icon from either the guest Party page or the host Party page, the user is presented with an input box. The user then enters the name of the song they wish to queue up and perform a search. The user then clicks on the song they wish to request and verify that they do wish to queue up the requested song by confirming the dialog that appears.             
+            When a user hits the search icon from either the guest Party page or the host Party page, the user is presented with an input box. The user then enters the name of the song they wish to queue up and perform a search. Upon hitting enter to perform the search, an API call will be made to SoundCloud's servers requesting a list of songs that match the query. This list is then rendered and presented by the PartyAll front end. The user then clicks on the song they wish to request and verify that they do wish to queue up the requested song by confirming the dialog that appears.
         </p>
 
         <h4>Upvoting Songs - Host &amp Guest:</h4>
         <p>
-            Users, from either the Host or Guest Party page can upvote songs in the queue by simply clicking on them. Clicking on a song that a user had already upvoted removes the user's upvote from that song.
+            Users, from either the Host or Guest Party page can upvote songs in the queue by simply clicking on them. Clicking on a song that a user had already upvoted removes the user's upvote from that song or in other words, the user un-votes for the song.
         </p>
 
         <h3 id="user_characteristics">2.3 User Characteristics</h3>
