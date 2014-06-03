@@ -235,7 +235,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and Host password. </td>
+                <td>From the Host page, the user clicks "Sign in to Party" and enters their Party name and Host password. </td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -247,7 +247,7 @@
             </tr>
             <tr>
                 <td class="category">Exception Paths</td>
-                <td>If the username and password are incorrect, host is asked to resubmit credentials.</td>
+                <td>If the username and password are incorrect, Host is asked to resubmit credentials.</td>
             </tr>
             <tr>
                 <td class="category">Other</td>
@@ -271,7 +271,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td> 
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. They are then able to view the Party from the Host perspective. The Host then selects the button "Stop Party" which is in the dropdown settings menu.</td>
+                <td>While viewing the Party from the Host perspective, the Host selects the button "Stop Party" which is in the dropdown settings menu.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td> 
@@ -303,11 +303,11 @@
             </tr>
             <tr>
                 <td class="category">Precondition</td>
-                <td>User on a Party page.</td>
+                <td>User (Guest or Host) is on the Party page.</td>
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are either a Guest or Host. If Guest user enters a guest access key to access Party. If Host, user either signs into existing Party or user creates a new Party. After any one of these sequences user is presented with a page containing the Party queue.</td>
+                <td> When the user is on the Party page, they are presented with the Party queue.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -343,7 +343,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the Party page. The user then selects the search bar and submits a query.</td>
+                <td>From the Party page, the user selects the search bar and is able to submit a query.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -379,7 +379,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the Party page. The user then selects the search bar and submits a query. They are then taken to the results page where they can select the appropriate result. A confirmation of selection is presented to the user.</td>
+                <td>Upon submitting the query, the user is taken to the results page where they can select the appropriate result. After selecting the song, a confirmation of selection is presented to the user.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -415,7 +415,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the Party page. On this page, songs that are currently in the queue will be visible and it from there that the user can upvote a song.</td>
+                <td>While the user is on the Party page, songs that are currently in the queue are visible and it from there that the user can upvote a song.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -451,7 +451,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host or a Guest and are taken to their respective sign on pages where, upon entering the proper credentials, they are moved to the Party page. On this page the user can un-vote a song they have already voted for.</td>
+                <td> While the user is on the Party page, the user can un-vote a song they have already voted for by again tapping on the thumbs up icon.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -487,7 +487,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. Now on the Party page, the user will have a "skip song" icon beside the currently playing song.</td>
+                <td>From the Host perspective of the Party page, the Host can skip a song by selecting the "Skip Song" icon beside the currently playing song.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -523,7 +523,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. Now on the Party page, the user has a "Play" icon beside the currently playing song.</td>
+                <td>From the Host perspective of the Party page, the Host can being playing the songs in the queue by selecting the "Play" icon.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -559,7 +559,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Host, and are taken to Host page. From there they click "Sign in to Party" and enter their Party name and host password. Now on the Party page, the user has a "Pause" icon beside the currently playing song.</td>
+                <td>From the Host perspective of the Party page, the Host can pause a song by selecting the "Pause Song" icon beside the currently playing song.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
@@ -578,7 +578,42 @@
                 <td>This "pause" has to be reflected on all host connections.</td>
             </tr>
         </table>
-        <h4>3.2.12 Access Party:</h4>
+		<h4>3.2.12 Search For Party:</h4>
+        <table class="use-cases">
+            <tr>
+                <td class="category">Use Case Name</td>
+                <td>Search For Party.</td>
+            </tr>
+            <tr>
+                <td class="category">Trigger</td>
+                <td>Guest enters a query into the 'Search For Party" form.</td>
+            </tr>
+            <tr>
+                <td class="category">Precondition</td>
+                <td>User has identified as a Guest.</td>
+            </tr>
+            <tr>
+                <td class="category">Basic Path</td>
+                <td>Upon specifying that they are a Guest, the user is taken to the "Find your Party" page. The Guest then submits a search query into the "Search For Party" form.</td>
+            </tr>
+            <tr>
+                <td class="category">Alternative Path</td>
+                <td>None.</td>
+            </tr>
+            <tr>
+                <td class="category">Postcondition</td>
+                <td>The Guest gains access to the Party.</td>
+            </tr>
+            <tr>
+                <td class="category">Exception Paths</td>
+                <td>If the access code is incorrectly entered the Guest is prompted to try again.</td>
+            </tr>
+            <tr>
+                <td class="category">Other</td>
+                <td>None.</td>
+            </tr>
+        </table>
+        <h4>3.2.13 Access Party:</h4>
         <table class="use-cases">
             <tr>
                 <td class="category">Use Case Name</td>
@@ -594,7 +629,7 @@
             </tr>
             <tr>
                 <td class="category">Basic Path</td>
-                <td>From the landing page the user specifies they are a Guest and are taken to the "Find your Party" page. The Guest then submits a search query and selects from the results the appropriate Party and enters the Party access code.</td>
+                <td>Upon submitting the search query, the Guest can select from the results the appropriate Party and, after entering the Party access code, gains access to the Party.</td>
             </tr>
             <tr>
                 <td class="category">Alternative Path</td>
