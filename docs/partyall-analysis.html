@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CP317 PartyAll Analysis</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .use-cases, td, th {
+                border: 1px solid black;
+                width: 700px;
+            }
+
+            .category {
+                font-weight: bold;
+                width: 150px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>PartyAll - Analysis</h1>
+        <p>Version 0.0.1, June 10, 2014</p>
+
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#introduction">1. Introduction</a></li>
+            <li><a href="#object_classification">2. Object Classification</a>
+                <ul>
+                    <li><a href="#entity_objects">2.1 Entity Objects</a></li>
+                    <li><a href="#boundary_objects">2.2 Boundary Objects</a></li>
+                    <li><a href="#control_objects">2.3 Control Objects</a></li>
+                </ul>
+            </li>
+            <li><a href="#diagrams">3. Diagrams</a></li>
+        </ul>
+
+        <h2 id="introduction">1. Introduction</h2>
+        <p>
+            PartyAll is a web based application that allows guests at a party to democratically curate a playlist for the party they are attending. The purpose of PartyAll is to solve the issues and inefficiencies behind manually creating a playlist that a plurality of people agree on and to avoid having one person monopolizing the music. The issues and inefficiencies that manually creating a playlist for the party includes, but is not limited to, the fact that not everyone will be there at the start of the party to decide upon the songs, a group of people suggesting songs out loud at the same time will cause confusion and for some choices to go unnoticed by the group at large, and preselecting a song playlist means that the playlist will remain static throughout the party and not change as the tastes of the crowd change.
+        </p>
+
+        <hr>
+
+        <h2 id="object_classification">2. Object Classification</h2>
+        <h3 id="entity_objects">2.1 Entity Objects</h3>
+        <ul>
+            <li>Party</li>
+            <li>Song</li>
+            <li>User</li>
+            <li>Host</li>
+            <li>Guest</li>
+        </ul>
+
+        <h3 id="boundary_objects">2.2 Boundary Objects</h3>
+        <ul>
+            <li>ChooseUserTypeView</li>
+            <li>HostPageView</li>
+            <li>HostCreatyPartyView</li>
+            <li>HostLoginView</li>
+            <li>GuestLoginView</li>
+            <li>GuestLoginView</li>
+            <li>HostPartyView</li>
+            <li>GuestPartyView</li>
+            <li>SearchSongView</li>
+            <li>SearchSongResultsView</li>
+            <li>SongView</li>
+            <li>SettigsDropdownView</li>
+        </ul>
+
+        <h3 id="control_objects">2.3 Control Objects</h3>
+         <ul>
+            <li>PartyController</li>
+            <li>UserController</li>
+            <li>SongController</li>
+        </ul>
+
+        <h2 id="diagrams">3. Diagrams</h2>
+        <h3>Entity Class Diagram</h3>
+        <object data="/img/ClassDiagram.svg" type="image/svg+xml"></object>
+
+    </body>
+</html>
