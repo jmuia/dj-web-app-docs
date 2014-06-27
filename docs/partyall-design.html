@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>CP317 Partyall Software Design Description</title>
+	<!-- I don't remember who all is doing design, so just add your names here -->
+	<meta name='author' content='Dallas Fraser, Matthew Rodusek, ...'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	/* Set standards for text */
+	body{
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 16px;
+		text-rendering: optimizeLegibility;
+		line-height: 1.42857143;
+		color: #333;
+		background-color: #fff;
+		counter-reset: h2counter;
+	}
+	#content{
+		max-width: 1200px;
+		min-width: 600px;
+		margin: 0 auto;
+	}
+	/* Text styling */
+	h1{
+		font-weight: 800;
+	}
+	h2{
+		border-bottom: 1px solid #DDD;
+	}
+	/* Auto-counters for headers and navigation */
+	h1{ counter-reset: h2counter; }
+    h2:before {
+        content: counter(h2counter) ".\0000a0\0000a0";
+        counter-increment: h2counter;
+    }
+    h2{ counter-reset: h3counter; }
+    h3:before {
+        content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+        counter-increment: h3counter;
+    }
+    h3{ counter-reset: h4counter; }
+	h4:before{
+		content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) "\000a0\000a0";
+		counter-increment: h4counter;
+	}
+	h2.nocount:before,h3.nocount:before,h4.nocount:before{
+		content: none;
+		counter-increment: none;
+	}
+	#nav ol{ 
+		margin: 0;
+		padding: 0;
+		counter-reset: item 
+	}
+	#nav ol > li{
+		margin: 0 20px;
+	}
+	#nav ol li{ 
+		display: block 
+	}
+    #nav ol li:before{ 
+    	content: counters(item, ".") ".\000a0\000a0"; 
+    	counter-increment: item 
+    }
+    /* Definition headers */
+    h4.definition{
+		display:run-in;    
+    }
+    h4.definition:after{
+    	content: ":\000a0"
+    }
+    /* Temporary classes for placeholders/messages */
+    .placeholder{
+    	font-style: italic;
+    	color: #666;
+    }
+    .alert-warning{ /* Shamelessly stolen from bootstrap*/
+	    padding: 15px;
+		margin-bottom: 20px;
+		border: 1px solid transparent;
+		border-radius: 4px;
+	    background-image: -webkit-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+		background-image: -o-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+		background-image: -webkit-gradient(linear,left top,left bottom,from(#fcf8e3),to(#f8efc0));
+		background-image: linear-gradient(to bottom,#fcf8e3 0,#f8efc0 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
+		background-repeat: repeat-x;
+		border-color: #f5e79e;
+	    text-shadow: 0 1px 0 rgba(255,255,255,.2);
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.05);
+		box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.05);
+		color: #8a6d3b;
+		background-color: #fcf8e3;
+    }
+	</style>
+</head>
+<body>
+<div id="content">
+	<div class="alert-warning"><strong>Work In Progress:</strong> Any text that is gray and italicized has been markedup as placeholders, and exist only to prompt what should fill that area later on.</div>
+	<header id="header">
+		<h1>Partyall Software Design Description</h1>
+		<p><span id="version">Version 0.0.1</span></p>
+		<p><time>June 27, 2014</time></p>
+	</header>
+
+	<nav id="nav">
+	<h2 class="nocount">Table of Contents</h2>
+	<ol>
+		<li><a href="#introduction">Introduction</a>
+			<ol>
+				<li><a href="#purpose">Purpose</a></li>
+				<li><a href="#scope">Scope</a></li>
+				<li><a href="#definitions">Definitions</a></li>
+				<li><a href="#references">References</a></li>		
+				<li><a href="#overview">Overview</a></li>
+			</ol>
+		</li>
+		<li><a href="#decomp_description">Decomposition Description</a>
+			<ol>
+				<li><a href="#module_decomp">Module Decomposition</a></li>
+				<li><a href="#process_decomp">Concurrent Process Decomposition</a></li>
+				<li><a href="#data_decomp">Data Decomposition</a></li>
+			</ol>
+		</li>
+		<li><a href="#dependency_description">Dependency Description</a>
+			<ol>
+				<li><a href="#module_dependency">Intermodule Dependencies</a></li>
+				<li><a href="#process_dependency">Interprocess Dependencies</a></li>
+				<li><a href="#data_dependency">Data Dependencies</a></li>
+			</ol>		
+		</li>
+		<li><a href="#interface_description">Interface Description</a>
+			<ol>
+				<li><a href="#module_interface">Module Interface</a></li>
+				<li><a href="#process_interface">Process Interface</a></li>
+			</ol>		
+		</li>
+		<li><a href="#detailed_design">Detailed Design</a>
+			<ol>
+				<li><a href="#module_design">Module Detailed Design</a></li>
+				<li><a href="#data_design">Data Detailed Design</a></li>
+			</ol>
+		</li>
+	</ol>
+	</nav>
+	
+	<!-- /navigation -->
+	
+	<h2 id="introduction">Introduction</h2>
+
+	<h3 id="purpose">Purpose</h3>
+	<p class="placeholder">
+	Identify the purpose of this SDD and its intended audience. (e.g. "This software design document describes the architecture and system design of ...").</p>
+
+	<h3 id="scope">Scope</h3>
+	<p class="placeholder">Provide a description and scope of the software and explain the goals, objectives and benefits of your project. This will provide the basis for the brief description of your product. </p>
+
+	<h3 id="definitions">Definitions</h3>
+	<p class="placeholder">Provide definitions of all terms, acronyms, and abbreviations that might exist to properly interpret the SDD. These definitions should be items used in the SDD that are most likely not known to the audience. (typically in alphabetical order in IEEE documents, though it doesn't seem to be enforced in the standard)</p>
+	<h4 class="definition">Example 1</h4>
+	<p>Description of Example 1 </p>
+	<h4 class="definition">Example 2</h4>
+	<p>Description of Example 2</p>
+	
+	<h3 id="references">References</h3>
+	<p>IEEE. IEEE Std 1016-1998 IEEE Recommended Practice for Software Design Descriptions. IEEE Computer Society, 1998</p>
+
+	<h3 id="overview">Overview</h3>
+	<p class="placeholder">Provide an overview of this document and its organization.</p>
+
+	<!-- /introduction -->
+
+	<h2 id="decomp_description">Decomposition Description</h2>
+	<p class="placeholder">The decomposition description records the division of the software system into design entities. It describes the way the system has been structured and the purpose and function of each entity. For each entity, it provides a reference to the detailed description via the identiﬁcation attribute.</p>
+	<p class="placeholder">The attribute descriptions for identification, type, purpose, function, and subordinates should be included in this design view. This attribute information should be provided for all design entities.</p>	
+
+	<h3 id="module_decomp">Module Decomposition</h3>
+	<p class="placeholder">Decompose the system into various modules with high coehesion and low coupling. That is to say that the modules should have low intermodule dependencies.</p>
+	
+	<h3 id="process_decomp">Concurrent Process Decomposition</h3>
+	<p class="placeholder">Identify and describe all concurrent processes in the system. This is anything that can run independently alongside one another, such as forms.</p>
+	
+	<h3 id="data_decomp">Data Decomposition</h3>
+	<p class="placeholder">Identify how data is to be stored in the system (whether it is database, flatfile, etc).</p>
+
+	<!-- /decomposition description -->
+	
+	<h2 id="dependency_description">Dependency Description</h2>
+	<p class="placeholder">The dependency description specifies the relationships among entities. It identifies the dependent entities, describes their coupling, and identifies the required resources</p>
+	<p class="placeholder">This design view defines the strategies for interactions among design entities and provides the information needed to easily perceive how, why, where, and at what level system action occurs. It specifies the type of relationships that exist among the entities such as shared information, prescribed order of exection, or well-defined parameter interfaces.</p>
+	<p class="placeholder">The attribute descriptions for identification, type, purpose, dependencies, and resources should be included in this design view. This attribute information should be provided for all design entities</p>
+	<p class="placeholder">Example to base some of this off of <a href="http://dos.iitm.ac.in/OOSD_Material/CaseStudies/CaseStudy3/SDD/node30.html">here</a></p>
+
+	<h3 id="module_dependency">Intermodule Dependencies</h3>
+	<p class="placeholder">Identify all dependencies between the various modules on the system.</p>
+
+	<h3 id="process_dependency">Interprocess Dependencies</h3>
+	<p class="placeholder">Identify dependencies between the concurrent processes.</p>
+	
+	<h3 id="data_dependency">Data Dependencies</h3>
+	<p class="placeholder">Identify dependencies, if any, between data.</p>
+	
+	<!-- /dependency description -->
+	
+	<h2 id="interface_description">Interface Description</h2>
+	<p class="placeholder">The entity interface description provides everything designers, programmers, and testers need to know to correctly use thef unctions provided by an entity. This description includes the details of external and internal interfaces not provided in the software requirements specifications</p>	
+	<p class="placeholder">The design view consists of a set of interface specifications for each entity. The attribute descriptions for identification, function, and interface should be included in this design view. This attribute information should be provided for all design entities.</p>
+	<p class="placeholder">This section describes everything that the designers, programmers and testers need to know inorder to correctly use or develop the functions provided by an entity. It includes the details of external interfaces not provided in the SRS. It uses the identification, function and subordinates attributed mentioned in the decomposition. </p>
+	<p class="placeholder">Example to base some of this off of <a href="http://dos.iitm.ac.in/OOSD_Material/CaseStudies/CaseStudy3/SDD/node34.html">here</a></p>
+
+	<h3 id="module_interface">Module Interface</h3>
+	<p class="placeholder">Display the various form/module element mockups, and go into greater detail in subsections</p>
+	
+	<h3 id="process_interface">Process Interface</h3>
+	<p class="placeholder">List and describe (if any) process interfaces</p>
+	
+	<!-- /interface description -->
+	
+	<h2 id="detailed_design">Detailed Design</h2>
+	<p class="placeholder">The detailed design description contains the internal details of each design entity. These details include the attribute descriptions for identiﬁcation, processing, and data. This attribute information should be provided for all design entities.</p>
+	<p class="placeholder">This section actually describes the designin detail. For each interface and internal function implemented by a module or process it describes the steps followed to get from input to output using high level pseudocode. This pseudocode can be easily refined further and translated into actual code at the implementation stage.</p>
+	<p class="placeholder"><a href="http://dos.iitm.ac.in/OOSD_Material/CaseStudies/CaseStudy3/SDD/node44.html">This site</a> has good examples for it again. </p>
+
+	<h3 id="module_design">Module Detailed Design</h3>
+	<p class="placeholder">List all of the appropriate module elements, and go into detail about the various methods/functions related to each one</p>
+
+	<h3 id="data_design">Data Detailed Design</h3>
+	<p class="placeholder">List, if any, the appropriate data related methods/functions</p>
+
+	<!-- /detailed design -->
+
+</div><!-- #content -->
+</body>
+</html>
