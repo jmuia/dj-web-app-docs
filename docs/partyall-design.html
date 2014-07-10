@@ -112,7 +112,7 @@
 			<ol>
 				<li><a href="#purpose">Purpose</a></li>
 				<li><a href="#scope">Scope</a></li>
-				<li><a href="#definitions">Definitions</a></li>
+				<!-- <li><a href="#definitions">Definitions</a></li> -->
 				<li><a href="#references">References</a></li>		
 				<li><a href="#overview">Overview</a></li>
 			</ol>
@@ -123,13 +123,6 @@
 				<li><a href="#process_decomp">Concurrent Process Decomposition</a></li>
 				<li><a href="#data_decomp">Data Decomposition</a></li>
 			</ol>
-		</li>
-		<li><a href="#dependency_description">Dependency Description</a>
-			<ol>
-				<li><a href="#module_dependency">Intermodule Dependencies</a></li>
-				<li><a href="#process_dependency">Interprocess Dependencies</a></li>
-				<li><a href="#data_dependency">Data Dependencies</a></li>
-			</ol>		
 		</li>
 		<li><a href="#interface_description">Interface Description</a>
 			<ol>
@@ -155,13 +148,7 @@
 	<p>This software design document describes how the requirements in the SRS will be achieved by detailing the architecture and system design of the PartyAll web application.</p>
 	<h3 id="scope">Scope</h3>
 	<p>This document is written to aid the developers in designing this product. </p>
-	<h3 id="definitions">Definitions</h3>
-	<p class="placeholder">Provide definitions of all terms, acronyms, and abbreviations that might exist to properly interpret the SDD. These definitions should be items used in the SDD that are most likely not known to the audience. (typically in alphabetical order in IEEE documents, though it doesn't seem to be enforced in the standard)</p>
-	<h4 class="definition">Example 1</h4>
-	<p>Description of Example 1 </p>
-	<h4 class="definition">Example 2</h4>
-	<p>Description of Example 2</p>
-	
+		
 	<h3 id="references">References</h3>
 	<p>IEEE. IEEE Std 1016-1998 IEEE Recommended Practice for Software Design Descriptions. IEEE Computer Society, 1998</p>
 
@@ -190,17 +177,6 @@
 	<p class="placeholder">This design view defines the strategies for interactions among design entities and provides the information needed to easily perceive how, why, where, and at what level system action occurs. It specifies the type of relationships that exist among the entities such as shared information, prescribed order of exection, or well-defined parameter interfaces.</p>
 	<p class="placeholder">The attribute descriptions for identification, type, purpose, dependencies, and resources should be included in this design view. This attribute information should be provided for all design entities</p>
 	<p class="placeholder">Example to base some of this off of <a href="http://dos.iitm.ac.in/OOSD_Material/CaseStudies/CaseStudy3/SDD/node30.html">here</a></p>
-
-	<h3 id="module_dependency">Intermodule Dependencies</h3>
-	<p class="placeholder">Identify all dependencies between the various modules on the system.</p>
-
-	<h3 id="process_dependency">Interprocess Dependencies</h3>
-	<p class="placeholder">Identify dependencies between the concurrent processes.</p>
-	
-	<h3 id="data_dependency">Data Dependencies</h3>
-	<p class="placeholder">Identify dependencies, if any, between data.</p>
-	
-	<!-- /dependency description -->
 	
 	<h2 id="interface_description">Interface Description</h2>
 	<p class="placeholder">The entity interface description provides everything designers, programmers, and testers need to know to correctly use thef unctions provided by an entity. This description includes the details of external and internal interfaces not provided in the software requirements specifications</p>	
@@ -209,7 +185,29 @@
 	<p class="placeholder">Example to base some of this off of <a href="http://dos.iitm.ac.in/OOSD_Material/CaseStudies/CaseStudy3/SDD/node34.html">here</a></p>
 
 	<h3 id="module_interface">Module Interface</h3>
-	<p class="placeholder">Display the various form/module element mockups, and go into greater detail in subsections</p>
+	<!-- <p class="placeholder">Display the various form/module element mockups, and go into greater detail in subsections</p> -->
+	
+	<h4>ChooseUserTypeView</h4>
+	
+	<h4>HostLoginView</h4>
+	
+	<h4>GuestLoginView</h4>
+	
+	<h4>HostPartyView</h4>
+	
+	<h4>GuestPartyView</h4>
+	
+	<h4>SearchSongView</h4>
+	
+	<h4>SearchSongResultView</h4>
+	
+	<!-- 
+	<h4>HostPageView</h4>
+
+	<h4>HostCreatePartyView</h4>
+		
+	<h4>SongView</h4>
+	 -->
 	
 	<h3 id="process_interface">Process Interface</h3>
 	<p class="placeholder">List and describe (if any) process interfaces</p>
@@ -220,9 +218,54 @@
 	<p class="placeholder">The detailed design description contains the internal details of each design entity. These details include the attribute descriptions for identiﬁcation, processing, and data. This attribute information should be provided for all design entities.</p>
 	<p class="placeholder">This section actually describes the designin detail. For each interface and internal function implemented by a module or process it describes the steps followed to get from input to output using high level pseudocode. This pseudocode can be easily refined further and translated into actual code at the implementation stage.</p>
 	<p class="placeholder"><a href="http://dos.iitm.ac.in/OOSD_Material/CaseStudies/CaseStudy3/SDD/node44.html">This site</a> has good examples for it again. </p>
-	
+
 	<h3 id="module_design">Module Detailed Design</h3>
-	<p class="placeholder">List all of the appropriate module elements, and go into detail about the various methods/functions related to each one</p>
+	<p>This section describes the module design detail. For each interface and internal function implemented by a module or process it describes the steps followed to get from input to output using high level pseudocode. This pseudocode can be easily refined further and translated into actual code at the implementation stage.</p>
+
+	<h4>nextSong()</h4>
+	<ol>
+		<li>Stop currently playing song</li>
+		<li>Identify next song to play in the queue</li>
+		<li>Change nowPlaying to the new song</li>
+		<li>Return the new Song object</li>
+	</ol>
+	
+	<h4>resumeSong()</h4>
+	<ol>
+		<li>If a song has stopped, resume the song</li>
+	</ol>
+	
+	<h4>stopSong()</h4>
+	<ol>
+		<li>Set song status to false (stopped)</li>
+		<li>Stop playing the current song</li>
+	</ol>
+	
+	<h4>vote(userID: String)</h4>
+	<ol>
+		<li>Search list of user IDs</li>
+		<li>Determine if voter is already in list</li>
+		<li>If not, add voter to list</li>
+	</ol>
+	
+	<h4>unvote(userID: String)</h4>
+	<ol>
+		<li>Search list of user IDs</li>
+		<li>Determine if voter is already in list</li>
+		<li>If so, remove voter from list</li>
+	</ol>
+	
+	<h4>AddSong(song: Song) </h4>
+	<ol>
+		<li>Check if song is in already been added</li>
+		<li>Add song to the list of songs if not present</li>
+	</ol>
+	
+	<h4>AddUser(user: User) </h4>
+	<ol>
+		<li>Check if user is in already been added</li>
+		<li>Add user to the list of users if not present</li>
+	</ol>
 	
 	<h3 id="data_design">Data Detailed Design</h3>
 	<p class="placeholder">List, if any, the appropriate data related methods/functions</p>
