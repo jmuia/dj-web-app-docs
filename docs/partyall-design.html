@@ -158,25 +158,151 @@
 	<!-- /introduction -->
 
 	<h2 id="decomp_description">Decomposition Description</h2>
-	<p class="placeholder">The decomposition description records the division of the software system into design entities. It describes the way the system has been structured and the purpose and function of each entity. For each entity, it provides a reference to the detailed description via the identiﬁcation attribute.</p>
-	<p class="placeholder">The attribute descriptions for identification, type, purpose, function, and subordinates should be included in this design view. This attribute information should be provided for all design entities.</p>	
+	<p>This section describes the decomposition of the system in a three different forms:</p>
+	<ul>
+		<li>Cohesive modules are formed by grouping data and functions, which are then displayed in their corresponding class and package diagrams.</li>
+		<li>Concurrent processes are extracted from the decomposition, and briefly outlined. In this case, as it is web-based, all served pages are considered concurrent processes</li>
+		<li>The storage format of persistent data is identified.</li>
+	</ul>
 
 	<h3 id="module_decomp">Module Decomposition</h3>
-	<p class="placeholder">Decompose the system into various modules with high coehesion and low coupling. That is to say that the modules should have low intermodule dependencies.</p>
+	<h4>Class Diagram</h4>
+	<object data="../img/ClassDiagram.svg" type="image/svg+xml"></object>
+	<h4>Party Package</h4>
+	<object data="../img/PartyPackages.svg" type="image/svg+xml"></object>
+	<h4>Framework Packages Interactions</h4>
+	<object data="../img/PartyAllPackages.svg" type="image/svg+xml"></object>
 	
 	<h3 id="process_decomp">Concurrent Process Decomposition</h3>
-	<p class="placeholder">Identify and describe all concurrent processes in the system. This is anything that can run independently alongside one another, such as forms.</p>
 	
+	<!-- UserController Boundary Elements -->
+	<h4>Choose User Type View</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>ChooseUserTypeView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>An interface for the user to log in as either a Host or a Guest</td>
+		</tr>
+	</table>
+	
+	<h4>Login View: Host</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>HostLoginView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>A login page for the guest, requesting the room name and the password</td>
+		</tr>
+	</table>
+	
+	<h4>Login View: Guest</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>GuestLoginView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>A login page for the host, requesting the guest key</td>
+		</tr>
+	</table>
+	<!-- What is this one again? -->
+	<h4>Host Page View</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>HostPageView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td></td>
+		</tr>
+	</table>
+	
+	<!-- PartyController Boundary Elements -->
+	<h4>Create Party View</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>HostCreatePartyView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>An interface for the host to be able to create a specified party</td>
+		</tr>
+	</table>
+	
+	<h4>Party View: Host</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>HostPartyView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>An interface for the host to search for, vote on, pause, play, stop, and skip songs</td>
+		</tr>
+	</table>
+	
+	<h4>Party View: Guest</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>GuestPartyView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>An interface for the guest to search for and vote on songs</td>
+		</tr>
+	</table>
+	
+	<!-- SongController Boundary Elements -->
+	<h4>Song View</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>SongView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>I have no idea what the purpose of this is. Like really, what does it event mean? You can't physically <em>view</em> music.</td>
+		</tr>
+	</table>
+
+	<!-- SearchController Boundary Elements -->
+	<h4>Search Song View</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>SearchSongView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>A page displaying the search system to the user</td>
+		</tr>
+	</table>
+	
+	<h4>Search Result Song View</h4>
+	<table>
+		<tr>
+			<td><strong>Identification</strong></td>
+			<td>SearchResultSongView</td>
+		</tr>
+		<tr>
+			<td><strong>Purpose</strong></td>
+			<td>A page displaying the results of a search to the user</td>
+		</tr>
+	</table>
+
 	<h3 id="data_decomp">Data Decomposition</h3>
-	<p class="placeholder">Identify how data is to be stored in the system (whether it is database, flatfile, etc).</p>
+	<p>All persistent data is to be handled by the Google App Engine framework, the underlying framework of which will use whatever is best suited for the data provided.</p>
 
 	<!-- /decomposition description -->
-	
-	<h2 id="dependency_description">Dependency Description</h2>
-	<p class="placeholder">The dependency description specifies the relationships among entities. It identifies the dependent entities, describes their coupling, and identifies the required resources</p>
-	<p class="placeholder">This design view defines the strategies for interactions among design entities and provides the information needed to easily perceive how, why, where, and at what level system action occurs. It specifies the type of relationships that exist among the entities such as shared information, prescribed order of exection, or well-defined parameter interfaces.</p>
-	<p class="placeholder">The attribute descriptions for identification, type, purpose, dependencies, and resources should be included in this design view. This attribute information should be provided for all design entities</p>
-	<p class="placeholder">Example to base some of this off of <a href="http://dos.iitm.ac.in/OOSD_Material/CaseStudies/CaseStudy3/SDD/node30.html">here</a></p>
 	
 	<h2 id="interface_description">Interface Description</h2>
 	<p class="placeholder">The entity interface description provides everything designers, programmers, and testers need to know to correctly use thef unctions provided by an entity. This description includes the details of external and internal interfaces not provided in the software requirements specifications</p>	
