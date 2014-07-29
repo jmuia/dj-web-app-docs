@@ -65,6 +65,18 @@
     	content: counters(item, ".") ".\000a0\000a0"; 
     	counter-increment: item 
     }
+    .tab {
+    	padding: 0px 0px 0px 15px 
+    }
+    .large-tab{
+    	padding: 0px 0px 0px 30px 
+    }
+    .indented-list{
+    	padding: 0px 0px 0px 60px 
+    }
+    .sublist{
+    	padding: 0px 0px 0px 90px 
+    }
     /* Definition headers */
     /* Temporary classes for placeholders/messages */
     .placeholder{
@@ -675,10 +687,439 @@
 		<li>Add user to the list of users if not present</li>
 	</ol>
 	
-	<h3 id="data_design">Data Detailed Design</h3>
-	<p class="placeholder">List, if any, the appropriate data related methods/functions</p>
-	
-	<h3 id="documentation">Documentation</h3>
+	<h3 id="data_design">API Detailed Design</h3>
+	<p class="placeholder">This section describes the API that interact with the data stored by Google App Engine. It will give details about Query parameters andf their expected results.</p>
+	<h4>
+		POST /party/create/
+	</h4>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API creates a party. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li> name: The name of the Party (string)</li>
+		<li>password: The password for the Party (string)</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+	<pre><span class="o">{</span>
+	    name     : "Bob's Saget Party",
+	    password : "Cocaine"
+<span class="o">}</span>
+	</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party: a Party Object
+			<ul class="sublist">
+				<li>id: the Party entity id (int)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>name: the name of the Party (string)</li>
+			</ul>
+		</li>
+		<li>user: a user id of the host (int)</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>   party : <span class="o">{</span> 
+        id        : 1,
+        party_key : "a7bx98",
+        name      : "Bob's Saget Party" 
+    <span class="o">}</span>,
+    user : 1
+<span class="o">}</span>
+</pre>
+
+	<h4>
+		POST /party/login/
+	</h4>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API logs a host into a Party. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Party (string)</li>
+		<li>password: The host's password for the Party (string)</li>
+		<li>user_id: if returning Host otherwise a User id will be created for the Host</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    party_key : "a7bx98",
+    password  : "Cocaine",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party: a Party Object
+			<ul class="sublist">
+				<li>id: the party entity id (int)</li>
+				<li>party_key: the party key (string)</li>
+				<li>name: the name of the party (string)</li>
+			</ul>
+		</li>
+		<li>user: a user id of the host (int)</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>   party : <span class="o">{</span> 
+        id        : 1,
+        party_key : "a7bx98",
+        name      : "Bob's Saget Party" 
+    <span class="o">}</span>,
+    user : 1
+<span class="o">}</span>
+</pre>
+
+<h4>POST /party/access/</h4>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API allows a guest to access a Party. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The party key to access the party (string)</li>
+		<li>user_id: if returning user otherwise a user id will be created</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    party_key : "a7bx98",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party: a Party Object
+			<ul class="sublist">
+				<li>id: the party entity id (int)</li>
+				<li>party_key: the party key (string)</li>
+				<li>name: the name of the party (string)</li>
+			</ul>
+		</li>
+		<li>user: a user id of the host (int)</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>   party : <span class="o">{</span> 
+        id        : 1,
+        party_key : "a7bx98",
+        name      : "Bob's Saget Party" 
+    <span class="o">}</span>,
+    user : 1
+<span class="o">}</span>
+</pre>
+
+<h4>
+GET /party/queue/
+</h4>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API gets the Party queue for the Party macthing with the given Party key. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Harty (string)</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    party_key : "a7bx98",
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>an array of Song objects:
+			<ul class="sublist">
+				<li>url: song url (string)</li>
+				<li>party_key: the party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of user ids</li>
+				<li>votes: the number of votes for the SOng</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">[</span>
+    <span class="o">{</span>
+        url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+        is_queued   : True,
+        now_playing : True,
+        voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+        votes		: 3
+        created     : 1406649303294
+    <span class="o">}</span>, ...
+<span class="o">]</span>
+</pre>
+
+<h4>
+POST /party/song/add
+</h4>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API  creates and adds a Song to the Party queue and automatically adds a vote to the song for the request by the User. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Harty (string)</li>
+		<li>url: ty (string)</li>
+		<li>user_id: the current User id</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre>
+<span class="o">{</span>
+    party_key : "a7bx98",
+    url		  : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>a Song object:
+			<ul class="sublist">
+				<li>url: song url (string)</li>
+				<li>party_key: the party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of user ids</li>
+				<li>votes: the number of votes for the SOng</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    is_queued   : True,
+    now_playing : True,
+    voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+    votes       : 3,
+    created     : 1406649303294
+<span class="o">}</span>
+</pre>
+
+<h4>
+	POST /party/song/vote/
+</h4>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API  adds a User's vote to a Song unless that User has already voted for that Song in which the User will remove their vote for that Song. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Harty (string)</li>
+		<li>url: ty (string)</li>
+		<li>user_id: the current User id</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre>
+<span class="o">{</span>
+    party_key : "a7bx98",
+    url		  : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>a Song object:
+			<ul class="sublist">
+				<li>url: song url (string)</li>
+				<li>party_key: the party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of user ids</li>
+				<li>votes: the number of votes for the SOng</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    is_queued   : True,
+    now_playing : True,
+    voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+    votes       : 3,
+    created     : 1406649303294
+<span class="o">}</span>
+</pre>
+
+<h4>
+POST /party/song/play-now/
+</h4>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API ends the current Song and plays the Song requested unless it was the Song currently playing now. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Harty (string)</li>
+		<li>url: ty (string)</li>
+		<li>user_id: the current Host id</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre>
+<span class="o">{</span>
+    party_key : "a7bx98",
+    url		  : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>a Song objects:
+			<ul class="sublist">
+				<li>url: song url (string)</li>
+				<li>party_key: the party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of user ids</li>
+				<li>votes: the number of votes for the SOng</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    is_queued   : True,
+    now_playing : True,
+    voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+    votes       : 3,
+    created     : 1406649303294
+<span class="o">}</span>
+</pre>
+
+<h4>
+POST /party/song/play-next/
+</h4>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API ends the current Song and plays Song with the most votes. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Harty (string)</li>
+		<li>user_id: the current Host id</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre>
+<span class="o">{</span>
+    party_key : "a7bx98",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>a Song objects:
+			<ul class="sublist">
+				<li>url: song url (string)</li>
+				<li>party_key: the party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of user ids</li>
+				<li>votes: the number of votes for the SOng</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    is_queued   : True,
+    now_playing : True,
+    voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+    votes       : 3,
+    created     : 1406649303294
+<span class="o">}</span>
+</pre>
+
+<h3 id="documentation">Documentation</h3>
 <h4>Front End</h4>
 
 <h5>
