@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CP317 PartyAll Software Design Description</title>
+	<!-- I don't remember who all is doing design, so just add your names here -->
+	<meta name='author' content='Dallas Fraser, Matthew Rodusek, Kevin Holmes, '>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	/* Set standards for text */
+	body{
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 16px;
+		text-rendering: optimizeLegibility;
+		line-height: 1.42857143;
+		color: #333;
+		background-color: #fff;
+		counter-reset: h2counter;
+	}
+	#content{
+		max-width: 1200px;
+		min-width: 600px;
+		margin: 0 auto;
+	}
+	/* Text styling */
+	h1{
+		font-weight: 800;
+	}
+	object{border: 0;}
+	h2{
+		border-bottom: 1px solid #DDD;
+	}
+	/* Auto-counters for headers and navigation */
+	h1{ counter-reset: h2counter; }
+    h2:before {
+        content: counter(h2counter) ".\0000a0\0000a0";
+        counter-increment: h2counter;
+    }
+    h2{ counter-reset: h3counter; }
+    h3:before {
+        content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+        counter-increment: h3counter;
+    }
+    h3{ counter-reset: h4counter; }
+	h4:before{
+		content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) "\000a0\000a0";
+		counter-increment: h4counter;
+	}
+	h2.nocount:before,h3.nocount:before,h4.nocount:before{
+		content: none;
+		counter-increment: none;
+	}
+	#nav ol{ 
+		margin: 0;
+		padding: 0;
+		counter-reset: item 
+	}
+	#nav ol > li{
+		margin: 0 20px;
+	}
+	#nav ol li{ 
+		display: block 
+	}
+    #nav ol li:before{ 
+    	content: counters(item, ".") ".\000a0\000a0"; 
+    	counter-increment: item 
+    }
+    .tab {
+    	padding: 0px 0px 0px 15px 
+    }
+    .large-tab{
+    	padding: 0px 0px 0px 30px 
+    }
+    .indented-list{
+    	padding: 0px 0px 0px 60px 
+    }
+    .sublist{
+    	padding: 0px 0px 0px 90px 
+    }
+    /* Definition headers */
+    /* Temporary classes for placeholders/messages */
+    .placeholder{
+    	font-style: italic;
+    	color: #666;
+    }
+    .alert-warning{ /* Shamelessly stolen from bootstrap*/
+	    padding: 15px;
+		margin-bottom: 20px;
+		border: 1px solid transparent;
+		border-radius: 4px;
+	    background-image: -webkit-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+		background-image: -o-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+		background-image: -webkit-gradient(linear,left top,left bottom,from(#fcf8e3),to(#f8efc0));
+		background-image: linear-gradient(to bottom,#fcf8e3 0,#f8efc0 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
+		background-repeat: repeat-x;
+		border-color: #f5e79e;
+	    text-shadow: 0 1px 0 rgba(255,255,255,.2);
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.05);
+		box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.05);
+		color: #8a6d3b;
+		background-color: #fcf8e3;
+    }
+    table h4{margin: 0;}
+	/* Bordered table stolen from Bootstrap */
+	.table{
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+	background-color: transparent;
+	border-spacing: 0;
+	border-collapse: collapse;
+	}
+	.table-bordered{
+	border: 1px solid #ddd;
+	}
+	.table>caption+thead>tr:first-child>th, 
+	.table>colgroup+thead>tr:first-child>th, 
+	.table>thead:first-child>tr:first-child>th, 
+	.table>caption+thead>tr:first-child>td, 
+	.table>colgroup+thead>tr:first-child>td, 
+	.table>thead:first-child>tr:first-child>td {border-top: 0;}
+	.table-bordered>thead>tr>th, 
+	.table-bordered>tbody>tr>th, 
+	.table-bordered>tfoot>tr>th, 
+	.table-bordered>thead>tr>td, 
+	.table-bordered>tbody>tr>td, 
+	.table-bordered>tfoot>tr>td {border: 1px solid #ddd;}
+	.table-bordered>thead>tr>th, 
+	.table-bordered>thead>tr>td {border-bottom-width: 2px;}
+	.table>thead>tr>th, 
+	.table>tbody>tr>th, 
+	.table>tfoot>tr>th, 
+	.table>thead>tr>td, 
+	.table>tbody>tr>td, 
+	.table>tfoot>tr>td {
+		padding: 8px;
+		line-height: 1.42857143;
+		vertical-align: top;
+		border-top: 1px solid #ddd;
+	}
+	.table-striped>tbody>tr:nth-child(odd)>td, 
+	.table-striped>tbody>tr:nth-child(odd)>th {
+		background-color: #f9f9f9;
+	}
+	th {text-align: left;}
+	th,td{
+		word-wrap: break-word;
+		white-space: nowrap;
+	}
+	.table-decomp>tbody>tr>td:first-child,
+	.table-decomp>tbody>tr>th:first-child{
+		width: 20%;
+	}
+	</style>
+</head>
+<body>
+<div id="content">
+	<h2 id="api">API Detailed Design</h3>
+	<p class="placeholder">This section describes the API that interact with the data stored by Google App Engine. It will give details about Query parameters andf their expected results.</p>
+	<h4>
+		POST /party/create/
+	</h4>
+	<object data="../img/PartyCreate.svg" type="image/svg+xml"></object>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API creates a party. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>name: The name of the Party (string)</li>
+		<li>password: The password for the Party (string)</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+	<pre><span class="o">{</span>
+	    name     : "Bob's Saget Party",
+	    password : "Cocaine"
+<span class="o">}</span>
+	</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party: a Party Object
+			<ul class="sublist">
+				<li>id: the Party entity id (int)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>name: the name of the Party (string)</li>
+			</ul>
+		</li>
+		<li>user: a User id of the host (int)</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>   party : <span class="o">{</span> 
+        id        : 1,
+        party_key : "a7bx98",
+        name      : "Bob's Saget Party" 
+    <span class="o">}</span>,
+    user : 1
+<span class="o">}</span>
+</pre>
+
+	<h4>
+		POST /party/login/
+	</h4>
+	<object data="../img/PartyLogin.svg" type="image/svg+xml"></object>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API logs a Host into a Party. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Party (string)</li>
+		<li>password: The Host's password for the Party (string)</li>
+		<li>user_id: if returning Host otherwise a User id will be created for the Host</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    party_key : "a7bx98",
+    password  : "Cocaine",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party: a Party Object
+			<ul class="sublist">
+				<li>id: the Party entity id (int)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>name: the name of the Party (string)</li>
+			</ul>
+		</li>
+		<li>user: a User id of the Host (int)</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>   party : <span class="o">{</span> 
+        id        : 1,
+        party_key : "a7bx98",
+        name      : "Bob's Saget Party" 
+    <span class="o">}</span>,
+    user : 1
+<span class="o">}</span>
+</pre>
+
+<h4>POST /party/access/</h4>
+	<object data="../img/PartyAccess.svg" type="image/svg+xml"></object>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API allows a guest User to access a Party. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Party (string)</li>
+		<li>user_id: if returning User otherwise a User id will be created</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    party_key : "a7bx98",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party: a Party Object
+			<ul class="sublist">
+				<li>id: the Party entity id (int)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>name: the name of the Party (string)</li>
+			</ul>
+		</li>
+		<li>user: a User id of the host (int)</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>   party : <span class="o">{</span> 
+        id        : 1,
+        party_key : "a7bx98",
+        name      : "Bob's Saget Party" 
+    <span class="o">}</span>,
+    user : 1
+<span class="o">}</span>
+</pre>
+
+<h4>
+GET /party/queue/
+</h4>
+	<object data="../img/PartyQueue.svg" type="image/svg+xml"></object>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API gets the Party queue for the Party macthing with the given Party key. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Party (string)</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    party_key : "a7bx98",
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>an array of Song objects:
+			<ul class="sublist">
+				<li>url: Song url (string)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of User ids</li>
+				<li>votes: the number of votes for the Song (int)</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">[</span>
+    <span class="o">{</span>
+        url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+        is_queued   : True,
+        now_playing : True,
+        voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+        votes		: 3
+        created     : 1406649303294
+    <span class="o">}</span>, ...
+<span class="o">]</span>
+</pre>
+
+<h4>
+POST /party/song/add
+</h4>
+	<object data="../img/PartySongAdd.svg" type="image/svg+xml"></object>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API creates and adds a Song to the Party queue and automatically adds a vote to the Song for the request by the User. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Party (string)</li>
+		<li>url: the Song's url (string)</li>
+		<li>user_id: the current User id</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre>
+<span class="o">{</span>
+    party_key : "a7bx98",
+    url		  : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>a Song object:
+			<ul class="sublist">
+				<li>url: Song url (string)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of User ids</li>
+				<li>votes: the number of votes for the Song</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    is_queued   : True,
+    now_playing : True,
+    voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+    votes       : 3,
+    created     : 1406649303294
+<span class="o">}</span>
+</pre>
+
+<h4>
+	POST /party/song/vote/
+</h4>
+	<object data="../img/PartySongVote.svg" type="image/svg+xml"></object>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API adds a User's vote to a Song unless that User has already voted for that Song in which the User will remove their vote for that Song. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Harty (string)</li>
+		<li>url: the Song's url (string)</li>
+		<li>user_id: the current User id</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre>
+<span class="o">{</span>
+    party_key : "a7bx98",
+    url		  : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>a Song object:
+			<ul class="sublist">
+				<li>url: Song url (string)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of User ids</li>
+				<li>votes: the number of votes for the Song</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    is_queued   : True,
+    now_playing : True,
+    voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+    votes       : 3,
+    created     : 1406649303294
+<span class="o">}</span>
+</pre>
+
+<h4>
+POST /party/song/play-now/
+</h4>
+	<object data="../img/PartySongPlayNow.svg" type="image/svg+xml"></object>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API ends the current Song and plays the Song requested unless it was the Song currently playing now. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Party (string)</li>
+		<li>url: the Song's url (string)</li>
+		<li>user_id: the current Host id</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre>
+<span class="o">{</span>
+    party_key : "a7bx98",
+    url		  : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>a Song objects:
+			<ul class="sublist">
+				<li>url: Song url (string)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of User ids</li>
+				<li>votes: the number of votes for the Song</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    is_queued   : True,
+    now_playing : True,
+    voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+    votes       : 3,
+    created     : 1406649303294
+<span class="o">}</span>
+</pre>
+
+<h4>
+POST /party/song/play-next/
+</h4>
+	<object data="../img/PartySongPlayNext.svg" type="image/svg+xml"></object>
+	<p class="tab">
+	<strong>Description:</strong> 
+	</p>
+	<p class='large-tab'>
+	This API ends the current Song and plays Song with the most votes. Its parameters are passed using JSON format and its response is in the JSON format.
+	</p>
+	<p class="tab">
+	<strong>Parameters:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>party_key: The Party key to access the Party (string)</li>
+		<li>user_id: the current Host id</li>
+	</ul>
+	<!-- Not the cleanest html but will cleanup  -->
+	<p class="tab">
+	<strong>Parameters Example:</strong>
+	</p>
+<pre>
+<span class="o">{</span>
+    party_key : "a7bx98",
+    user_id   : 1
+<span class="o">}</span>
+</pre>
+	<p class="tab">
+	<strong>Response:</strong>
+	</p>
+	<ul class="indented-list">
+		<li>a Song objects:
+			<ul class="sublist">
+				<li>url: Song url (string)</li>
+				<li>party_key: the Party key (string)</li>
+				<li>is_queued:  True if queue, False otherwise (boolean)</li>
+				<li>now_playing: True if playing, False otherwise (boolean)</li>
+				<li>voters: array of User ids</li>
+				<li>votes: the number of votes for the Song</li>
+				<li>created: Unix Timestamp of the creation date of the Song
+			</ul>
+		</li>
+	</ul>
+	<p class="tab">
+	<strong>Response Example:</strong>
+	</p>
+<pre><span class="o">{</span>
+    url         : "https://soundcloud.com/swoozie/jamie-kennedy-ft-bob-saget-rollin-with-saget",
+    is_queued   : True,
+    now_playing : True,
+    voters      : <span class="o">[</span>1,2,3<span class="o">]</span>,
+    votes       : 3,
+    created     : 1406649303294
+<span class="o">}</span>
+</pre>
+</div>
+</body>
