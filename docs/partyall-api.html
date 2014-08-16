@@ -156,11 +156,29 @@
 </head>
 <body>
 <div id="content">
-	<h2 id="api">API Detailed Design</h3>
+	<h2 id="api">API Detailed Design</h2>
+	<nav id="nav">
+		<h2 class="nocount">Table of Contents</h2>
+		<ol>
+			<li><a href="#top"></a>APIs
+				<ol>
+					<li><a href="#create">Create</a></li>
+					<li><a href="#login">Login</a></li>
+					<li><a href="#access">Access</a></li>		
+					<li><a href="#queue">Queue</a></li>
+					<li><a href="#songadd">Song Add</a></li>
+					<li><a href="#songvote">Song Vote</a></li>
+					<li><a href="#songplaynow">Song Play Now</a></li>
+					<li><a href="#songplaynext">Song Play Next</a></li>
+				</ol>
+			</li>
+		</ol>
+	</nav>
+	
 	<p class="placeholder">This section describes the API that interact with the data stored by Google App Engine. It will give details about Query parameters andf their expected results.</p>
-	<h4>
-		POST /party/create/
-	</h4>
+	<h3>
+		POST /party/create/<a id="create"></a> <a href=#top>^</a>
+	</h3>
 	<object data="../img/PartyAllCreate.svg" type="image/svg+xml"></object>
 	<p class="tab">
 	<strong>Description:</strong> 
@@ -209,9 +227,9 @@
 <span class="o">}</span>
 </pre>
 
-	<h4>
-		POST /party/login/
-	</h4>
+	<h3>
+		POST /party/login/<a id="login"></a> <a href=#top>^</a>
+	</h3>
 	<object data="../img/PartyAllLogin.svg" type="image/svg+xml"></object>
 	<p class="tab">
 	<strong>Description:</strong> 
@@ -262,7 +280,9 @@
 <span class="o">}</span>
 </pre>
 
-<h4>POST /party/access/</h4>
+<h3>
+POST /party/access/<a id="access"></a> <a href=#top>^</a>
+</h3>
 	<object data="../img/PartyAllAccess.svg" type="image/svg+xml"></object>
 	<p class="tab">
 	<strong>Description:</strong> 
@@ -311,10 +331,10 @@
 <span class="o">}</span>
 </pre>
 
-<h4>
-GET /party/queue/
-</h4>
-	<object data="../img/PartyQueue.svg" type="image/svg+xml"></object>
+<h3>
+GET /party/queue/ <a id="queue"></a> <a href=#top>^</a>
+</h3>
+	<object data="../img/PartyAllQueue.svg" type="image/svg+xml"></object>
 	<p class="tab">
 	<strong>Description:</strong> 
 	</p>
@@ -366,10 +386,10 @@ GET /party/queue/
 <span class="o">]</span>
 </pre>
 
-<h4>
-POST /party/song/add
-</h4>
-	<object data="../img/PartySongAdd.svg" type="image/svg+xml"></object>
+<h3>
+POST /party/song/add <a id="songadd"></a> <a href=#top>^</a>
+</h3>
+	<object data="../img/PartyAllSongAdd.svg" type="image/svg+xml"></object>
 	<p class="tab">
 	<strong>Description:</strong> 
 	</p>
@@ -424,10 +444,10 @@ POST /party/song/add
 <span class="o">}</span>
 </pre>
 
-<h4>
-	POST /party/song/vote/
-</h4>
-	<object data="../img/PartySongVote.svg" type="image/svg+xml"></object>
+<h3>
+	POST /party/song/vote/ <a id="songvote"></a> <a href=#top>^</a>
+</h3>
+	<object data="../img/PartyAllSongVote.svg" type="image/svg+xml"></object>
 	<p class="tab">
 	<strong>Description:</strong> 
 	</p>
@@ -482,10 +502,10 @@ POST /party/song/add
 <span class="o">}</span>
 </pre>
 
-<h4>
-POST /party/song/play-now/
-</h4>
-	<object data="../img/PartySongPlayNow.svg" type="image/svg+xml"></object>
+<h3>
+POST /party/song/play-now/ <a id="songplaynow"></a> <a href=#top>^</a>
+</h3>
+	<object data="../img/PartyAllSongPlayNow.svg" type="image/svg+xml"></object>
 	<p class="tab">
 	<strong>Description:</strong> 
 	</p>
@@ -540,10 +560,10 @@ POST /party/song/play-now/
 <span class="o">}</span>
 </pre>
 
-<h4>
-POST /party/song/play-next/
-</h4>
-	<object data="../img/PartySongPlayNext.svg" type="image/svg+xml"></object>
+<h3>
+POST /party/song/play-next/ <a id="songplaynext"></a> <a href="#top">^</a>
+</h3>
+	<object data="../img/PartyAllSongPlayNext.svg" type="image/svg+xml"></object>
 	<p class="tab">
 	<strong>Description:</strong> 
 	</p>
