@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>CP317 PartyAll SQA</title>
+		<!-- I don't remember who all is doing design, so just add your names here -->
+		<meta name='author' content='Dallas Fraser, Matthew Rodusek, Kevin Holmes, '>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		/* Set standards for text */
+		body{
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-size: 16px;
+			text-rendering: optimizeLegibility;
+			line-height: 1.42857143;
+			color: #333;
+			background-color: #fff;
+			counter-reset: h2counter;
+		}
+		#content{
+			max-width: 1200px;
+			min-width: 600px;
+			margin: 0 auto;
+		}
+		/* Text styling */
+		h1{
+			font-weight: 800;
+		}
+		object{border: 0;}
+		h2{
+			border-bottom: 1px solid #DDD;
+		}
+		/* Auto-counters for headers and navigation */
+		h1{ counter-reset: h2counter; }
+	    h2:before {
+	        content: counter(h2counter) ".\0000a0\0000a0";
+	        counter-increment: h2counter;
+	    }
+	    h2{ counter-reset: h3counter; }
+	    h3:before {
+	        content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+	        counter-increment: h3counter;
+	    }
+	    h3{ counter-reset: h4counter; }
+		h4:before{
+			content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) "\000a0\000a0";
+			counter-increment: h4counter;
+		}
+		h2.nocount:before,h3.nocount:before,h4.nocount:before{
+			content: none;
+			counter-increment: none;
+		}
+		#nav ol{ 
+			margin: 0;
+			padding: 0;
+			counter-reset: item 
+		}
+		#nav ol > li{
+			margin: 0 20px;
+		}
+		#nav ol li{ 
+			display: block 
+		}
+	    #nav ol li:before{ 
+	    	content: counters(item, ".") ".\000a0\000a0"; 
+	    	counter-increment: item 
+	    }
+	    .tab {
+	    	padding: 0px 0px 0px 15px 
+	    }
+	    .large-tab{
+	    	padding: 0px 0px 0px 30px 
+	    }
+	    .indented-list{
+	    	padding: 0px 0px 0px 60px 
+	    }
+	    .sublist{
+	    	padding: 0px 0px 0px 90px 
+	    }
+	    /* Definition headers */
+	    /* Temporary classes for placeholders/messages */
+	    .placeholder{
+	    	font-style: italic;
+	    	color: #666;
+	    }
+	    .alert-warning{ /* Shamelessly stolen from bootstrap*/
+		    padding: 15px;
+			margin-bottom: 20px;
+			border: 1px solid transparent;
+			border-radius: 4px;
+		    background-image: -webkit-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+			background-image: -o-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+			background-image: -webkit-gradient(linear,left top,left bottom,from(#fcf8e3),to(#f8efc0));
+			background-image: linear-gradient(to bottom,#fcf8e3 0,#f8efc0 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffcf8e3', endColorstr='#fff8efc0', GradientType=0);
+			background-repeat: repeat-x;
+			border-color: #f5e79e;
+		    text-shadow: 0 1px 0 rgba(255,255,255,.2);
+			-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.05);
+			box-shadow: inset 0 1px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.05);
+			color: #8a6d3b;
+			background-color: #fcf8e3;
+	    }
+	    table h4{margin: 0;}
+		/* Bordered table stolen from Bootstrap */
+		.table{
+		width: 100%;
+		max-width: 100%;
+		margin-bottom: 20px;
+		background-color: transparent;
+		border-spacing: 0;
+		border-collapse: collapse;
+		}
+		.table-bordered{
+		border: 1px solid #ddd;
+		}
+		.table>caption+thead>tr:first-child>th, 
+		.table>colgroup+thead>tr:first-child>th, 
+		.table>thead:first-child>tr:first-child>th, 
+		.table>caption+thead>tr:first-child>td, 
+		.table>colgroup+thead>tr:first-child>td, 
+		.table>thead:first-child>tr:first-child>td {border-top: 0;}
+		.table-bordered>thead>tr>th, 
+		.table-bordered>tbody>tr>th, 
+		.table-bordered>tfoot>tr>th, 
+		.table-bordered>thead>tr>td, 
+		.table-bordered>tbody>tr>td, 
+		.table-bordered>tfoot>tr>td {border: 1px solid #ddd;}
+		.table-bordered>thead>tr>th, 
+		.table-bordered>thead>tr>td {border-bottom-width: 2px;}
+		.table>thead>tr>th, 
+		.table>tbody>tr>th, 
+		.table>tfoot>tr>th, 
+		.table>thead>tr>td, 
+		.table>tbody>tr>td, 
+		.table>tfoot>tr>td {
+			padding: 8px;
+			line-height: 1.42857143;
+			vertical-align: top;
+			border-top: 1px solid #ddd;
+		}
+		.table-striped>tbody>tr:nth-child(odd)>td, 
+		.table-striped>tbody>tr:nth-child(odd)>th {
+			background-color: #f9f9f9;
+		}
+		th {text-align: left;}
+		th,td{
+			word-wrap: break-word;
+			white-space: nowrap;
+		}
+		.table-decomp>tbody>tr>td:first-child,
+		.table-decomp>tbody>tr>th:first-child{
+			width: 20%;
+		}
+		</style>
+    </head>
+	<body>
+	<h1>
+		Cp317 Spring 2014 SQA
+	</h1>
+	<table class="table">
+			<tr>
+				<td><strong>Title: Analysis BCE_Diagram</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/60">see more</a></td>
+				<td>Classfication: analysis, bug</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: fras2560</td>
+				<td>Date: 2014-08-16T18:12:48Z</td>
+				<td>Description: Party and Guests Roles are backwards still. Does anyone have the magic draw file for this diagram?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T18:55:35Z</td>
+						<td> Description: Fixed it.</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T18:55:35Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: PartyAllSongPlayNext Sequence Diagram Song ID Error Catch</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/59">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: holm4430</td>
+				<td>Date: 2014-08-14T20:11:54Z</td>
+				<td>Description: First 'alt conditional' should include if 'song ID is none' as well.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T16:17:49Z</td>
+						<td> Description: It should actually not include songId since just going to play next song. Fixed</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:17:50Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: PartyAllQueue Sequence Diagram Incorrect Error Code</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/58">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: holm4430</td>
+				<td>Date: 2014-08-14T19:42:58Z</td>
+				<td>Description: 'Party is none' sequence returns 404 status code error which is the code for 'song is none'. Should return 401 error code instead.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-15T15:12:47Z</td>
+						<td> Description: Yes we are returning 404 for any request other than login in which the party key is not valid</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:18:02Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: PartyAllLogin Sequence Diagram Clarification</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/57">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: holm4430</td>
+				<td>Date: 2014-08-14T19:33:59Z</td>
+				<td>Description: Unclear in sequence diagram what happens if user's ID is not in Party yet. Should add case to handle this.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T16:41:16Z</td>
+						<td> Description: Updated it and added a note for that case since kinda of confusing</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:41:16Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Module Designed Detail: Vote and Unvote</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/56">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: KH4000</td>
+				<td>Date: 2014-07-25T17:19:25Z</td>
+				<td>Description: Also takes song url as an input and maybe a bit more detail in what the list.
+</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-14T19:19:52Z</td>
+						<td> Description: Fixed</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-14T19:19:53Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Design Class Diagram Party Status</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/55">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-23T00:57:17Z</td>
+				<td>Description: Change status in Party to is_active. </td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-14T19:21:18Z</td>
+						<td> Description: Fixed</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-14T19:21:18Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: 4.1.7 AddUser: What is this?</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/54">see more</a></td>
+				<td>Classfication: Design, question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-23T00:36:00Z</td>
+				<td>Description: What is this module for?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-23T01:51:51Z</td>
+						<td> Description: Dont you need to add the user to the party?
+</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-14T19:20:08Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Design 2.2.2 Login View Host "room name"</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/53">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-23T00:31:38Z</td>
+				<td>Description: Should be "requesting the Party guest key and the password"</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-14T19:21:37Z</td>
+						<td> Description: All of these have changed</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-14T19:21:37Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Design: 2.1 Class Diagram Song Entity</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/52">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-23T00:21:34Z</td>
+				<td>Description: The song entity should not have any API related attributes. Instead of having url and videoId it should just have "data" which in our backend will be simply a generic JSON ( appengine JsonProperty() ) object containing any information our chosen API gives us. This will allow us to switch between music APIs without having to change our backend.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-23T01:56:06Z</td>
+						<td> Description: Do any music api require something more than an url to work?
+</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-23T01:57:24Z</td>
+						<td> Description: @fras2560 maybe, that shouldn't be of concern to our backend</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-23T02:09:07Z</td>
+						<td> Description: Okay well if most can use a url then why store anything else on the backend? If the api gives back more than that it just used by the front end and backend does not worry about it, just stores url. Why store what the music API gives us?</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-23T02:20:21Z</td>
+						<td> Description: why not? Like I said before we want to keep this as general as possible. What if in the future we want to provide more information to users on each song? What if the music API terms change and require that we display information such as who uploaded the song, copyright information etc? Storing this extra data allows for more flexibility.</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-23T02:40:28Z</td>
+						<td> Description: My point is we are not creating any of this data so why store on it on the backend. The front end can always pull it from the music API. If the API changes the backend still will not change since the API change which are on the front end. If we want to provide more information to users on each song the front end should pull it from the music API? I think storing a json object in our class diagram is looks like we have not designed it properly
+</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-23T02:57:56Z</td>
+						<td> Description: <i>"My point is we are not creating any of this data so why store on it on the backend"</i> ; whats downfall of storing it?
+
+<i>"The front end can always pull it from the music API. ... If we want to provide more information to users on each song the front end should pull it from the music API?"</i> ; leads to redundant api calls, why continuously fetch data that we already got once.
+
+<i>"I think storing a json object in our class diagram is looks like we have not designed it properly"</i> ; I don't consider this as a valid argument. Just because it makes our class diagram "look" incomplete does not justify the reduced functionality. We can simply make a note indicating that since app engine allows use to store json like this under another entity, there is no need to over-complicate our back end or front end and risk reduced flexibility by having to extract certain pieces of data retrieved from our music API.
+</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-23T03:14:55Z</td>
+						<td> Description: "whats downfall of storing it?" This then puts no limits on the data on the backend. We can't guarantee what is stored in the data json since we want it to be flexible. Which could lead to confusion and a need to map the data a certain way but puts this responsibility on the front-end developer.
+
+"leads to redundant api calls, why continuously fetch data that we already got once." This is no different then fetching the data from our backend since the same data is being transferred only leads to one extra api call to an efficient music player API, i am sure youtube wont get mad about it.
+
+"Just because it makes our class diagram "look" incomplete does not justify the reduced functionality." It actually makes our class diagram look like a hack.
+
+But do what you want since it is your project
+
+
+
+ </td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-23T03:26:35Z</td>
+						<td> Description: GitHub issues should not be taken personally, we are all on the same team here. Personally I thought we were having a good discussion, chugging out a real issue here. I apologize if it came across as offensive, as it seems that you are taking it personally. I believe we should just discuss this thursday and get other inputs.</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-24T15:20:04Z</td>
+						<td> Description: From talking to Gavin it sounds like the team decided on not implementing this idea.</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-07-24T15:20:05Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: "Stop Song"</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/51">see more</a></td>
+				<td>Classfication: Design, question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-22T23:24:08Z</td>
+				<td>Description: I don't this stop song is necessary. A host has the ability to STOP a party which is the equivalent of ending it. Hosts can pause a song and then play a specific song simply by selecting the song in the queue. Have stop in the application will most likely confuse users.
+
+The area where I see "stop" useful would be for a Song entity. Songs that are in a stopped state could represents songs that have already been played and should no longer be displayed in the queue. This allows use to persist the entire song queue without worrying that these stopped songs might leak into the queue.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: bitwizeshift</td>
+						<td> Date: 2014-07-22T23:26:12Z</td>
+						<td> Description: No tags.
+No description. 
+...Wat?</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-22T23:30:42Z</td>
+						<td> Description: ha, sorry hit "enter" while I was still thinking this one through</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-14T19:22:16Z</td>
+						<td> Description: Has been resolved. The backend does not worry about stop song</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-08-14T19:22:16Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Analysis: 2.2 Boundary Objects</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/50">see more</a></td>
+				<td>Classfication: analysis, question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-22T23:22:40Z</td>
+				<td>Description: Should HostPartyView and GuestPartyView be combined into PartyView since each will technically have the same view just certain restrictions will be applied dependant on the type of user?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-14T19:22:49Z</td>
+						<td> Description: Not an issue since updated views and controllers for the design. We should leave the analysis the way it is.</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-14T19:22:49Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Analysis: 2.3 Controller Objects</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/49">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-22T23:18:46Z</td>
+				<td>Description: Need controller objects for HostLoginController, GuestLoginController, and CreatePartyController</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T16:23:13Z</td>
+						<td> Description: All of these have been added</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:23:14Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Need to flesh out these sentences</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/48">see more</a></td>
+				<td>Classfication: Design, enhancement</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: roycemok</td>
+				<td>Date: 2014-07-22T16:35:28Z</td>
+				<td>Description: 4.3.1
+"the downsides to Bootstrap is that it is relatively heavy because of its large feature set."
+Need to flesh out the "heavy" part
+
+4.3.2
+Google App Engine
+"and a layer of Google abstraction can make it confusing at times."
+Need to expand on the what is it exactly that makes it so confusing at times.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T16:19:06Z</td>
+						<td> Description: I updated on my last edit</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:19:06Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Spelling Mistakes</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/47">see more</a></td>
+				<td>Classfication: Design, typo</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: Gav1442</td>
+				<td>Date: 2014-07-20T22:04:33Z</td>
+				<td>Description: 2.
+- "This section describes the decomposition of the system in a three different forms". I believe that the 'a' should be removed at the end of that phrase.
+
+2.1.1 Class Diagram
+- The argument 'Password' for the Party constructor shouldn't be capitalized
+- Should be Green: Boundary Object (not GreenL Boundary Object)
+
+2.2.1
+- 'An interface for the user select whether to be a Host or a Guest' should probably be ".... user to select..."
+
+4.3.1
+- (Bootstrap Section) "The visual framework the PartyAll web application is utilizing is Bootstrap made by the people over at Twitter." Consider rewording slightly (mostly it is the ending that sounds off).
+- (AngularJS Section)  "Traditional web pages work in the following way, ... " Consider using a colon instead of a comma.
+- Several times in the Google App Engine paragraph at least a portion of Google App Engine isn't capitalized. All instances of Google App Engine, App Engine, etc.. should be capitalized.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: michaelsingh93</td>
+						<td> Date: 2014-07-22T16:32:56Z</td>
+						<td> Description: Also to add to this (tiny mistake), in the design document for guest party view (3.1.5), where it states in the description "Brings up a modal menu with the options to vote,Play/stop, or cancel". There should be a space between the comma and 'Play/stop'.</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: roycemok</td>
+						<td> Date: 2014-07-22T16:39:49Z</td>
+						<td> Description: Also to add
+In 4.3.1
+- "The downsides to Bootstrap is that it is relatively heavy because of its large feature set." Should be downside
+</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-14T19:24:41Z</td>
+						<td> Description: Non-relevant due to the layout change</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-14T19:24:41Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Prototype Vote and Unvote Button</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/46">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: yuxx3260</td>
+				<td>Date: 2014-07-17T17:02:26Z</td>
+				<td>Description: David mentioned that the heart symbol can be misleading.
+
+Perhaps we can replace it with a toggle button which says "Vote" when the corresponding song hasn't been voted on yet, and "Unvote" when it has been voted on. </td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: bitwizeshift</td>
+						<td> Date: 2014-07-22T00:11:02Z</td>
+						<td> Description: Fixed.</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: bitwizeshift</td>
+				<td>Closed On:2014-07-22T00:11:02Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Repo Name</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/45">see more</a></td>
+				<td>Classfication: enhancement</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-16T05:14:52Z</td>
+				<td>Description: Change repo name to partyall-docs. :100: p :punch: </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-08-14T19:25:04Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Design Document Back End Description (4.3.2)</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/44">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: yuxx3260</td>
+				<td>Date: 2014-07-15T19:19:58Z</td>
+				<td>Description: "The disadvantages of App Engine is that it takes a while to pick up, and a layer of Google abstraction can make it confusing at times." -> Have to elaborate on the disadvantages of App Engine and why Google Abstraction could make it confusing.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T16:26:05Z</td>
+						<td> Description: I expanded this sentence</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:26:06Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Design Document Interface Description: HostPartyView</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/43">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: yuxx3260</td>
+				<td>Date: 2014-07-15T19:17:22Z</td>
+				<td>Description: In the mockup screenshot, "Upvote or Play Now?" pop up should have a cancel option.
+Details about the selected song should also be displayed.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: bitwizeshift</td>
+						<td> Date: 2014-07-16T18:17:35Z</td>
+						<td> Description: Fixed</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: bitwizeshift</td>
+				<td>Closed On:2014-07-16T18:17:35Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Design Document Class Diagram: Coupling Issue</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/42">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: yuxx3260</td>
+				<td>Date: 2014-07-15T19:12:55Z</td>
+				<td>Description: unvote and vote takes User, not userId.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-16T14:44:40Z</td>
+						<td> Description: Updated </td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-07-16T14:44:41Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Design Document Class Diagram: Minor Spelling Issue</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/41">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: yuxx3260</td>
+				<td>Date: 2014-07-15T19:11:29Z</td>
+				<td>Description: Party constructor takes password, not Password.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-16T14:45:11Z</td>
+						<td> Description: now takes Host which contains password</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-07-16T14:45:12Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Host and Guest</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/40">see more</a></td>
+				<td>Classfication: Design, question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: KH4000</td>
+				<td>Date: 2014-07-15T17:05:54Z</td>
+				<td>Description: How does the party know who the Host is? There doesn't seem to be something that notes who the host of the party is.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-16T14:45:41Z</td>
+						<td> Description: Should now be clear. Host belongs to the party</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-07-16T14:45:42Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: SongView</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/39">see more</a></td>
+				<td>Classfication: Design, question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: roycemok</td>
+				<td>Date: 2014-07-15T16:42:02Z</td>
+				<td>Description: Don`t we need another string variable in Song to get the Song description to display in SongView?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-16T14:46:54Z</td>
+						<td> Description: I was unaware of us display a song description. I would assume this would come from the external player (youtube description). So since it it coming externally the SongView should be able to pull this information.</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T16:29:18Z</td>
+						<td> Description: This was updated and we are now storing more information about song</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:29:18Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Song Status</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/38">see more</a></td>
+				<td>Classfication: Design, question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: KH4000</td>
+				<td>Date: 2014-07-15T15:49:30Z</td>
+				<td>Description: For the song entity, it has status: Boolean (true or false) but wasn't there 3 statuses (playing, stopped, paused), how would it distinguish if the song is paused or stopped? </td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-16T14:47:51Z</td>
+						<td> Description: @robinsharma  Robi what the decision on this?</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-23T00:44:17Z</td>
+						<td> Description: //TODO discuss with back end team thursday</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T16:29:51Z</td>
+						<td> Description: Let player controller worry about stopping and starting the song</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:29:52Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Design Document Errors</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/37">see more</a></td>
+				<td>Classfication: Design, question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: roycemok</td>
+				<td>Date: 2014-07-15T02:34:54Z</td>
+				<td>Description: In the Song part of the Diagram, shouldn't Unvote require a userId: int instead of a string. Also, what is the purpose of creating the two Song constructors? I don't see a reason why you shouldn't use just Song(url:String, id:int)
+
+In the User part of the Diagram, shouldn't the User always be required to have an ID regardless of if they are a guest or a host? Why is there a need for the empty constructor?
+
+Also, there seems to be inconsistencies throughout the diagram, some parts are using Camelcase where others have the first letter capitalized.
+e.g. GetID vs getStatus
+
+Also, The Detailed Design part does not correctly relate to the diagrams. For example, there exists a resumeSong() process but does not actually appear on the diagram. Another example is that for both vote and Unvote, they both state that UserId is a string in the detailed design but was stated as an int in the diagrams.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-15T02:58:36Z</td>
+						<td> Description: Hey Royce all the things you brought i fixed awhile ago. The version you are looking at is old. Someone updated over top of my work. The reason i have two constructors for Song is I was unsure if the Song and User class' ids were to be generated by google app engine or on the front end since we need it to be persistent to the anonymous id. I thought this would give us more flexibility moving forward. The User() constructor would set the Id somewhere inside the constructor. </td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-07-16T14:47:59Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Numbered Definition Terms?</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/36">see more</a></td>
+				<td>Classfication: Design, question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: Gav1442</td>
+				<td>Date: 2014-07-15T00:24:46Z</td>
+				<td>Description: In the SRS doc the individual definitions weren't numbered. We may want to keep the same standard throughout the docs. Also, having each one numbered (eg. 1.3.1 Concurrent Process) makes each individual term look like a title. Not a huge deal but might be something to think about for aesthetic reasons.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: bitwizeshift</td>
+						<td> Date: 2014-07-15T00:34:04Z</td>
+						<td> Description: This whole document is following proper IEEE standards, including their naming and subheading numbering conventions.
+
+> Also, having each one numbered (eg. 1.3.1 Concurrent Process) makes each individual term look like a title.
+
+Technically speaking, every numbered element *is* a subheading, and thus it's not inaccurate for it to be perceived as a title. In the example of "1.3.1 Concurrent Process", it is simply a Level-3 heading, or a subheading of 1.3.</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: Gav1442</td>
+						<td> Date: 2014-07-15T15:02:34Z</td>
+						<td> Description: Sounds good. Just thought I would bring it up.
+
+
+On Mon, Jul 14, 2014 at 8:34 PM, rodu4140 <notifications@github.com> wrote:
+
+> This whole document is following proper IEEE standards, including their
+> naming and subheading numbering conventions.
+>
+> Also, having each one numbered (eg. 1.3.1 Concurrent Process) makes each
+> individual term look like a title.
+>
+> Technically speaking, every numbered element *is* a subheading, and thus
+> it's not inaccurate for it to be perceived as a title. In the example of
+> "1.3.1 Concurrent Process", it is simply a Level-3 heading, or a subheading
+> of 1.3.
+>
+> —
+> Reply to this email directly or view it on GitHub
+> <https://github.com/jmuia/dj-web-app-docs/issues/36#issuecomment-48977452>
+> .
+></td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: bitwizeshift</td>
+				<td>Closed On:2014-07-16T14:44:02Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: SongQueue Attribute</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/35">see more</a></td>
+				<td>Classfication: Design</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: fras2560</td>
+				<td>Date: 2014-07-06T18:49:22Z</td>
+				<td>Description: I am thinking this does not make sense. We have a songQueue attribute which holds the songs associated with the party. Is this not implied by the aggregation? If the answer is no, would we not need a guestList then in Party?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-07-16T14:48:15Z</td>
+						<td> Description: I figured it out</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-07-16T14:48:16Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Association Between Song and User</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/34">see more</a></td>
+				<td>Classfication: analysis</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: KH4000</td>
+				<td>Date: 2014-07-03T05:55:07Z</td>
+				<td>Description: Not sure about this but I find it kind of weird that the association is A song has 1 to many voters. I think it makes more sense to have it as Every user votes for 1 to many songs.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-16T16:32:55Z</td>
+						<td> Description: It is now voters can vote for 0 to * and songs can have 0 to * voters</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T16:32:56Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: 2.1 Redundancy in Entity Objects</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/33">see more</a></td>
+				<td>Classfication: analysis</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: robinsharma</td>
+				<td>Date: 2014-07-03T02:43:51Z</td>
+				<td>Description: ## Under section 2.1 of the Analysis:
+
+###### Issue:
+Having User, Host & Guest as entities objects is redundant. There is no need to have all 3 as entities.
+
+###### Expected: 
+Should be one of the following:
+1. Guests and Hosts are both users, thus, just have one entity object called User which can be specified to be either of type <i>Host</i> or <i>Guest</i>.
+2. Separate users out into two distinct entities as Hosts and Guests, dropping the need for User as an entity.
+</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-03T02:45:36Z</td>
+						<td> Description: This is a bit of a design issue, I will discuss with @fras2560 to figure out the best option</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: jmuia</td>
+						<td> Date: 2014-07-03T02:50:10Z</td>
+						<td> Description: Generalization is encouraged during the analysis stage. </td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-03T02:50:13Z</td>
+						<td> Description: Necessary quote: 
+> Entities should not be multiplied beyond necessity.
+> -- <i>Occam's Razor</i>
+
+:smirk: </td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: jmuia</td>
+				<td>Closed On:2014-07-16T20:11:21Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Analysis: User Controller Class - Login as Host Problem</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/32">see more</a></td>
+				<td>Classfication: analysis</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: yuxx3260</td>
+				<td>Date: 2014-06-24T23:06:57Z</td>
+				<td>Description: Login as Host should also have the option to go straight to View Party. (A Host shouldn't have to create a new party every time he/she logs in.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: michaelsingh93</td>
+						<td> Date: 2014-06-26T17:47:24Z</td>
+						<td> Description: Done.</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: michaelsingh93</td>
+				<td>Closed On:2014-06-26T17:47:24Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Analysis: Song Controller Class - Pause Song Problem</strong></td>
+				<td><a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/31">see more</a></td>
+				<td>Classfication: analysis</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: yuxx3260</td>
+				<td>Date: 2014-06-24T23:04:29Z</td>
+				<td>Description: Pause Song only leads to Skip Song. At the very least, it needs an option to continue playing the current song. It would also be a good idea to allow the option of stopping the current song while it is paused.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: michaelsingh93</td>
+						<td> Date: 2014-06-28T19:07:19Z</td>
+						<td> Description: Fixed.</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: michaelsingh93</td>
+				<td>Closed On:2014-06-28T19:07:19Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: PartyAll Song Search</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall-service/issues/10">see more</a></td>
+				<td>Classfication: bug</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: holm4430</td>
+				<td>Date: 2014-08-15T15:38:12Z</td>
+				<td>Description: When clicking on the search button to search for a song within a party it brings you to a search page where default placeholder text says "Party Key"...should say "Song Name" in search bar</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: fras2560</td>
+						<td> Date: 2014-08-15T17:24:46Z</td>
+						<td> Description: Might want to raise this on the partyAllApp Holmes since it is a front-end issue</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: fras2560</td>
+				<td>Closed On:2014-08-16T04:36:10Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Song URL as Primary Id</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall-service/issues/8">see more</a></td>
+				<td>Classfication: enhancement</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: fras2560</td>
+				<td>Date: 2014-07-30T16:21:28Z</td>
+				<td>Description: Hey for alot of the API's we are using the Song url to identify the song. Should look into adjust this so it uses a SongId or something more of an identifier</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-30T19:33:51Z</td>
+						<td> Description: i agree, @jmuia can we make this switch? All it should require is whenever you make a call to vote, play-now, or next you'd send in the song id instead of the url, so you would probably have to add a field to your song model called id. Making this change will also speed up the apis since this will allow me to use get_by_id() which is a simple hash look up vs a full query.</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: jmuia</td>
+						<td> Date: 2014-07-30T20:11:19Z</td>
+						<td> Description: @robinsharma Yep. FYI nextSong won't be affected, since it does not require sending an identifier at all.</td>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-30T20:45:56Z</td>
+						<td> Description: done 19fd6fb44141c148d15c7bfa6c51945fee755f19</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-07-30T20:45:56Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Song Artwork is of type String</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall-service/issues/7">see more</a></td>
+				<td>Classfication: question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: fras2560</td>
+				<td>Date: 2014-07-30T15:00:08Z</td>
+				<td>Description: Is this correct?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-30T19:27:08Z</td>
+						<td> Description: yeah, its a url</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-07-30T19:27:08Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: POST /party/song/add/</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall-service/issues/6">see more</a></td>
+				<td>Classfication: question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: fras2560</td>
+				<td>Date: 2014-07-29T16:03:13Z</td>
+				<td>Description: the route should be party/queue/add since you are adding a song to a queue.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-30T19:30:25Z</td>
+						<td> Description: initially we had all the apis in a party folder, but we decided to separate all song related apis into api/song.py and preface all of the routes with /party/song/</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-07-30T19:30:25Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: POST /party/song/add/ data parameter</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall-service/issues/5">see more</a></td>
+				<td>Classfication: enhancement</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: fras2560</td>
+				<td>Date: 2014-07-29T15:07:26Z</td>
+				<td>Description: This needs to be updated. We need to determine what attributes Google App Engine needs to store and the format</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-29T19:57:45Z</td>
+						<td> Description: changed, song model now has specified fields for description, title, artist, artwork c15aa85eead72706b054a0b582edbd675c398fd5</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-07-29T19:57:45Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: POST /party/create/ name</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall-service/issues/4">see more</a></td>
+				<td>Classfication: question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: fras2560</td>
+				<td>Date: 2014-07-29T13:58:01Z</td>
+				<td>Description: Why is the parameter name and not party_name or partyName? Better to be explicit on what the parameter actually represents.</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-29T20:01:02Z</td>
+						<td> Description: fixed f2ca5fc53fba685906027fe9beabb2ecbe387149</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-07-29T20:01:02Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Song Created</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall-service/issues/2">see more</a></td>
+				<td>Classfication: question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: fras2560</td>
+				<td>Date: 2014-07-29T13:50:13Z</td>
+				<td>Description: Why are we storing the time when the song was created? It says it is to break ties but we have an array of the songs which would store the songs in the order they are created no?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-30T19:28:58Z</td>
+						<td> Description: this got changed, songs now have properties linking to parties so when we fetch the queue we query for all the songs that have that party as a property and order the query by now_playing, votes, and finally time created to break ties.</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-07-30T19:28:58Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Party_key</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall-service/issues/1">see more</a></td>
+				<td>Classfication: question</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: stepperz</td>
+				<td>Date: 2014-07-25T19:20:59Z</td>
+				<td>Description: Is party_key the actual relational database key, or is it 'guestKey' like in the design document?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-25T21:52:47Z</td>
+						<td> Description: yes, we've renamed guest_key to party_key</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-07-25T21:52:47Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Browser "Back" Button</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall/issues/2">see more</a></td>
+				<td>Classfication: enhancement</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: stepperz</td>
+				<td>Date: 2014-06-05T16:26:28Z</td>
+				<td>Description: In Desktop and Android Browser, the "Back" button leads all the way back to previous site. Is it possible to have "Back" button act as the back button on orange Topbar?</td>
+			</tr>
+				<tr>
+					<td></td>
+					<td> Comment by: robinsharma</td>
+						<td> Date: 2014-07-28T05:55:26Z</td>
+						<td> Description: fixed, switched to angularjs</td>
+
+				</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-07-28T05:55:26Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><strong>Title: Browser "Back</strong></td>
+				<td><a href="https://api.github.com/repos/robinsharma/partyall/issues/1">see more</a></td>
+				<td>Classfication: enhancement</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Raised by: stepperz</td>
+				<td>Date: 2014-06-05T16:23:27Z</td>
+				<td>Description: </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Closed By: robinsharma</td>
+				<td>Closed On:2014-06-05T16:23:41Z</td>
+				<td></td>
+			</tr>
+			<tr class="empty">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+	</table>
+	</body>
+</html>

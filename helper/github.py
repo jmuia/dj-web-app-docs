@@ -6,6 +6,7 @@ Created on Aug 15, 2014
 import unittest
 import requests
 from mako.template import Template
+from config import Settings
 class Github():
     def __init__(self,user, password):
         self.user = user
@@ -32,10 +33,17 @@ class Github():
         if r.status_code == 200:
             data = r.json()
         return data
-    
+
+    def pull_links(self, url, payload={}):
+        r = requests.head(url, auth=(self.user, self.password ), params=payload)
+        print(r.links)
+        print(r.headers)
+        return r.links['last']['url']
+        
     def pull_issues(self, repo, owner):
         url = self.base + ('repos/%s/%s/issues' % (owner, repo))
         print(url)
+        url = self.pull_links(url, {'per_page':100})
         return self.request(url, {'state':'closed'})
     
     def parse_issue(self, issue):
@@ -56,9 +64,10 @@ class Github():
             solved = ''
         for label in issue['labels']:
             lables.append(label['name'])
+        lables = ", ".join(lables)
         result = {'description':description,'comments':comments, 'title':title,
                   'url':url, 'sqa':sqa, 'opened':opened,
-                  'closed':closed, 'solved':solved}
+                  'closed':closed, 'solved':solved, 'lables':lables}
         return result
 
     def pull_comments(self, url):
@@ -83,21 +92,24 @@ class Test(unittest.TestCase):
 
 
     def setUp(self):
-        self.user = 'fras2560'
-        self.pw = 'Lcc17pet'
+        self.settings = Settings()
+        self.user = self.settings.USER
+        self.pw = self.settings.PASSWORD
         self.git = Github(self.user, self.pw)
         self.pp = PrettyPrinter(indent=4)
+        self.docs = {'owner':'jmuia','name':'dj-web-app-docs'}
+        self.partyAllService = {'owner':'robinsharma', 'name':'partyall-service'}
+        self.partyAllApp = {'owner':'robinsharma', 'name':'partyall'}
 
+    def testPullIssues(self):
+        d = self.git.pull_issues(self.docs['name'], self.docs['owner'])
+        self.pp.pprint(d)
 
-    def tearDown(self):
-        pass
-
-
+    def testPullLinks(self):
+        url = self.git.base + ('repos/%s/%s/issues' % (self.docs['owner'], self.docs['name']))
+        self.git.pull_links(url, {'per_page':100})
     def testGenReport(self):
-        docs = {'owner':'jmuia','name':'dj-web-app-docs'}
-        partyAllService = {'owner':'robinsharma', 'name':'partyall-service'}
-        partyAllApp = {'owner':'robinsharma', 'name':'partyall'}
-        repos = [docs,partyAllService, partyAllApp]
+        repos = [self.docs,self.partyAllService, self.partyAllApp]
         self.git.generate_html_report(repos)
 
 if __name__ == "__main__":
