@@ -1,19 +1,35 @@
 '''
-Created on Aug 15, 2014
+Created on Aug 16, 2014
 
-@author: Dallas
+@author: Dallas Fraser
+@contact: fras2560@mylaurier.ca
+@summary: This module helps generate a html report for all github issues
+@requires: requests
+@requires: mako
 '''
 import unittest
 import requests
 from mako.template import Template
 from config import Settings
+from pprint import PrettyPrinter
 class Github():
+    '''
+    @param user: The user's github name
+    @param password: The user's github passwor
+    '''
     def __init__(self,user, password):
         self.user = user
         self.password = password
         self.base = 'https://api.github.com/'
         self.pp = PrettyPrinter(indent=4)
 
+
+    ''''
+    @summary: This function generate a html report for each repos
+              the output file is called output.html
+    @param repos: a python list of repos to pull 
+                  each a dictionary with name and owner
+    '''
     def generate_html_report(self,repos):
         output_results = []
         for repo in repos:
@@ -27,6 +43,11 @@ class Github():
             doc.write(mytemplate.render(issues=output_results))
 
 
+    '''
+    @summary:  the file process the url request and returns the json data
+    @param url: the url for the request
+    @param payload: the paramaters for the request (dictionary)  
+    '''
     def request(self, url, payload={}):
         r = requests.get(url, auth=(self.user, self.password),params=payload)
         data = None
@@ -34,18 +55,23 @@ class Github():
             data = r.json()
         return data
 
-    def pull_links(self, url, payload={}):
-        r = requests.head(url, auth=(self.user, self.password ), params=payload)
-        print(r.links)
-        print(r.headers)
-        return r.links['last']['url']
-        
+
+    '''
+    @summary: a function that pulls the issue for that repo
+    @param repo: The repo name on github
+    @param owner: The owner of the repo on github  
+    '''
     def pull_issues(self, repo, owner):
         url = self.base + ('repos/%s/%s/issues' % (owner, repo))
         print(url)
-        url = self.pull_links(url, {'per_page':100})
-        return self.request(url, {'state':'closed'})
-    
+        return self.request(url, {'state':'closed', 'per_page':100})
+
+
+    '''
+    @summary: pulls the wanted information from the issue
+    @param issue: the github issues from their APIs
+    @see:  https://developer.github.com/v3/issues/
+    '''
     def parse_issue(self, issue):
         description = issue['body']
         if issue['comments'] > 0:
@@ -70,6 +96,11 @@ class Github():
                   'closed':closed, 'solved':solved, 'lables':lables}
         return result
 
+
+    '''
+    @summary: a function that pulls all the comments for a specific github issue
+    @param: the github url for the issue's comments
+    '''
     def pull_comments(self, url):
         comments = self.request(url)
         result = []
@@ -78,6 +109,11 @@ class Github():
         return result
 
 
+    '''
+    @summary: a function to parse the comment and pull the important info
+    @param comment: The github comment
+    @see: https://developer.github.com/v3/repos/comments/ 
+    '''
     def parse_comments(self, comment):
         description = comment['body']
         date = comment['created_at']
@@ -87,7 +123,6 @@ class Github():
         return result
 
 
-from pprint import PrettyPrinter
 class Test(unittest.TestCase):
 
 
@@ -101,16 +136,17 @@ class Test(unittest.TestCase):
         self.partyAllService = {'owner':'robinsharma', 'name':'partyall-service'}
         self.partyAllApp = {'owner':'robinsharma', 'name':'partyall'}
 
+
     def testPullIssues(self):
         d = self.git.pull_issues(self.docs['name'], self.docs['owner'])
         self.pp.pprint(d)
+        self.pp.pprint(len(d))
 
-    def testPullLinks(self):
-        url = self.git.base + ('repos/%s/%s/issues' % (self.docs['owner'], self.docs['name']))
-        self.git.pull_links(url, {'per_page':100})
+
     def testGenReport(self):
         repos = [self.docs,self.partyAllService, self.partyAllApp]
         self.git.generate_html_report(repos)
+
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
