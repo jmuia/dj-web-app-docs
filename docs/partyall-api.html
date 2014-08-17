@@ -175,7 +175,7 @@
 		</ol>
 	</nav>
 	
-	<p class="placeholder">This section describes the API that interact with the data stored by Google App Engine. It will give details about Query parameters andf their expected results.</p>
+	<p class="placeholder">This section describes the API that interact with the data stored by Google App Engine. It will give details about Query parameters and their expected results.</p>
 	<h3>
 		POST /party/create/<a id="create"></a> <a href=#top>^</a>
 	</h3>
@@ -339,7 +339,7 @@ GET /party/queue/ <a id="queue"></a> <a href=#top>^</a>
 	<strong>Description:</strong> 
 	</p>
 	<p class='large-tab'>
-	This API gets the Party queue for the Party macthing with the given Party key. Its parameters are passed using JSON format and its response is in the JSON format.
+	This API gets the Party queue for the Party matching with the given Party key. Its parameters are passed using JSON format and its response is in the JSON format.
 	</p>
 	<p class="tab">
 	<strong>Parameters:</strong>
@@ -452,13 +452,13 @@ POST /party/song/add <a id="songadd"></a> <a href=#top>^</a>
 	<strong>Description:</strong> 
 	</p>
 	<p class='large-tab'>
-	This API adds a User's vote to a Song unless that User has already voted for that Song in which the User will remove their vote for that Song. Its parameters are passed using JSON format and its response is in the JSON format.
+	This API adds a User's vote to a Song unless that User has already voted for that Song in which case the User will remove their vote for that Song. Its parameters are passed using JSON format and its response is in the JSON format.
 	</p>
 	<p class="tab">
 	<strong>Parameters:</strong>
 	</p>
 	<ul class="indented-list">
-		<li>party_key: The Party key to access the Harty (string)</li>
+		<li>party_key: The Party key to access the Party (string)</li>
 		<li>url: the Song's url (string)</li>
 		<li>user_id: the current User id</li>
 	</ul>
