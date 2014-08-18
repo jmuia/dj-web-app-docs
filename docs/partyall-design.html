@@ -275,7 +275,7 @@
 			</tr>
 			<tr>
 				<th>Purpose</th>
-				<td>A login page for the Host, requesting the room name and the password</td>
+				<td>A login page for the Host, requesting the party key and the password</td>
 			</tr>
 		</tbody>
 	</table>
@@ -620,16 +620,16 @@
 	
 	<h4>GuestLogin </h4>
 	<ol>
-		<li> user party key </li>
-		<li> system checks if party key belongs to a party that exists</li>
-		<li> if party key is valid, assigns unique guest ID to user and takes to GuestPartyView page </li>
+		<li> User enters party key </li>
+		<li> System checks if party key belongs to a party that exists</li>
+		<li> If party key is valid, assigns unique guest ID to user and takes to GuestPartyView page </li>
 	</ol>
 	
 	<h4>HostLogin</h4>
 	<ol>
-		<li> host enters password and party name </li>
-		<li> system checks if password and party name match </li>
-		<li> if password and party name match, assigns host ID and takes host to HostPageView page</li>
+		<li> Host enters password and party key </li>
+		<li> System checks if password and party key match </li>
+		<li> If password and party party match, assigns host ID and takes host to HostPageView page</li>
 	</ol>
 
 <h3 id="documentation">Documentation</h3>
