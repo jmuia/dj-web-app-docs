@@ -343,7 +343,7 @@
 	
 
 	<h3 id="data_decomp">Data Decomposition</h3>
-	<p>All persistent data is to be handled by the Google App Engine framework. The framework uses NoSQL datastore and uses SQL-like query language called GQL. Our partyAllService uses the Google App Engine to store the information. Our model is a kind on entity which includes the types and configuration for its properties. <a href="https://developers.google.com/appengine/docs/python/datastore/">Read more</a> about how Google App Engine stores its information </p>
+	<p>All persistent data is to be handled by the Google App Engine framework. The framework uses NoSQL datastore and uses SQL-like query language called GQL. Our partyAllService uses the Google App Engine to store the information. Our model is a kind of entity which includes the types and configuration for its properties. <a href="https://developers.google.com/appengine/docs/python/datastore/">Read more</a> about how Google App Engine stores its information. </p>
 
 	<!-- /decomposition description -->
 	
@@ -597,12 +597,6 @@
 		<li>Return the new Song object</li>
 	</ol>
 	
-	<h4>stopSong()</h4>
-	<ol>
-		<li>Set song status to false (stopped)</li>
-		<li>Stop playing the current song</li>
-	</ol>
-	
 	<h4>vote(user: User)</h4>
 	<ol>
 		<li>Search list of user IDs</li>
@@ -628,6 +622,20 @@
 		<li>Check if user is in already been added</li>
 		<li>Add user to the list of users if not present</li>
 	</ol>
+	
+	<h4>GuestLogin </h4>
+	<ol>
+		<li> user party key </li>
+		<li> system checks if party key belongs to a party that exists</li>
+		<li> if party key is valid, assigns unique guest ID to user and takes to GuestPartyView page </li>
+	</ol>
+	
+	<h4>HostLogin</h4>
+	<ol>
+		<li> host enters password and party name </li>
+		<li> system checks if password and party name match </li>
+		<li> if password and party name match, assigns host ID and takes host to HostPageView page</li>
+	</ol>
 
 <h3 id="documentation">Documentation</h3>
 <h4>Front End</h4>
@@ -644,10 +652,10 @@ Made in <a href="http://www.pixelmator.com/">Pixelmator</a>
 <h5>Visual Framework:</h5>
 <strong><a href="http://getbootstrap.com/">Bootstrap</a></strong>
 <p>
-The visual framework the PartyAll web application is utilizing is Bootstrap made by the people over at Twitter. Bootstrap is a featureful, mobile first framework that is easy to use. Bootstrap is a widely used framework with an array of features ranging from numerous custom HTML and CSS components to page transitions.
+The visual framework the PartyAll web application is utilizing is Bootstrap made by the people at Twitter. Bootstrap is a featureful, mobile first framework that is easy to use. Bootstrap is a widely used framework with an array of features ranging from numerous custom HTML and CSS components to page transitions.
 </p>
 <p>
-The pros of Bootstrap are that it is very easy to use, fully featured, and customizable. The downsides to Bootstrap is that it is relatively large web file because of its large feature set. One needs to consider the loading time of Bootstrap when deciding upon using it
+The pros of Bootstrap are that it is very easy to use, fully featured, and customizable. The downsides to Bootstrap are that it is a relatively large web file because of its large feature set. Developers need to consider the loading time of Bootstrap when deciding to use it.
 </p>
 <h5>Web Application Framework:</h5>
 
@@ -668,13 +676,13 @@ Languages: Python
 <h5>Service (Both datastore, and server): </h5>
 <strong><a href="https://developers.google.com/appengine/docs/whatisgoogleappengine">Google App Engine</a></strong>
 <p>
-Google app engine is a full platform used as a service to build scalable cloud applications and backends on Google’s infrastructure. App engine is equipped with a datastore to store information, memecache to greatly reduce the speed of repeatedly accessed data, and has the ability to handle runtime logic so that you can create handlers for various types of requests. App engine is also equipped with a tasks API with allows you to run work in the background allowing clients to rest as the server does all the work. Google App Engine allows for RESTFul APIs and cross origin requests. 
+Google App Engine is a full platform used as a service to build scalable cloud applications and backends on Google’s infrastructure. App Engine is equipped with a datastore to store information, memecache to greatly reduce the speed of repeatedly accessed data, and has the ability to handle runtime logic so that you can create handlers for various types of requests. App Engine is also equipped with a tasks API with allows you to run work in the background allowing clients to rest as the server does all the work. Google App Engine allows for RESTful APIs and cross origin requests. 
 </p>
 <p>
-The advantages of App Engine is that it is very fast, scalable and handles a lot of the work that would otherwise have to be done manually (such as determining how to store data, making the data available across the world etc). 
+The advantage of App Engine is that it is very fast, scalable and can handle a lot of the work that would otherwise have to be done manually (such as determining how to store data, making the data available across the world etc). 
 </p>
 <p>
-The disadvantages of Google App Engine is that it takes a while to pick up. There is a learning curve to learn how use Google App Engine since it is not a tradtional relationship database. It takes time to learn about their GQL language and how to use datastore API to interact with the data. Another disadvantage is layer of Google abstraction can make it more difficult to understand the interaction between partyAllApp and the partyAllService. One major disadvantage of Google App Engine is its lack of support for websockts. Google App Engine alternative solution is Channel which has limits on resources such as number of calls and number of channels.
+The disadvantages of Google App Engine is that it takes a while to learn. There is a learning curve when starting to use Google App Engine since it is not a tradtional relational database. It takes time to learn about their GQL language and how to use datastore API to interact with the data. Another disadvantage is a layer of Google abstraction which can make it more difficult to understand the interaction between partyAllApp and the partyAllService. One major disadvantage of Google App Engine is its lack of support for websockets. The Google App Engine alternative solution is Channel which has limits on resources such as number of calls and number of channels.
 </p>
 <h5>Cryptography/Security: </h5>
 <strong>
