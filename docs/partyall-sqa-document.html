@@ -1,0 +1,2454 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>CP317 PartyAll SQA</title>
+		<!-- I don't remember who all is doing design, so just add your names here -->
+		<meta name='author' content='Dallas Fraser, Matthew Rodusek, Kevin Holmes, '>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<style>
+			/* Set standards for text */
+			body {
+				background-color: #F3F4F7;
+				font-family: 'Helvetica Neue'
+			}
+			.issue-container {
+				padding: 20px;
+				max-width: 900px;
+				background-color: white;
+				border: 1px solid rgb(231, 231, 231);
+				margin: 10px auto;
+			}
+			.title {
+				text-align: center;
+			}
+			.red-text {
+				color: #d9534f;
+			}
+			.logo-container {
+				width: 100%;
+				height: 100px;
+				background-color: #d9534f;
+				/*background-color: white;*/
+				-webkit-box-shadow: 0px 1px 8px #D1D1D1;
+				-moz-box-shadow: 0px 1px 8px #D1D1D1;
+				box-shadow: 0px 1px 8px #D1D1D1;
+			}
+			.logo-container.red-back {
+				background-color: #d9534f;
+			}
+			.logo-container .logo {
+				height: 100%;
+				width: 300px;
+				margin: 0px auto;
+				background-size: 100%;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.logo.white-logo {
+				background-image: url(/img/party-all-text-logo-white.png?inline=1);
+			}
+		</style>
+    </head>
+	<body>
+		<div class="logo-container red-back"><div class="logo white-logo"></div></div>
+		<div class="container-fluid">
+			<h1 class="title">CP317 Spring 2014 SQA</h1>
+				<div class="issue-container">
+					<h1>Issue Title: Interface Description <small>Raised by: Kevin Huen on 2014-08-18T00:13:20Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/72">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/72</a></h4>
+					<h4>Description:</h4>
+					<p>The interface photos and descriptions are still of the old design</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Kevin Holmes<span>
+								<span>on 2014-08-18T01:34:45Z</span>
+						</h5>
+						<blockquote>
+								<p>I don't think this is a big deal...Dallas updated with the 2nd iteration of the app, should be good enough given time constraints atm</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Kevin Holmes on 2014-08-18T01:34:45Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: [Analysis] Boundary/Control/Entity Diagram vs. [Design] PartyAll Model Class Diagram <small>Raised by: Kevin Huen on 2014-08-17T23:41:56Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis, Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/71">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/71</a></h4>
+					<h4>Description:</h4>
+					<p>Should the Party, Song, Guest, Host, User classes have the same attributes between these two diagrams?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-18T00:56:37Z</span>
+						</h5>
+						<blockquote>
+								<p>No one is our initial analysis and then we made a design around our specific framework. Our analysis stills applies to the problem but is must more general</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-18T00:56:37Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Stop Song not Implemented, Remove from State Diagrams <small>Raised by: Kevin Holmes on 2014-08-17T23:10:31Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/70">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/70</a></h4>
+					<h4>Description:</h4>
+					<p>Never implemented a stop song...should be removed from state diagrams in Analysis doc.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-18T01:03:22Z</span>
+						</h5>
+						<blockquote>
+								<p>The analysis reflecting everything implement does not matter. As long as it shows how we could approach the problem. The design should be more</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-18T01:03:22Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: We don't have stopSong() <small>Raised by: Gavin Kerr on 2014-08-17T23:10:07Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/69">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/69</a></h4>
+					<h4>Description:</h4>
+					<p>We do not implement a stopSong() function. This is referenced in 4.1.2.
+
+It is also reference in 3.1.5 as a stop-button and in song-button in the sentence "Brings up a modal menu with the options to vote,Play/stop, or cancel".
+
+All references to stopSong() and the ability to stop a song should be removed.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Kevin Holmes<span>
+								<span>on 2014-08-18T01:26:15Z</span>
+						</h5>
+						<blockquote>
+								<p>removed references to stop song in design doc</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Kevin Holmes on 2014-08-18T01:26:15Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Room Name in HostLoginView <small>Raised by: Gavin Kerr on 2014-08-17T20:07:36Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/68">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/68</a></h4>
+					<h4>Description:</h4>
+					<p>2.2.2 Login View: Host
+
+If this is for the Host Login (and not create party) then it is the Party key that is requested and not 'room name'.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-18T01:12:05Z</span>
+						</h5>
+						<blockquote>
+								<p>You mean Party Name</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Kevin Holmes<span>
+								<span>on 2014-08-18T01:57:13Z</span>
+						</h5>
+						<blockquote>
+								<p>design doc updated</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Kevin Holmes on 2014-08-18T01:57:13Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Project Responsibilities <small>Raised by: Kevin Huen on 2014-08-17T19:48:48Z</small></h1>
+					<h4>Label: <span class="label label-default">SPMP</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/67">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/67</a></h4>
+					<h4>Description:</h4>
+					<p>Sorry forgot to specify which one its "Kevin Huen". (Put the wrong Kevin H in implementation back end)</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Kevin Huen<span>
+								<span>on 2014-08-17T19:51:31Z</span>
+						</h5>
+						<blockquote>
+								<p>I changed it myself.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Kevin Huen on 2014-08-17T19:51:31Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Song Voters Multiplicity <small>Raised by: Gavin Kerr on 2014-08-17T18:53:18Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/66">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/66</a></h4>
+					<h4>Description:</h4>
+					<p>Design Document Class Diagram - Currently the multiplicity of Users (voters) from Song is set to '0..1'. It should be '0...' as a song can have '0 to many' voters not '0 to 1'.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-18T01:07:39Z</span>
+						</h5>
+						<blockquote>
+								<p>I have no way to access the magicdraw anyone else?
+</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-18T01:09:40Z</span>
+						</h5>
+						<blockquote>
+								<p>maybe just make a note of it</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-18T02:40:59Z</span>
+						</h5>
+						<blockquote>
+								<p>Added a note</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-18T02:40:59Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: PartyAll Model Class Diagram: Password <small>Raised by: Kevin Huen on 2014-08-17T04:47:38Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/65">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/65</a></h4>
+					<h4>Description:</h4>
+					<p>The Host class has password as an attribute but I thought the Party class should have the password attribute (its a property in party.py)?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-17T13:51:16Z</span>
+						</h5>
+						<blockquote>
+								<p>For a proper design the host should contain the password since you can change hosts. The way we implemented did not follow this.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-18T01:14:40Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Type for Vote and Voters (API) <small>Raised by: Kevin Huen on 2014-08-17T04:44:16Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/64">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/64</a></h4>
+					<h4>Description:</h4>
+					<p>votes in response is missing the (int) in the following:
+-POST /party/song/add
+-POST /party/song/vote/
+-POST /party/song/play-now/
+-POST /party/song/play-next/
+
+Also not sure about this but voters is an array/list but should we specify what type the list is?</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-08-17T21:42:11Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Project Responsibilities  <small>Raised by: Kevin Huen on 2014-08-17T02:48:48Z</small></h1>
+					<h4>Label: <span class="label label-default">SPMP</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/63">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/63</a></h4>
+					<h4>Description:</h4>
+					<p>Left my name out for the implementation Back End</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by Tomas Baena on 2014-08-17T15:08:52Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: List of Additional Typos in API Doc <small>Raised by: Kevin Holmes on 2014-08-17T02:42:49Z</small></h1>
+					<h4>Label: <span class="label label-default">typo</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/62">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/62</a></h4>
+					<h4>Description:</h4>
+					<p>Table of Contents ---> "It will give details about Query parameters [and] their expected results."
+
+GET /party/queue/ ^ section 1.4 ---> "This API gets the Party queue for the Party [matching] with the given Party key"
+
+POST /party/song/vote/ ^ section 1.6 ---> "This API adds a User's vote to a Song unless that User has already voted for that Song in which [case] the User will remove their vote for that Song."
+
+POST /party/song/vote/ ^ section 1.6 ---> "The Party key to access the [Party]"</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-08-17T17:02:15Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: List of Additional Typos in Design Doc <small>Raised by: Kevin Holmes on 2014-08-17T02:25:46Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, typo</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/61">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/61</a></h4>
+					<h4>Description:</h4>
+					<p>HostCreateSuccessView section 3.1.3 ---> party key is of type 'p'?
+Google App Engine section 4.2.2 ---> 'Google app engine' and 'app engine' should be capitalized
+Google App Engine section 4.2.2 ---> 'websockts' should read 'websockets'
+Google App Engine section 4.2.2 ---> last sentence should start with "The"
+Bootstrap section 4.2.1 ---> 'The downsides to Bootstrap is that it is relatively large web file because of its large feature set. One needs to consider the loading time of Bootstrap when deciding upon using it'...should read "The downside[] to Bootstrap is that it is [a] relatively large web file because of its large feature set. [Developers] need[] to consider the loading time of Bootstrap when deciding [to use it.]
+
+Data Decomposition section 3.1 ---> last sentence is missing a period
+Data Decomposition section 3.1 ---> 'Our model is a kind [of] entity'
+Framework Packages Interactions section 2.1.1 ---> 'The back end [is] referred to as PartyAll Service and the front end [is] referred to as PartyAll App in the following[:]</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Kevin Holmes<span>
+								<span>on 2014-08-18T01:02:27Z</span>
+						</h5>
+						<blockquote>
+								<p>fixed myself</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Kevin Holmes on 2014-08-18T01:02:27Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis BCE_Diagram <small>Raised by: Dallas Fraser on 2014-08-16T18:12:48Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis, bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/60">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/60</a></h4>
+					<h4>Description:</h4>
+					<p>Party and Guests Roles are backwards still. Does anyone have the magic draw file for this diagram?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T18:55:35Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed it.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T18:55:35Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: PartyAllSongPlayNext Sequence Diagram Song ID Error Catch <small>Raised by: Kevin Holmes on 2014-08-14T20:11:54Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/59">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/59</a></h4>
+					<h4>Description:</h4>
+					<p>First 'alt conditional' should include if 'song ID is none' as well.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:17:49Z</span>
+						</h5>
+						<blockquote>
+								<p>It should actually not include songId since just going to play next song. Fixed</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:17:50Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: PartyAllQueue Sequence Diagram Incorrect Error Code <small>Raised by: Kevin Holmes on 2014-08-14T19:42:58Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/58">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/58</a></h4>
+					<h4>Description:</h4>
+					<p>'Party is none' sequence returns 404 status code error which is the code for 'song is none'. Should return 401 error code instead.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-15T15:12:47Z</span>
+						</h5>
+						<blockquote>
+								<p>Yes we are returning 404 for any request other than login in which the party key is not valid</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:18:02Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: PartyAllLogin Sequence Diagram Clarification <small>Raised by: Kevin Holmes on 2014-08-14T19:33:59Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/57">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/57</a></h4>
+					<h4>Description:</h4>
+					<p>Unclear in sequence diagram what happens if user's ID is not in Party yet. Should add case to handle this.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:41:16Z</span>
+						</h5>
+						<blockquote>
+								<p>Updated it and added a note for that case since kinda of confusing</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:41:16Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Module Designed Detail: Vote and Unvote <small>Raised by: Kevin Huen on 2014-07-25T17:19:25Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/56">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/56</a></h4>
+					<h4>Description:</h4>
+					<p>Also takes song url as an input and maybe a bit more detail in what the list.
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-14T19:19:52Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-14T19:19:53Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Design Class Diagram Party Status <small>Raised by: robinsharma on 2014-07-23T00:57:17Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/55">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/55</a></h4>
+					<h4>Description:</h4>
+					<p>Change status in Party to is_active. </p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-14T19:21:18Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-14T19:21:18Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: 4.1.7 AddUser: What is this? <small>Raised by: robinsharma on 2014-07-23T00:36:00Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/54">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/54</a></h4>
+					<h4>Description:</h4>
+					<p>What is this module for?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-23T01:51:51Z</span>
+						</h5>
+						<blockquote>
+								<p>Dont you need to add the user to the party?
+</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-14T19:20:08Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Design 2.2.2 Login View Host "room name" <small>Raised by: robinsharma on 2014-07-23T00:31:38Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/53">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/53</a></h4>
+					<h4>Description:</h4>
+					<p>Should be "requesting the Party guest key and the password"</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-14T19:21:37Z</span>
+						</h5>
+						<blockquote>
+								<p>All of these have changed</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-14T19:21:37Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Design: 2.1 Class Diagram Song Entity <small>Raised by: robinsharma on 2014-07-23T00:21:34Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/52">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/52</a></h4>
+					<h4>Description:</h4>
+					<p>The song entity should not have any API related attributes. Instead of having url and videoId it should just have "data" which in our backend will be simply a generic JSON ( appengine JsonProperty() ) object containing any information our chosen API gives us. This will allow us to switch between music APIs without having to change our backend.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-23T01:56:06Z</span>
+						</h5>
+						<blockquote>
+								<p>Do any music api require something more than an url to work?
+</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-23T01:57:24Z</span>
+						</h5>
+						<blockquote>
+								<p>@Dallas Fraser maybe, that shouldn't be of concern to our backend</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-23T02:09:07Z</span>
+						</h5>
+						<blockquote>
+								<p>Okay well if most can use a url then why store anything else on the backend? If the api gives back more than that it just used by the front end and backend does not worry about it, just stores url. Why store what the music API gives us?</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-23T02:20:21Z</span>
+						</h5>
+						<blockquote>
+								<p>why not? Like I said before we want to keep this as general as possible. What if in the future we want to provide more information to users on each song? What if the music API terms change and require that we display information such as who uploaded the song, copyright information etc? Storing this extra data allows for more flexibility.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-23T02:40:28Z</span>
+						</h5>
+						<blockquote>
+								<p>My point is we are not creating any of this data so why store on it on the backend. The front end can always pull it from the music API. If the API changes the backend still will not change since the API change which are on the front end. If we want to provide more information to users on each song the front end should pull it from the music API? I think storing a json object in our class diagram is looks like we have not designed it properly
+</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-23T02:57:56Z</span>
+						</h5>
+						<blockquote>
+								<p><i>"My point is we are not creating any of this data so why store on it on the backend"</i> ; whats downfall of storing it?
+
+<i>"The front end can always pull it from the music API. ... If we want to provide more information to users on each song the front end should pull it from the music API?"</i> ; leads to redundant api calls, why continuously fetch data that we already got once.
+
+<i>"I think storing a json object in our class diagram is looks like we have not designed it properly"</i> ; I don't consider this as a valid argument. Just because it makes our class diagram "look" incomplete does not justify the reduced functionality. We can simply make a note indicating that since app engine allows use to store json like this under another entity, there is no need to over-complicate our back end or front end and risk reduced flexibility by having to extract certain pieces of data retrieved from our music API.
+</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-23T03:14:55Z</span>
+						</h5>
+						<blockquote>
+								<p>"whats downfall of storing it?" This then puts no limits on the data on the backend. We can't guarantee what is stored in the data json since we want it to be flexible. Which could lead to confusion and a need to map the data a certain way but puts this responsibility on the front-end developer.
+
+"leads to redundant api calls, why continuously fetch data that we already got once." This is no different then fetching the data from our backend since the same data is being transferred only leads to one extra api call to an efficient music player API, i am sure youtube wont get mad about it.
+
+"Just because it makes our class diagram "look" incomplete does not justify the reduced functionality." It actually makes our class diagram look like a hack.
+
+But do what you want since it is your project
+
+
+
+ </p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-23T03:26:35Z</span>
+						</h5>
+						<blockquote>
+								<p>GitHub issues should not be taken personally, we are all on the same team here. Personally I thought we were having a good discussion, chugging out a real issue here. I apologize if it came across as offensive, as it seems that you are taking it personally. I believe we should just discuss this thursday and get other inputs.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-24T15:20:04Z</span>
+						</h5>
+						<blockquote>
+								<p>From talking to Gavin it sounds like the team decided on not implementing this idea.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-07-24T15:20:05Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: "Stop Song" <small>Raised by: robinsharma on 2014-07-22T23:24:08Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/51">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/51</a></h4>
+					<h4>Description:</h4>
+					<p>I don't this stop song is necessary. A host has the ability to STOP a party which is the equivalent of ending it. Hosts can pause a song and then play a specific song simply by selecting the song in the queue. Have stop in the application will most likely confuse users.
+
+The area where I see "stop" useful would be for a Song entity. Songs that are in a stopped state could represents songs that have already been played and should no longer be displayed in the queue. This allows use to persist the entire song queue without worrying that these stopped songs might leak into the queue.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by bitwizeshift<span>
+								<span>on 2014-07-22T23:26:12Z</span>
+						</h5>
+						<blockquote>
+								<p>No tags.
+No description. 
+...Wat?</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-22T23:30:42Z</span>
+						</h5>
+						<blockquote>
+								<p>ha, sorry hit "enter" while I was still thinking this one through</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-14T19:22:16Z</span>
+						</h5>
+						<blockquote>
+								<p>Has been resolved. The backend does not worry about stop song</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-14T19:22:16Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: 2.2 Boundary Objects <small>Raised by: robinsharma on 2014-07-22T23:22:40Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/50">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/50</a></h4>
+					<h4>Description:</h4>
+					<p>Should HostPartyView and GuestPartyView be combined into PartyView since each will technically have the same view just certain restrictions will be applied dependant on the type of user?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-14T19:22:49Z</span>
+						</h5>
+						<blockquote>
+								<p>Not an issue since updated views and controllers for the design. We should leave the analysis the way it is.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-14T19:22:49Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: 2.3 Controller Objects <small>Raised by: robinsharma on 2014-07-22T23:18:46Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/49">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/49</a></h4>
+					<h4>Description:</h4>
+					<p>Need controller objects for HostLoginController, GuestLoginController, and CreatePartyController</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:23:13Z</span>
+						</h5>
+						<blockquote>
+								<p>All of these have been added</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:23:14Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Need to flesh out these sentences <small>Raised by: Royce Mok on 2014-07-22T16:35:28Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/48">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/48</a></h4>
+					<h4>Description:</h4>
+					<p>4.3.1
+"the downsides to Bootstrap is that it is relatively heavy because of its large feature set."
+Need to flesh out the "heavy" part
+
+4.3.2
+Google App Engine
+"and a layer of Google abstraction can make it confusing at times."
+Need to expand on the what is it exactly that makes it so confusing at times.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:19:06Z</span>
+						</h5>
+						<blockquote>
+								<p>I updated on my last edit</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:19:06Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Spelling Mistakes <small>Raised by: Gavin Kerr on 2014-07-20T22:04:33Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, typo</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/47">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/47</a></h4>
+					<h4>Description:</h4>
+					<p>2.
+- "This section describes the decomposition of the system in a three different forms". I believe that the 'a' should be removed at the end of that phrase.
+
+2.1.1 Class Diagram
+- The argument 'Password' for the Party constructor shouldn't be capitalized
+- Should be Green: Boundary Object (not GreenL Boundary Object)
+
+2.2.1
+- 'An interface for the user select whether to be a Host or a Guest' should probably be ".... user to select..."
+
+4.3.1
+- (Bootstrap Section) "The visual framework the PartyAll web application is utilizing is Bootstrap made by the people over at Twitter." Consider rewording slightly (mostly it is the ending that sounds off).
+- (AngularJS Section)  "Traditional web pages work in the following way, ... " Consider using a colon instead of a comma.
+- Several times in the Google App Engine paragraph at least a portion of Google App Engine isn't capitalized. All instances of Google App Engine, App Engine, etc.. should be capitalized.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by michaelsingh93<span>
+								<span>on 2014-07-22T16:32:56Z</span>
+						</h5>
+						<blockquote>
+								<p>Also to add to this (tiny mistake), in the design document for guest party view (3.1.5), where it states in the description "Brings up a modal menu with the options to vote,Play/stop, or cancel". There should be a space between the comma and 'Play/stop'.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Royce Mok<span>
+								<span>on 2014-07-22T16:39:49Z</span>
+						</h5>
+						<blockquote>
+								<p>Also to add
+In 4.3.1
+- "The downsides to Bootstrap is that it is relatively heavy because of its large feature set." Should be downside
+</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-14T19:24:41Z</span>
+						</h5>
+						<blockquote>
+								<p>Non-relevant due to the layout change</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-14T19:24:41Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Prototype Vote and Unvote Button <small>Raised by: Chronicle Yu on 2014-07-17T17:02:26Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/46">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/46</a></h4>
+					<h4>Description:</h4>
+					<p>David mentioned that the heart symbol can be misleading.
+
+Perhaps we can replace it with a toggle button which says "Vote" when the corresponding song hasn't been voted on yet, and "Unvote" when it has been voted on. </p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by bitwizeshift<span>
+								<span>on 2014-07-22T00:11:02Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by bitwizeshift on 2014-07-22T00:11:02Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Repo Name <small>Raised by: robinsharma on 2014-07-16T05:14:52Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/45">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/45</a></h4>
+					<h4>Description:</h4>
+					<p>Change repo name to partyall-docs. :100: p :punch: </p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-14T19:25:04Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Design Document Back End Description (4.3.2) <small>Raised by: Chronicle Yu on 2014-07-15T19:19:58Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/44">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/44</a></h4>
+					<h4>Description:</h4>
+					<p>"The disadvantages of App Engine is that it takes a while to pick up, and a layer of Google abstraction can make it confusing at times." -> Have to elaborate on the disadvantages of App Engine and why Google Abstraction could make it confusing.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:26:05Z</span>
+						</h5>
+						<blockquote>
+								<p>I expanded this sentence</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:26:06Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Design Document Interface Description: HostPartyView <small>Raised by: Chronicle Yu on 2014-07-15T19:17:22Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/43">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/43</a></h4>
+					<h4>Description:</h4>
+					<p>In the mockup screenshot, "Upvote or Play Now?" pop up should have a cancel option.
+Details about the selected song should also be displayed.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by bitwizeshift<span>
+								<span>on 2014-07-16T18:17:35Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by bitwizeshift on 2014-07-16T18:17:35Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Design Document Class Diagram: Coupling Issue <small>Raised by: Chronicle Yu on 2014-07-15T19:12:55Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/42">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/42</a></h4>
+					<h4>Description:</h4>
+					<p>unvote and vote takes User, not userId.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-16T14:44:40Z</span>
+						</h5>
+						<blockquote>
+								<p>Updated </p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-07-16T14:44:41Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Design Document Class Diagram: Minor Spelling Issue <small>Raised by: Chronicle Yu on 2014-07-15T19:11:29Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/41">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/41</a></h4>
+					<h4>Description:</h4>
+					<p>Party constructor takes password, not Password.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-16T14:45:11Z</span>
+						</h5>
+						<blockquote>
+								<p>now takes Host which contains password</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-07-16T14:45:12Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Host and Guest <small>Raised by: Kevin Huen on 2014-07-15T17:05:54Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/40">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/40</a></h4>
+					<h4>Description:</h4>
+					<p>How does the party know who the Host is? There doesn't seem to be something that notes who the host of the party is.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-16T14:45:41Z</span>
+						</h5>
+						<blockquote>
+								<p>Should now be clear. Host belongs to the party</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-07-16T14:45:42Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: SongView <small>Raised by: Royce Mok on 2014-07-15T16:42:02Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/39">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/39</a></h4>
+					<h4>Description:</h4>
+					<p>Don`t we need another string variable in Song to get the Song description to display in SongView?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-16T14:46:54Z</span>
+						</h5>
+						<blockquote>
+								<p>I was unaware of us display a song description. I would assume this would come from the external player (youtube description). So since it it coming externally the SongView should be able to pull this information.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:29:18Z</span>
+						</h5>
+						<blockquote>
+								<p>This was updated and we are now storing more information about song</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:29:18Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Song Status <small>Raised by: Kevin Huen on 2014-07-15T15:49:30Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/38">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/38</a></h4>
+					<h4>Description:</h4>
+					<p>For the song entity, it has status: Boolean (true or false) but wasn't there 3 statuses (playing, stopped, paused), how would it distinguish if the song is paused or stopped? </p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-16T14:47:51Z</span>
+						</h5>
+						<blockquote>
+								<p>@robinsharma  Robi what the decision on this?</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-23T00:44:17Z</span>
+						</h5>
+						<blockquote>
+								<p>//TODO discuss with back end team thursday</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:29:51Z</span>
+						</h5>
+						<blockquote>
+								<p>Let player controller worry about stopping and starting the song</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:29:52Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Design Document Errors <small>Raised by: Royce Mok on 2014-07-15T02:34:54Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/37">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/37</a></h4>
+					<h4>Description:</h4>
+					<p>In the Song part of the Diagram, shouldn't Unvote require a userId: int instead of a string. Also, what is the purpose of creating the two Song constructors? I don't see a reason why you shouldn't use just Song(url:String, id:int)
+
+In the User part of the Diagram, shouldn't the User always be required to have an ID regardless of if they are a guest or a host? Why is there a need for the empty constructor?
+
+Also, there seems to be inconsistencies throughout the diagram, some parts are using Camelcase where others have the first letter capitalized.
+e.g. GetID vs getStatus
+
+Also, The Detailed Design part does not correctly relate to the diagrams. For example, there exists a resumeSong() process but does not actually appear on the diagram. Another example is that for both vote and Unvote, they both state that UserId is a string in the detailed design but was stated as an int in the diagrams.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-15T02:58:36Z</span>
+						</h5>
+						<blockquote>
+								<p>Hey Royce all the things you brought i fixed awhile ago. The version you are looking at is old. Someone updated over top of my work. The reason i have two constructors for Song is I was unsure if the Song and User class' ids were to be generated by google app engine or on the front end since we need it to be persistent to the anonymous id. I thought this would give us more flexibility moving forward. The User() constructor would set the Id somewhere inside the constructor. </p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-07-16T14:47:59Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Numbered Definition Terms? <small>Raised by: Gavin Kerr on 2014-07-15T00:24:46Z</small></h1>
+					<h4>Label: <span class="label label-default">Design, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/36">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/36</a></h4>
+					<h4>Description:</h4>
+					<p>In the SRS doc the individual definitions weren't numbered. We may want to keep the same standard throughout the docs. Also, having each one numbered (eg. 1.3.1 Concurrent Process) makes each individual term look like a title. Not a huge deal but might be something to think about for aesthetic reasons.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by bitwizeshift<span>
+								<span>on 2014-07-15T00:34:04Z</span>
+						</h5>
+						<blockquote>
+								<p>This whole document is following proper IEEE standards, including their naming and subheading numbering conventions.
+
+> Also, having each one numbered (eg. 1.3.1 Concurrent Process) makes each individual term look like a title.
+
+Technically speaking, every numbered element *is* a subheading, and thus it's not inaccurate for it to be perceived as a title. In the example of "1.3.1 Concurrent Process", it is simply a Level-3 heading, or a subheading of 1.3.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Gavin Kerr<span>
+								<span>on 2014-07-15T15:02:34Z</span>
+						</h5>
+						<blockquote>
+								<p>Sounds good. Just thought I would bring it up.
+
+
+On Mon, Jul 14, 2014 at 8:34 PM, rodu4140 <notifications@github.com> wrote:
+
+> This whole document is following proper IEEE standards, including their
+> naming and subheading numbering conventions.
+>
+> Also, having each one numbered (eg. 1.3.1 Concurrent Process) makes each
+> individual term look like a title.
+>
+> Technically speaking, every numbered element *is* a subheading, and thus
+> it's not inaccurate for it to be perceived as a title. In the example of
+> "1.3.1 Concurrent Process", it is simply a Level-3 heading, or a subheading
+> of 1.3.
+>
+> —
+> Reply to this email directly or view it on GitHub
+> <https://github.com/jmuia/dj-web-app-docs/issues/36#issuecomment-48977452>
+> .
+></p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by bitwizeshift on 2014-07-16T14:44:02Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: SongQueue Attribute <small>Raised by: Dallas Fraser on 2014-07-06T18:49:22Z</small></h1>
+					<h4>Label: <span class="label label-default">Design</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/35">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/35</a></h4>
+					<h4>Description:</h4>
+					<p>I am thinking this does not make sense. We have a songQueue attribute which holds the songs associated with the party. Is this not implied by the aggregation? If the answer is no, would we not need a guestList then in Party?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-07-16T14:48:15Z</span>
+						</h5>
+						<blockquote>
+								<p>I figured it out</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-07-16T14:48:16Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Association Between Song and User <small>Raised by: Kevin Huen on 2014-07-03T05:55:07Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/34">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/34</a></h4>
+					<h4>Description:</h4>
+					<p>Not sure about this but I find it kind of weird that the association is A song has 1 to many voters. I think it makes more sense to have it as Every user votes for 1 to many songs.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:32:55Z</span>
+						</h5>
+						<blockquote>
+								<p>It is now voters can vote for 0 to * and songs can have 0 to * voters</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T16:32:56Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: 2.1 Redundancy in Entity Objects <small>Raised by: robinsharma on 2014-07-03T02:43:51Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/33">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/33</a></h4>
+					<h4>Description:</h4>
+					<p>## Under section 2.1 of the Analysis:
+
+###### Issue:
+Having User, Host & Guest as entities objects is redundant. There is no need to have all 3 as entities.
+
+###### Expected: 
+Should be one of the following:
+1. Guests and Hosts are both users, thus, just have one entity object called User which can be specified to be either of type <i>Host</i> or <i>Guest</i>.
+2. Separate users out into two distinct entities as Hosts and Guests, dropping the need for User as an entity.
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-03T02:45:36Z</span>
+						</h5>
+						<blockquote>
+								<p>This is a bit of a design issue, I will discuss with @Dallas Fraser to figure out the best option</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-07-03T02:50:10Z</span>
+						</h5>
+						<blockquote>
+								<p>Generalization is encouraged during the analysis stage. </p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-03T02:50:13Z</span>
+						</h5>
+						<blockquote>
+								<p>Necessary quote: 
+> Entities should not be multiplied beyond necessity.
+> -- <i>Occam's Razor</i>
+
+:smirk: </p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-07-16T20:11:21Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: User Controller Class - Login as Host Problem <small>Raised by: Chronicle Yu on 2014-06-24T23:06:57Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/32">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/32</a></h4>
+					<h4>Description:</h4>
+					<p>Login as Host should also have the option to go straight to View Party. (A Host shouldn't have to create a new party every time he/she logs in.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by michaelsingh93<span>
+								<span>on 2014-06-26T17:47:24Z</span>
+						</h5>
+						<blockquote>
+								<p>Done.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by michaelsingh93 on 2014-06-26T17:47:24Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: Song Controller Class - Pause Song Problem <small>Raised by: Chronicle Yu on 2014-06-24T23:04:29Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/31">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/31</a></h4>
+					<h4>Description:</h4>
+					<p>Pause Song only leads to Skip Song. At the very least, it needs an option to continue playing the current song. It would also be a good idea to allow the option of stopping the current song while it is paused.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by michaelsingh93<span>
+								<span>on 2014-06-28T19:07:19Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by michaelsingh93 on 2014-06-28T19:07:19Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: Party Controller Class - Guest User Problem <small>Raised by: Chronicle Yu on 2014-06-24T23:02:27Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/30">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/30</a></h4>
+					<h4>Description:</h4>
+					<p>From the viewpoint of a Guest, there should be an option to skip Create Party and go straight to Access Party from the Party Event Loop.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by michaelsingh93<span>
+								<span>on 2014-06-26T17:49:44Z</span>
+						</h5>
+						<blockquote>
+								<p>Done.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by michaelsingh93 on 2014-06-26T17:49:44Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: Party Controller Class - Changing Request Song to Add Song <small>Raised by: Chronicle Yu on 2014-06-24T23:00:39Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/29">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/29</a></h4>
+					<h4>Description:</h4>
+					<p>I noticed in class David mistook Request Song and Vote for Song to mean the same thing. To avoid confusion, how bout we change Request Song to Add Song? That would leave no room for misinterpretation.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by michaelsingh93<span>
+								<span>on 2014-06-26T17:39:48Z</span>
+						</h5>
+						<blockquote>
+								<p>I associated request song with vote for song, so the system will interpret a request for a song as a song vote.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by michaelsingh93 on 2014-06-26T17:39:48Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Multiplicity Backwards: Party and Guest <small>Raised by: jmuia on 2014-06-24T16:55:37Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/28">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/28</a></h4>
+					<h4>Description:</h4>
+					<p></p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-14T19:26:01Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: Brown's comments on the state diagrams <small>Raised by: Kevin Huen on 2014-06-24T16:47:01Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/27">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/27</a></h4>
+					<h4>Description:</h4>
+					<p>- Party Controller: Association from Party Event Loop to Access Party
+- Song Controller: Stop and Pause Song can't Play song again, can only skip song
+- User Controller: View Party, Search, Request, Vote for Song identical between Host and Guest, only use one 
+
+I think I'm missing some...</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by michaelsingh93<span>
+								<span>on 2014-06-28T19:08:36Z</span>
+						</h5>
+						<blockquote>
+								<p>Addressed these problems in the updated state diagrams.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by michaelsingh93 on 2014-06-28T19:08:36Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: Party Controller and User Controller Class - State Diagram <small>Raised by: Kevin Huen on 2014-06-23T05:35:06Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/26">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/26</a></h4>
+					<h4>Description:</h4>
+					<p>In the Party Controller Class it has "Vote for Song" going to "End Party", while in the User Controller Class it doesn't have "Vote for Song" going to "End Party". These two should be the same since Party Controller is the Host I believe.
+
+Also is the "View Party" page the same as the "Vote for Song", since there is "Vote for Song" going to "End party" as well as "View Party" going to "End Party" which makes it seem like it's two different pages.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by michaelsingh93<span>
+								<span>on 2014-06-23T16:53:11Z</span>
+						</h5>
+						<blockquote>
+								<p>I have fixed the first issue you stated, I think end party should only be associated with view party. 
+
+I believe that view party is where the user will vote for song, however we will have a group discussion tomorrow.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-06-24T14:37:59Z</span>
+						</h5>
+						<blockquote>
+								<p>Looking at the prototype (http://partyall.herokuapp.com/) it is safe to assume that View Party is where the User will vote for a Song.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by michaelsingh93 on 2014-06-24T14:38:26Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: Party Controller Class State Diagram <small>Raised by: Chronicle Yu on 2014-06-19T15:55:32Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/25">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/25</a></h4>
+					<h4>Description:</h4>
+					<p>Search for Song should have an option to return to View Party. That way, one does not have to be forced to request a song when he/she doesn't find a suitable song.
+
+Likewise, users should also be able to go directly from Search for Song to Vote for Song to save the step of going of first going back to View Party and then to Vote for Song.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by michaelsingh93<span>
+								<span>on 2014-06-22T21:00:39Z</span>
+						</h5>
+						<blockquote>
+								<p>I fixed the first issue. However for the second issue, I thought that the layout of the web app would be that if you are viewing the party, you see the songs that are in queue. So in order to vote for a song, you will have to be viewing the party. Correct me if I am wrong.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Chronicle Yu<span>
+								<span>on 2014-06-23T00:53:02Z</span>
+						</h5>
+						<blockquote>
+								<p>That is correct. But this should be noted in the documentation (perhaps as a sidenote) that it is the same page as David was under the impression that they were different pages when I talked to him about it.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-06-24T14:42:48Z</span>
+						</h5>
+						<blockquote>
+								<p>@Chronicle Yu @michaelsingh93 see the prototype (http://partyall.herokuapp.com/). Voting is done when viewing the party.
+
+However, to your point regarding Searching and Requesting a Song and then having to Vote for the Song, it can be implied that the system will interpret a request for a song as a vote from the requesting User.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by michaelsingh93 on 2014-06-26T17:40:06Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: SPMP: Missing deliverable <small>Raised by: Evgheni Naida on 2014-06-18T13:06:18Z</small></h1>
+					<h4>Label: <span class="label label-default">SPMP</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/24">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/24</a></h4>
+					<h4>Description:</h4>
+					<p>Section 2.3 Project Responsibilities is inconsistent with section 1.2 Project Deliverables and is missing a 'UI prototype' and 'UI Prototype SQA' deliverables in the table.
+
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Tomas Baena<span>
+								<span>on 2014-06-21T21:43:50Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed table inconsistency and missing deliverables.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Tomas Baena on 2014-06-21T21:43:50Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: SPMP: Section inconsistency <small>Raised by: Evgheni Naida on 2014-06-18T12:59:39Z</small></h1>
+					<h4>Label: <span class="label label-default">SPMP, typo</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/23">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/23</a></h4>
+					<h4>Description:</h4>
+					<p>In section 1.3, it is said that section '2.4 Project Responsibilities'  can be changed, however section 2.4 does not exist. Do you mean 2.3?
+
+Also, I think it would be better to have those sections listed in ascending order.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Tomas Baena<span>
+								<span>on 2014-06-21T21:38:16Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed typo and changed to ascending oder</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Tomas Baena on 2014-06-21T21:38:17Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: David's In-Class Entity Class Diagram Feedback #3 <small>Raised by: Chronicle Yu on 2014-06-17T17:49:51Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/22">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/22</a></h4>
+					<h4>Description:</h4>
+					<p>Song and Party have a multiplicity problem. Song's association should disappear when Party disappears.
+
+Chronicle Yu</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-06-24T13:49:48Z</span>
+						</h5>
+						<blockquote>
+								<p>UML updated.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-06-24T14:15:56Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: David's In-Class Entity Class Diagram Feedback #2 <small>Raised by: Chronicle Yu on 2014-06-17T17:48:04Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/21">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/21</a></h4>
+					<h4>Description:</h4>
+					<p>The association between User and Song is vague at the moment.
+
+The main question he brought up:
+Is there a multiplicity (between User and Song)?
+
+Chronicle Yu
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-06-24T14:05:45Z</span>
+						</h5>
+						<blockquote>
+								<p>Multiplicity cleared up:
+- A User can vote on 0..* Songs
+- A Song has 1..* voters (Users) - based on the assumption that if someone requests a song they implicitly vote on it as well.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-06-24T14:15:56Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: David's In-Class Entity Class Diagram Feedback #1 <small>Raised by: Chronicle Yu on 2014-06-17T17:44:02Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/20">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/20</a></h4>
+					<h4>Description:</h4>
+					<p>Verify if there is a need for SearchController to be connected to Song.
+
+Chronicle Yu</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-06-24T13:54:57Z</span>
+						</h5>
+						<blockquote>
+								<p>Association between SearchController and Song removed. UML updated.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-06-24T14:15:56Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Analysis: Boundary Objects <small>Raised by: Chronicle Yu on 2014-06-17T17:41:18Z</small></h1>
+					<h4>Label: <span class="label label-default">analysis</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/19">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/19</a></h4>
+					<h4>Description:</h4>
+					<p>For Boundary Objects (Section 2.2), it's pretty repetitive to be seeing "Where a" in every description. It might look more concise to omit that phrase.
+
+For example, "User selects their type, either Host or Guest." versus  "Where a User selects their type, either Host or Guest."
+
+Chronicle Yu</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-06-17T17:44:07Z</span>
+						</h5>
+						<blockquote>
+								<p>My only concern is that the descriptions then become actions, which doesn't make make sense for Boundary objects.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Chronicle Yu<span>
+								<span>on 2014-06-19T15:49:47Z</span>
+						</h5>
+						<blockquote>
+								<p>I checked with David and he said either way works. Close issue?</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-06-24T13:03:33Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Search Parties -- unnecessary? <small>Raised by: jmuia on 2014-06-05T13:30:58Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/18">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/18</a></h4>
+					<h4>Description:</h4>
+					<p>This use case is not discussed in Section 2.2 Product Functions under the subheading "Access Party Flow - Guest" or even under another subheading dedicated to it.
+
+Isn't the idea that Guests use a guest access key to ensure they access the correct party? Why do they need to search for the party first if the guest access key is unique to the party anyways?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-06-05T16:06:42Z</span>
+						</h5>
+						<blockquote>
+								<p>@Gavin Kerr can you update the use case diagram and email it to me? (just remove "Search for Party")</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Gavin Kerr<span>
+								<span>on 2014-06-05T16:10:30Z</span>
+						</h5>
+						<blockquote>
+								<p>Sure. I added that case because of the way we had select party. See:
+https://github.com/jmuia/dj-web-app-docs/commit/9ec8e2181ae3438f93aea25cc6c7fd10795ec7ee
+. (At the bottom).
+
+
+On Thu, Jun 5, 2014 at 12:06 PM, Robin Sharma <notifications@github.com>
+wrote:
+
+> @Gavin Kerr <https://github.com/Gavin Kerr> can you update the use case diagram
+> and email it to me? (just remove "Search for Party")
+>
+> —
+> Reply to this email directly or view it on GitHub
+> <https://github.com/jmuia/dj-web-app-docs/issues/18#issuecomment-45239340>
+> .
+></p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-06-05T16:12:59Z</span>
+						</h5>
+						<blockquote>
+								<p>hmm, i thought we decided guests will only enter a guest key?</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Gavin Kerr<span>
+								<span>on 2014-06-05T16:15:21Z</span>
+						</h5>
+						<blockquote>
+								<p>We probably did. Just wasn't reflected in that use case I was basing that
+change off of. That's my fault though.
+
+
+On Thu, Jun 5, 2014 at 12:12 PM, Robin Sharma <notifications@github.com>
+wrote:
+
+> hmm, i thought we decided guests will only enter a guest key?
+>
+> —
+> Reply to this email directly or view it on GitHub
+> <https://github.com/jmuia/dj-web-app-docs/issues/18#issuecomment-45240111>
+> .
+></p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-06-05T16:16:14Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: SoundCloud reference in "Request Song Flow - Host & Guest" <small>Raised by: jmuia on 2014-06-05T00:23:33Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/17">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/17</a></h4>
+					<h4>Description:</h4>
+					<p>YouTube is referenced for music everywhere else.</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-05T00:26:13Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Inconsistencies (3.2 Functional Requirements) <small>Raised by: bitwizeshift on 2014-05-29T06:00:17Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/16">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/16</a></h4>
+					<h4>Description:</h4>
+					<p>**Edit**: This happens all throughout section 3.2, so I'm going to join the whole thing into 1 issue.
+
+All of the preconditions state that the user should be on a specific page, but the basic path lists how the user gets to said page. 
+example:
+    Line 198: Precondition --  Host is on Host page of the web app.
+    Line 202: Basic Path -- From the landing page the user specifies they are a Host, and...
+If it's a precondition, then it should be assumed that the user is already on that page.
+
+This occurs in these areas:
+- 3.2.1 (Line 202 contradicted by line 198)
+- 3.2.2 (Line 238 contradicted by line 234)
+- 3.2.3 (Line 274 contradicted by line 270)
+- 3.2.4 (Line 310 contradicted by line 306)
+- 3.2.5 (Line 346 contradicted by line 342)
+- 3.2.6 (Line 382 contradicted by line 378)
+- 3.2.7 (Line 418 contradicted by line 414)
+- 3.2.8 (Line 454 contradicted by line 450)
+- 3.2.9 (Line 490 contradicted by line 486)
+- 3.2.10 (Line 526 contradicted by line 522)
+- 3.2.11 (Line 562 contradicted by line 558)
+- 3.2.12 (Line 634 contradicted by line 630)</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-06-02T03:51:12Z</span>
+						</h5>
+						<blockquote>
+								<p>The precondition is for the event. The basic path is how the user got to the event that is occurring. Closing for now, if this is still confusing I can just rename precondition to Event Page or Page.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by bitwizeshift<span>
+								<span>on 2014-06-02T04:06:21Z</span>
+						</h5>
+						<blockquote>
+								<p>Would the "Use-Case Name" not be the event that is occurring? 
+Preconditions define the state of the software *before* the use case begins.
+
+To my knowledge, the "Basic Path" should describe how to get from the preconditions to the action of the use-case, because otherwise it'd be redundant to describe from before the pre-assumed state of the software. </p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-06-03T02:09:38Z</span>
+						</h5>
+						<blockquote>
+								<p>I am not too sure on this one, I think the example we were following did what we had. @Gavin Kerr can we get your input on this?</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Gavin Kerr<span>
+								<span>on 2014-06-03T03:04:01Z</span>
+						</h5>
+						<blockquote>
+								<p>We currently have it wrong. Basic path is the path from the precondition through the use case.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-06-03T04:50:51Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Tense issues (2.5 Assumptions) <small>Raised by: bitwizeshift on 2014-05-29T05:54:44Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/15">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/15</a></h4>
+					<h4>Description:</h4>
+					<p>Line 173: "The assumptions made when creating this document were that the app does not have..."
+It switches from past tense (made/were) to present tense (...the app **does not** have...)
+It's also a bit of a run-on sentence.
+
+The whole section should be written in present-tense, active voice ("The assumptions for PartyAll are...").</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-02T03:46:27Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Awkward Wording (2.3 - Guest Characteristics) <small>Raised by: bitwizeshift on 2014-05-29T05:45:21Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/14">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/14</a></h4>
+					<h4>Description:</h4>
+					<p>Line 163: "The PartyAll web app is meant to be used by guests at parties where he or she is engaging in social interaction and would only want to take a few seconds to use PartyAll to vote for the next song to play before returning to the party."
+
+This sentence is worded really awkwardly, particularly at the "and would only want to take a few seconds..." part. Does it need to be specified that the Guest *wants* to vote? 
+
+Consider revising.</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-02T03:40:56Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: HTML Compliance <small>Raised by: bitwizeshift on 2014-05-29T05:30:50Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/13">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/13</a></h4>
+					<h4>Description:</h4>
+					<p> I don't think this is really the topic of SQA, but this should really be addressed.
+
+The doctype format on the first line is written incorrectly. `<DOCTYPE html>` should be `<!DOCTYPE html>` so that it can be properly recognized as HTML5.
+
+Also, header tags are block-level elements and should not be nested in paragraph tags.
+This has been done on lines 78, 81, 84, 87, 106, 110, 119, 127, 132, 140, 145, and 155.
+
+A suggested fix is to use `<span>` tags with css to properly mark it up, because `<span>` is an inline-element.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-06-01T21:06:54Z</span>
+						</h5>
+						<blockquote>
+								<p>fixed ec5c2aa67063351136a9130b03f0f302b0e31ac6</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-01T21:06:54Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Mr. Brown's Comments 05/22/2014 <small>Raised by: jmuia on 2014-05-26T00:44:13Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/12">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/12</a></h4>
+					<h4>Description:</h4>
+					<p>DBROWN COMMENTS:
+- Create Party use case means that we will have a party class
+- same for Song
+- skip, play, pause are all things you can do with a Song entity (generally one page per action, but probably not in this case)
+
+- Vote is an entity. Upvote is an action. No major object to these, as long as it is clear to the user
+
+- Party must have a password attribute (pulled from req's)
+--- reading any paragraph should give info about the analysis
+
+Create Party Flow - Host:
+- "get navigated" is an abomination....rephrase this. a user does not get navigated
+
+- or sign into an already created party "this signifies to Brown that there can be more than one Host at a party." Make re-login EXPLICIT
+
+- what do we mean by request songs? be more clear?
+
+***************
+- either can't remove songs from the queue -- power of the people.
+- or Play It Now option for the Host...
+***************
+
+Access Existing Pary Flow - host:
+- dont need to say host, it is made clear by the title
+- this one needs to be rethought or rewritten but Joey missed what he said
+-- needs clarification on multiple Host issue here as well
+
+Access Party flot:
+- same thing for guests here, made clear by title
+
+- make clear how we stop peple from voting more than once / HOW do we uniquely identify a guest... needs to be much more explicit
+
+
+Request Song Flow;
+- where is the search going?
+- what is the host has access to some paid place?
+- is it upgradeable?
+
+
+Upvoting songs
+- need to know who the user is for this to work</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-02T03:14:16Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Plurality or Majority (1. Introduction) <small>Raised by: Gavin Kerr on 2014-05-25T17:05:06Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/11">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/11</a></h4>
+					<h4>Description:</h4>
+					<p>Mr. Brown specified between majority and plurality. I believe that our system is a plurality as it is not necessarily over 50% of the users who are voting for a specific song.</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-05-25T17:11:25Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Section 1: Present-tense, Active voice <small>Raised by: bitwizeshift on 2014-05-22T20:47:48Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/10">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/10</a></h4>
+					<h4>Description:</h4>
+					<p>A lot of sentences need to be changed to be present-tense active voice:
+
+1.2 Scope: 
+Line 69: "There **will be** no persistent..." -> "There _are_ no persistent..."
+Line 69: "...the Host **will be** presented..." -> "...the Host _is_ presented..."
+Line 69: "...guest key which **will be** distributed..." -> "...guest key which _are_ distributed..."
+Line 70: "...he/she **will hit** the play button to..." -> "...he/she _hits_ the play button to..."
+
+1.3 Definitions:
+Line 84: "This user **will access** a Party..." -> "This user _accesses_ a Party..."
+Line 87: "...higher up it **will be** in the queue." -> "...higher up it _is_ in the queue."
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by bitwizeshift<span>
+								<span>on 2014-05-22T20:54:32Z</span>
+						</h5>
+						<blockquote>
+								<p>Also, not sure on this one, but in:
+"...distributed to the Party's guests"
+Should "Guests" be capitalized?</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Gavin Kerr<span>
+								<span>on 2014-05-25T17:15:20Z</span>
+						</h5>
+						<blockquote>
+								<p>For "... distributed to the Party's guests" I believe this phrase is talking about the physical party as opposed to the 'Party' created within PartyAll. Therefore, I think it should all be lower case ("...distributed to the party's guests.") instead of any capitals at all as is simply a guest at the party.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-05-25T21:45:42Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: 'Party' vs. 'party' <small>Raised by: Kevin Holmes on 2014-05-22T15:11:28Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/9">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/9</a></h4>
+					<h4>Description:</h4>
+					<p>I think someone did replace all on 'party' with 'Party'...unfortunately there are some instances where 'party' should be lowercase (i.e. when referring to the place where the 'party' is happening)</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-05-25T17:47:58Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Mr. Brown's Comments <small>Raised by: Gavin Kerr on 2014-05-22T14:47:57Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/8">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/8</a></h4>
+					<h4>Description:</h4>
+					<p>- What are the inefficiencies? (Introduction)
+- 'People agree on' is misleading. Say majority rule or something. Difference between majority/plurality. PLURALITY!(Introduction)
+- Remove future tense. Current tense. Describe it as if it exists. Change will to something else (is, etc...). Present tense active voice. (ALL)!!!!!!!!
+- Why 3-6 character access key?(section 1.2) By default 6 characters
+- Describe why it is more efficient? (section 1.2)
+- Add capital P for Party. (Section 1.3 and onwards)
+- Upvote definition is poorly worded (Section 1.3)
+- Define mobile friendly and responsive for the front end. What do we consider to be responsive. SAY THAT IT RUNS IN A BROWSER/WEBSITE.(Section 2.1)
+- Don't make any assumptions in this document. Tell client everything (ALL)
+IS there anything about the browser that has to be true? Javascript? CSS? etc... (Section 2.1)
+- Upvote? Is there downvote? (Section 2.1 / ALL)
+- Make sure specified user can't upvote same song multiple times. (ALL)
+- Send Mr. Brown URL *****</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-05-22T14:53:10Z</span>
+						</h5>
+						<blockquote>
+								<p>Please separate these out, some of them are already issues </p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-02T03:14:28Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: 2.5 Assumptions and Dependencies <small>Raised by: michaelsingh93 on 2014-05-22T03:00:01Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/7">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/7</a></h4>
+					<h4>Description:</h4>
+					<p>"the app will not an admin interface" - Small mistake here, seems like it was meant to be "the app will not be* an admin interface".</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-05-22T15:15:51Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Inconsistencies <small>Raised by: Kevin Holmes on 2014-05-21T15:16:19Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/6">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/6</a></h4>
+					<h4>Description:</h4>
+					<p>Section 3
+
+* 3.2.1 under precondition why is 'Host' italicized
+* 3.2.1 under Trigger 'create Party' is not in quotations, but in other sections buttons are in quotations
+* what is the difference between click and tap, some buttons are clicked, some are tapped...lets pick one
+* some sections have period on the end of them, some do not</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Evgheni Naida<span>
+								<span>on 2014-05-22T15:35:52Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed italicized caa112e9a5c5b9e00966398cc9be5187bc7992b0</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-05-25T18:32:42Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: 2.1 Back End <small>Raised by: Dallas Fraser on 2014-05-21T15:01:00Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/5">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/5</a></h4>
+					<h4>Description:</h4>
+					<p>"party name" -> should be Party Name</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Gavin Kerr<span>
+								<span>on 2014-05-25T22:48:09Z</span>
+						</h5>
+						<blockquote>
+								<p>should name be capitalized or just Party? Throughout the document we have had Party password, Party key, etc...</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-06-02T02:05:31Z</span>
+						</h5>
+						<blockquote>
+								<p>just Party</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-02T02:05:31Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: 2.1 Front End <small>Raised by: Dallas Fraser on 2014-05-21T15:00:06Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/4">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/4</a></h4>
+					<h4>Description:</h4>
+					<p>"consist of a mobile friendly responsive website" -> Briefly describe what this means -> ex. the web page will use elements are optimized for mobile users</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-02T02:03:08Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: 1.2 Scope <small>Raised by: Dallas Fraser on 2014-05-21T14:50:23Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/3">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/3</a></h4>
+					<h4>Description:</h4>
+					<p>"Parties that a Host creates" -> should be singular (A Party created by a Host etc.)</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-05-21T14:52:32Z</span>
+						</h5>
+						<blockquote>
+								<p>"using the party name and admin password as credentials" -> should party be capitalized since the name belongs to the Party. Also the Party password, the word admin seems to come from no where.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-05-21T14:53:27Z</span>
+						</h5>
+						<blockquote>
+								<p>"party name and guest key " -> should be Party again and Party guest key</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-05-21T20:08:37Z</span>
+						</h5>
+						<blockquote>
+								<p>fixed ccc6421972f010af852fc4103250b63551506e52</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-05-21T20:08:38Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: 1 Introduction <small>Raised by: Dallas Fraser on 2014-05-21T14:47:44Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/2">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/2</a></h4>
+					<h4>Description:</h4>
+					<p>"is to solve issues and inefficiencies"  -> need to expand upon this</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by Gavin Kerr on 2014-05-25T23:29:31Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Use Case Diagram <small>Raised by: Dallas Fraser on 2014-05-21T14:46:38Z</small></h1>
+					<h4>Label: <span class="label label-default">srs-doc</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/jmuia/dj-web-app-docs/issues/1">https://api.github.com/repos/jmuia/dj-web-app-docs/issues/1</a></h4>
+					<h4>Description:</h4>
+					<p>remove the "Academic Version Teaching Only" .. </p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-05-21T18:49:52Z</span>
+						</h5>
+						<blockquote>
+								<p>fixed cdfb1e93c00ba0c1a165fe41610b069b1a1c1c1c</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-05-21T18:49:52Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: PartyAll Song Search <small>Raised by: Kevin Holmes on 2014-08-15T15:38:12Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/10">https://api.github.com/repos/robinsharma/partyall-service/issues/10</a></h4>
+					<h4>Description:</h4>
+					<p>When clicking on the search button to search for a song within a party it brings you to a search page where default placeholder text says "Party Key"...should say "Song Name" in search bar</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-15T17:24:46Z</span>
+						</h5>
+						<blockquote>
+								<p>Might want to raise this on the partyAllApp Holmes since it is a front-end issue</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Dallas Fraser on 2014-08-16T04:36:10Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: PartyAllSongPlayNext Sequence Diagram Correction <small>Raised by: Kevin Holmes on 2014-08-14T19:58:35Z</small></h1>
+					<h4>Label: <span class="label label-default"></span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/9">https://api.github.com/repos/robinsharma/partyall-service/issues/9</a></h4>
+					<h4>Description:</h4>
+					<p>Step 3: getParty should take argument partyKey.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Kevin Holmes<span>
+								<span>on 2014-08-17T23:16:28Z</span>
+						</h5>
+						<blockquote>
+								<p>wrong repo...moved</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by Kevin Holmes on 2014-08-17T23:16:28Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Song URL as Primary Id <small>Raised by: Dallas Fraser on 2014-07-30T16:21:28Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/8">https://api.github.com/repos/robinsharma/partyall-service/issues/8</a></h4>
+					<h4>Description:</h4>
+					<p>Hey for alot of the API's we are using the Song url to identify the song. Should look into adjust this so it uses a SongId or something more of an identifier</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-30T19:33:51Z</span>
+						</h5>
+						<blockquote>
+								<p>i agree, @jmuia can we make this switch? All it should require is whenever you make a call to vote, play-now, or next you'd send in the song id instead of the url, so you would probably have to add a field to your song model called id. Making this change will also speed up the apis since this will allow me to use get_by_id() which is a simple hash look up vs a full query.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-07-30T20:11:19Z</span>
+						</h5>
+						<blockquote>
+								<p>@robinsharma Yep. FYI nextSong won't be affected, since it does not require sending an identifier at all.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-30T20:45:56Z</span>
+						</h5>
+						<blockquote>
+								<p>done 19fd6fb44141c148d15c7bfa6c51945fee755f19</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-07-30T20:45:56Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Song Artwork is of type String <small>Raised by: Dallas Fraser on 2014-07-30T15:00:08Z</small></h1>
+					<h4>Label: <span class="label label-default">question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/7">https://api.github.com/repos/robinsharma/partyall-service/issues/7</a></h4>
+					<h4>Description:</h4>
+					<p>Is this correct?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-30T19:27:08Z</span>
+						</h5>
+						<blockquote>
+								<p>yeah, its a url</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-07-30T19:27:08Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: POST /party/song/add/ <small>Raised by: Dallas Fraser on 2014-07-29T16:03:13Z</small></h1>
+					<h4>Label: <span class="label label-default">question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/6">https://api.github.com/repos/robinsharma/partyall-service/issues/6</a></h4>
+					<h4>Description:</h4>
+					<p>the route should be party/queue/add since you are adding a song to a queue.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-30T19:30:25Z</span>
+						</h5>
+						<blockquote>
+								<p>initially we had all the apis in a party folder, but we decided to separate all song related apis into api/song.py and preface all of the routes with /party/song/</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-07-30T19:30:25Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: POST /party/song/add/ data parameter <small>Raised by: Dallas Fraser on 2014-07-29T15:07:26Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/5">https://api.github.com/repos/robinsharma/partyall-service/issues/5</a></h4>
+					<h4>Description:</h4>
+					<p>This needs to be updated. We need to determine what attributes Google App Engine needs to store and the format</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-29T19:57:45Z</span>
+						</h5>
+						<blockquote>
+								<p>changed, song model now has specified fields for description, title, artist, artwork c15aa85eead72706b054a0b582edbd675c398fd5</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-07-29T19:57:45Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: POST /party/create/ name <small>Raised by: Dallas Fraser on 2014-07-29T13:58:01Z</small></h1>
+					<h4>Label: <span class="label label-default">question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/4">https://api.github.com/repos/robinsharma/partyall-service/issues/4</a></h4>
+					<h4>Description:</h4>
+					<p>Why is the parameter name and not party_name or partyName? Better to be explicit on what the parameter actually represents.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-29T20:01:02Z</span>
+						</h5>
+						<blockquote>
+								<p>fixed f2ca5fc53fba685906027fe9beabb2ecbe387149</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-07-29T20:01:02Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Song Created <small>Raised by: Dallas Fraser on 2014-07-29T13:50:13Z</small></h1>
+					<h4>Label: <span class="label label-default">question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/2">https://api.github.com/repos/robinsharma/partyall-service/issues/2</a></h4>
+					<h4>Description:</h4>
+					<p>Why are we storing the time when the song was created? It says it is to break ties but we have an array of the songs which would store the songs in the order they are created no?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-30T19:28:58Z</span>
+						</h5>
+						<blockquote>
+								<p>this got changed, songs now have properties linking to parties so when we fetch the queue we query for all the songs that have that party as a property and order the query by now_playing, votes, and finally time created to break ties.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-07-30T19:28:58Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Party_key <small>Raised by: Evgheni Naida on 2014-07-25T19:20:59Z</small></h1>
+					<h4>Label: <span class="label label-default">question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall-service/issues/1">https://api.github.com/repos/robinsharma/partyall-service/issues/1</a></h4>
+					<h4>Description:</h4>
+					<p>Is party_key the actual relational database key, or is it 'guestKey' like in the design document?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-25T21:52:47Z</span>
+						</h5>
+						<blockquote>
+								<p>yes, we've renamed guest_key to party_key</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-07-25T21:52:47Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Dev to yolo-master <small>Raised by: jmuia on 2014-08-18T09:11:02Z</small></h1>
+					<h4>Label: <span class="label label-default"></span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/25">https://api.github.com/repos/robinsharma/partyall/issues/25</a></h4>
+					<h4>Description:</h4>
+					<p>Update from prototype to a v1 ready for grading.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T09:12:38Z</span>
+						</h5>
+						<blockquote>
+								<p>awww yisss :100: p</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by  on 2014-08-18T09:12:16Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Play Now Error <small>Raised by: Kevin Holmes on 2014-08-18T02:33:59Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/24">https://api.github.com/repos/robinsharma/partyall/issues/24</a></h4>
+					<h4>Description:</h4>
+					<p>If the host presses play now on a song at the bottom of the queue it actually played the first song in the queue instead...see image below (pressed play now for 'Rolling Stones Song' and Florida Georgia Line started playing instead).
+
+![image](https://cloud.githubusercontent.com/assets/3419185/3946939/d621a82e-267f-11e4-8870-e776ccc3af60.png)
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T04:07:47Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed. Issues with sending changes in a channels message -- moved to getQueue world.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by  on 2014-08-18T04:07:47Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Closing the PartyAll Tab or browser <small>Raised by: Kevin Huen on 2014-08-18T00:45:21Z</small></h1>
+					<h4>Label: <span class="label label-default">bug, question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/23">https://api.github.com/repos/robinsharma/partyall/issues/23</a></h4>
+					<h4>Description:</h4>
+					<p>Not sure if this is intended but when i close the tab or the browser that PartyAll is on and open a new tab/browser and try to go to http://partyall.herokuapp.com/ it just leads me to http://partyall.herokuapp.com/#/party/undefined and i can't get back to the home page from this screen
+
+![image](https://cloud.githubusercontent.com/assets/7525216/3946477/af6dae2a-2671-11e4-8fdd-5bbedf76c19e.png)
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T01:13:53Z</span>
+						</h5>
+						<blockquote>
+								<p>@Kevin Huen
+
+Session is killed by the browser - which now results in a redirect to the home page. Should sessions persist longer?
+
+> This [Session Storage] is a global object (sessionStorage) that maintains a storage area that's available for the duration of the page session. A page session lasts for as long as the browser is open and survives over page reloads and restores. Opening a page in a new tab or window will cause a new session to be initiated.
+> [- MDN](https://developer.mozilla.org/en/docs/Web/Guide/API/DOM/Storage#sessionStorage)</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Kevin Huen<span>
+								<span>on 2014-08-18T01:29:19Z</span>
+						</h5>
+						<blockquote>
+								<p>Is there a need for sessions to last long? As long as the user has the key they can always access the party.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T05:14:18Z</span>
+						</h5>
+						<blockquote>
+								<p>Decision made that we should continue to use sessionStorage vs. localStorage.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T05:14:18Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Play/Pause Button Resets to Pause <small>Raised by: Kevin Holmes on 2014-08-18T00:11:05Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/22">https://api.github.com/repos/robinsharma/partyall/issues/22</a></h4>
+					<h4>Description:</h4>
+					<p>If the user is a Host and they pause the currently playing song and navigate away to search for a new song to add to the queue...when they return to the main party page the "Play/Pause" button has reset to pause (i.e. the host must press the play/pause button twice to resume the song).</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T01:58:33Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: ReAdding Already Played Song to Empty Queue <small>Raised by: Kevin Holmes on 2014-08-17T23:27:09Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/21">https://api.github.com/repos/robinsharma/partyall/issues/21</a></h4>
+					<h4>Description:</h4>
+					<p>If only one song in queue and it finishes playing (should then be empty queue)...if the user searches and adds the same song after to the empty queue it does not start playing right away, the host must manually press pause then play to start it.</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T02:06:04Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Song End Time turns to "-" <small>Raised by: Kevin Holmes on 2014-08-17T20:54:28Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/20">https://api.github.com/repos/robinsharma/partyall/issues/20</a></h4>
+					<h4>Description:</h4>
+					<p>If a song is playing and as the host you navigate away from the main party page to search for a new song, When you return to the main party page the end time of the currently playing song shows as  "-".</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-17T22:06:15Z</span>
+						</h5>
+						<blockquote>
+								<p>Closed - see tagged commit.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-17T22:06:15Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Song Playing Time <small>Raised by: Royce Mok on 2014-08-17T19:18:28Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/19">https://api.github.com/repos/robinsharma/partyall/issues/19</a></h4>
+					<h4>Description:</h4>
+					<p>You should have some way of informing the user how long the song will last and where it currently is.
+e.g. 2:45/4:50 where 2:45 is currently where the song is at and 4:50 indicates how long the song is.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T00:22:07Z</span>
+						</h5>
+						<blockquote>
+								<p>nice suggestion, implemented by joey</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T00:22:07Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Forget Party Key <small>Raised by: Dallas Fraser on 2014-08-16T15:46:02Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/18">https://api.github.com/repos/robinsharma/partyall/issues/18</a></h4>
+					<h4>Description:</h4>
+					<p>I think the user should always have a way to retrieve their party key. For example while they are on the party page they can see it or hit a button for it to pop up.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T04:13:42Z</span>
+						</h5>
+						<blockquote>
+								<p>doneee :dollar: </p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-18T04:13:42Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Questions about Search Controller <small>Raised by: Dallas Fraser on 2014-08-16T15:41:46Z</small></h1>
+					<h4>Label: <span class="label label-default">question</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/17">https://api.github.com/repos/robinsharma/partyall/issues/17</a></h4>
+					<h4>Description:</h4>
+					<p>    var setPlayer = function () {
+      if ($scope.song = QueueService.nowPlaying) {
+        $scope.timeWidth = "0%";
+        $scope.setStreamUrl($scope.song.url + clientIdParam);
+        $scope.timeWidth = "0%";
+        $scope.isPlaying = true;
+        QueueService.isPlaying = true;
+        timer = $interval(updateTime, 1000);        
+      }
+    };
+What exactly is the if statement doing?
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T00:27:50Z</span>
+						</h5>
+						<blockquote>
+								<p>@jmuia will explain...</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T00:30:20Z</span>
+						</h5>
+						<blockquote>
+								<p>The if statement assigns $scope.song to the song in QueueService.nowPlaying.
+
+If QueueService.nowPlaying is null (and therefore $scope.song), the if statement will fail and the $scope attributes will not be set.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T00:30:20Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Copying and Pasting Party URL as host <small>Raised by: Kevin Holmes on 2014-08-16T05:35:04Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/16">https://api.github.com/repos/robinsharma/partyall/issues/16</a></h4>
+					<h4>Description:</h4>
+					<p>If you copy and paste the URL for a party as a host into another browser tab the following happens (See below). Obviously it should not allow you to log in but there should be more appropriate handling of this scenario.
+
+![image](https://cloud.githubusercontent.com/assets/3419185/3941017/a2b5f35c-2506-11e4-96de-1724159bd956.png)
+
+</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T00:32:57Z</span>
+						</h5>
+						<blockquote>
+								<p>@jmuia we should redirect to home page</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T01:17:54Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed with AuthService and persistent Sessions.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T01:17:54Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Host Create Party Password Confirmation Error <small>Raised by: Kevin Holmes on 2014-08-16T04:43:11Z</small></h1>
+					<h4>Label: <span class="label label-default">bug, enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/15">https://api.github.com/repos/robinsharma/partyall/issues/15</a></h4>
+					<h4>Description:</h4>
+					<p>If two different passwords are entered (for password and confirm password) under the "Create Party" section for a host the user can still continue and get a Party Key.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Gavin Kerr<span>
+								<span>on 2014-08-16T04:57:08Z</span>
+						</h5>
+						<blockquote>
+								<p>Nothing can be entered for either password field and it will still work right now</p>
+						</blockquote>
+						<h5>
+							<span>Comment by Dallas Fraser<span>
+								<span>on 2014-08-16T16:16:00Z</span>
+						</h5>
+						<blockquote>
+								<p>Probably should have create party button disabled until they enter matching passwords </p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T01:20:21Z</span>
+						</h5>
+						<blockquote>
+								<p>Front-end validation in place.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T01:20:21Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: No Error Message for Incorrect Party Key as Host <small>Raised by: Kevin Holmes on 2014-08-16T04:39:27Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/14">https://api.github.com/repos/robinsharma/partyall/issues/14</a></h4>
+					<h4>Description:</h4>
+					<p>Nothing happens if the host option is chosen and then a party key that does not exist is entered...should probably let the user know with a message that says something like 'Party Key does not exist'.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T01:19:34Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed - error messages for login and create pages.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T01:19:34Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: No Error Message for Incorrect Party Key as Guest <small>Raised by: Kevin Holmes on 2014-08-16T04:38:06Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/13">https://api.github.com/repos/robinsharma/partyall/issues/13</a></h4>
+					<h4>Description:</h4>
+					<p>Nothing happens if the guest option is chosen and then a party key that does not exist is entered...should probably let the user know with a message that says something like 'Party Key does not exist'.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T01:22:55Z</span>
+						</h5>
+						<blockquote>
+								<p>Fixed- error messages in place.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T01:22:55Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: PartyAll Song Search <small>Raised by: Kevin Holmes on 2014-08-16T04:36:20Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/12">https://api.github.com/repos/robinsharma/partyall/issues/12</a></h4>
+					<h4>Description:</h4>
+					<p>When clicking on the search button to search for a song within a party it brings you to a search page where default placeholder text says "Party Key"...should say "Song Name" in search bar</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T00:30:52Z</span>
+						</h5>
+						<blockquote>
+								<p>fixed</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-18T00:30:52Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Host Next Song Error  <small>Raised by: Gavin Kerr on 2014-08-15T21:56:42Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/11">https://api.github.com/repos/robinsharma/partyall/issues/11</a></h4>
+					<h4>Description:</h4>
+					<p>If there is no next song in the queue and the Host selects 'Next' the song disappears from the 'Now Playing' bar but continues playing.
+
+However, as soon as a new song is added to the queue (by either a Host or a Guest) then it replaces the currently playing (but invisible) song that the Host had already decided to skip.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Kevin Holmes<span>
+								<span>on 2014-08-16T05:17:51Z</span>
+						</h5>
+						<blockquote>
+								<p>Should probably disable the next button if there are no other songs in the queue.
+</p>
+						</blockquote>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T00:28:42Z</span>
+						</h5>
+						<blockquote>
+								<p>done, via @jmuia </p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T00:28:42Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Typo on host-guest partial <small>Raised by: Dallas Fraser on 2014-08-15T21:05:08Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/10">https://api.github.com/repos/robinsharma/partyall/issues/10</a></h4>
+					<h4>Description:</h4>
+					<p>The confirm party password placeholder says "Comfirm Password"</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T00:28:16Z</span>
+						</h5>
+						<blockquote>
+								<p>lol good catch, fixed</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-18T00:28:16Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Market Research 2 <small>Raised by: Dallas Fraser on 2014-08-15T21:00:11Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/9">https://api.github.com/repos/robinsharma/partyall/issues/9</a></h4>
+					<h4>Description:</h4>
+					<p>Outside suggestion said
+"
+It's actually pretty cool though, just out of curiosity how do you actually play the music as a host?
+"
+He was doing it on his I-phone. Is being a Host not mobile.
+It seemed fine on my phone. He may be the on exception but we may need to dummy proof this app for i-phone users </p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by Gavin Kerr<span>
+								<span>on 2014-08-15T21:35:06Z</span>
+						</h5>
+						<blockquote>
+								<p>I just tested this on my iPhone (4) and created a party/played a song with no problem. It took a few seconds for the song to start played after it was queued but it played fine</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T01:24:38Z</span>
+						</h5>
+						<blockquote>
+								<p>Should improve UX and an indicator if the audio is loading for the Host.</p>
+						</blockquote>
+						<h5>
+							<span>Comment by jmuia<span>
+								<span>on 2014-08-18T05:15:31Z</span>
+						</h5>
+						<blockquote>
+								<p>Enhanced - loading states for audio.</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by jmuia on 2014-08-18T05:15:31Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Host Upvote <small>Raised by: Evgheni Naida on 2014-06-12T16:38:34Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/6">https://api.github.com/repos/robinsharma/partyall/issues/6</a></h4>
+					<h4>Description:</h4>
+					<p>If the host has already Upvoted the song, when he/she want's to Downvote the same song the pop-up that apears says "Upvote" instead of "Downvote".</p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-18T00:24:20Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Search <small>Raised by: Royce Mok on 2014-06-06T00:26:36Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/5">https://api.github.com/repos/robinsharma/partyall/issues/5</a></h4>
+					<h4>Description:</h4>
+					<p>Clarify what we are searching for on the Search Page. Either on the title search or in the search box.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-18T00:23:54Z</span>
+						</h5>
+						<blockquote>
+								<p>fixed</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-18T00:23:54Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Update or Play Now Blackberry Z10  <small>Raised by: Royce Mok on 2014-06-06T00:18:32Z</small></h1>
+					<h4>Label: <span class="label label-default">bug</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/4">https://api.github.com/repos/robinsharma/partyall/issues/4</a></h4>
+					<h4>Description:</h4>
+					<p>It looks like the functions on the popup for the song queue doesn't seem to work on the Z10. Tapping on either upvote, play or cancel doesn't seem to work. I can still exit out by tapping outside the popup.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-17T11:06:10Z</span>
+						</h5>
+						<blockquote>
+								<p>switched to bootstrap :smirk: </p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-17T11:06:10Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Upvote or Play Now? <small>Raised by: Evgheni Naida on 2014-06-05T16:31:13Z</small></h1>
+					<h4>Label: <span class="label label-default">suggestion</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/3">https://api.github.com/repos/robinsharma/partyall/issues/3</a></h4>
+					<h4>Description:</h4>
+					<p>The pop-up that appears for the Host when he/she selects a song: "Upvote or Play Now? Would you like to upvote this song or play it now?". Would be better If we get rid of one of those sentences since they both have the same meaning.</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-08-17T11:05:24Z</span>
+						</h5>
+						<blockquote>
+								<p>no mo dialogs</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-08-17T11:05:24Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Browser "Back" Button <small>Raised by: Evgheni Naida on 2014-06-05T16:26:28Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/2">https://api.github.com/repos/robinsharma/partyall/issues/2</a></h4>
+					<h4>Description:</h4>
+					<p>In Desktop and Android Browser, the "Back" button leads all the way back to previous site. Is it possible to have "Back" button act as the back button on orange Topbar?</p>
+					<h4>Comments:</h4>
+						<h5>
+							<span>Comment by robinsharma<span>
+								<span>on 2014-07-28T05:55:26Z</span>
+						</h5>
+						<blockquote>
+								<p>fixed, switched to angularjs</p>
+						</blockquote>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-07-28T05:55:26Z</span>
+					</h4>
+				</div>
+				<div class="issue-container">
+					<h1>Issue Title: Browser "Back <small>Raised by: Evgheni Naida on 2014-06-05T16:23:27Z</small></h1>
+					<h4>Label: <span class="label label-default">enhancement</span></h4>
+					<h4>URL: <a href="https://api.github.com/repos/robinsharma/partyall/issues/1">https://api.github.com/repos/robinsharma/partyall/issues/1</a></h4>
+					<h4>Description:</h4>
+					<p></p>
+					<h4>Comments:</h4>
+					<h4 class="red-text">
+							<span>Closed by robinsharma on 2014-06-05T16:23:41Z</span>
+					</h4>
+				</div>
+		</div>
+	</body>
+</html>
