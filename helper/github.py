@@ -37,10 +37,13 @@ class Github():
             for issue in issues:
                 output_results.append(self.parse_issue(issue))
         self.pp.pprint(output_results)
+        f = open('out.txt', 'w')
+        print >> f, output_results # or f.write('...\n')
+        f.close()
         mytemplate = Template(filename='template.mako')
         with open('output.html', 'w+') as doc:
-            print(mytemplate.render(issues=output_results))
-            doc.write(mytemplate.render(issues=output_results))
+            # print(mytemplate.render(issues=output_results))
+            doc.write(mytemplate.render(issues=output_results).encode('utf-8'))
 
 
     '''
@@ -128,8 +131,8 @@ class Test(unittest.TestCase):
 
     def setUp(self):
         self.settings = Settings()
-        self.user = self.settings.USER
-        self.pw = self.settings.PASSWORD
+        self.user = self.settings['USER']
+        self.pw = self.settings['PASSWORD']
         self.git = Github(self.user, self.pw)
         self.pp = PrettyPrinter(indent=4)
         self.docs = {'owner':'jmuia','name':'dj-web-app-docs'}
